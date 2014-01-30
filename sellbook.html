@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnimoLibro - DLSU Book Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="customized-components.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">AnimoLibro</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+         <ul class="nav navbar-nav navbar-right">
+			  <p class="navbar-text"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</p>
+			  <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				  <li><a href="#">Hey</a></li>
+				  <li><a href="#"></a></li>
+				  <li><a href="#"></a></li>
+				  <li class="divider"></li>
+				  <li><a href="#"></a></li>
+				</ul>
+			  </li>
+		</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	<div class="container">
+	<div class="row">
+	<div class="span8">
+		<form class="form-horizontal" id="registerHere" method='post' action=''>
+		<fieldset>
+
+		<legend>Put up a Book</legend>
+
+		<div class="control-group">
+		<label class="control-label">ISBN</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="Full Name">
+		</div>
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label">Title</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Full Name">
+		</div>
+		</div>
+
+		<div class="control-group">
+		<label class="control-label">Authors</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Email">
+		</div>
+		</div>
+		
+		
+
+		</fieldset>
+		<fieldset>
+		<legend>Selling Preferences</legend>
+		
+		<div class="control-group">
+		<label class="control-label">Preferred Price</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Email">
+		</div>
+		</div>
+		
+			<div class="control-group">
+		<label class="control-label">Password</label>
+		<div class="controls">
+		<input type="password" class="input-xlarge" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		</div>
+		</div>
+	
+		
+		
+		<div class="control-group">
+		<label class="control-label"></label>
+		<div class="controls">
+		<button type="submit" class="btn btn-success" >Post Advertisement</button>
+		</div>
+		</div>
+		</fieldset>
+		</form>
+	</div>
+	</div>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
