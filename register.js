@@ -1,6 +1,4 @@
-<!-- Include Bootstrap Asserts JavaScript Files. -->
-<script type="text/javascript" src="jquery.validate.js"></script>
-<script type="text/javascript">
+
  $(document).ready(function()
  {
 // Popover 
@@ -44,4 +42,3 @@ unhighlight: function(element, errorClass, validClass)
  }
  });
  });
-</script>
