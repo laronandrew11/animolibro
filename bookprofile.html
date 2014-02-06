@@ -52,11 +52,14 @@
 	
 	<div class="container">
     <div class="row">
+	<!--div class="alert alert-success" id="success-alert"-->
+	<!--Reservation successful!-->
+	</div>
         <div class="col-xs-12 col-sm-6 col-md-6 center">
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/190x250" alt="" class="img-rounded img-responsive" />
+                        <img src="bookcover.jpg" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>
@@ -95,21 +98,40 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
+                        <img src="profilepicsmall.png" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Condition: Good
 					<p>Price: Php 450.00 (negotiable)
 					<p>Meetup: Gokongwei Lobby
-					<button type="button" class="btn btn-primary pull-right">Buy</button>
+					<button type="button" class="btn btn-primary pull-right buy-btn" id="btn-submit1">Buy</button>
 				</div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Andrew Laron 
+					<h3 class="panel-title">Charles Malcaba 
 					<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+							<i class="glyphicon glyphicon-star-empty"></i></h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-6 col-md-4">
+                        <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
+                    </div>
+					<p>Condition: Excellent
+					<p>Price: Php 13.37 (non-negotiable)
+					<p>Meetup: Mutien Marie Second Floor
+					<button type="button" class="btn btn-primary pull-right buy-btn" id="btn-submit2">Buy</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ronald Lim 
+					<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
 							<i class="glyphicon glyphicon-star-empty"></i></h3>
 				</div>
 				<div class="panel-body">
@@ -117,28 +139,9 @@
                         <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Condition: Good
-					<p>Price: Php 450.00 (negotiable)
-					<p>Meetup: Gokongwei Lobby
-					<button type="button" class="btn btn-primary pull-right">Buy</button>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Andrew Laron 
-					<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i></h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Condition: Good
-					<p>Price: Php 450.00 (negotiable)
-					<p>Meetup: Gokongwei Lobby
-					<button type="button" class="btn btn-primary pull-right">Buy</button>
+					<p>Price: Php 400.00 (negotiable)
+					<p>Meetup: Razon Second Floor
+					<button type="button" class="btn btn-primary pull-right buy-btn" id="btn-submit">Buy</button>
 				</div>
 			</div>
 
@@ -150,5 +153,6 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+	<script src="bookprofile.js"></script>
   </body>
 </html>

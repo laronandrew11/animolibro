@@ -52,15 +52,18 @@
 	<div class="container">
 	<div class="row">
 	<div class="span8">
+	<div class="alert alert-success" id = "success-alert">
+		Registration successful!
+	</div>
 		<form class="form-horizontal" id="registerHere" method='post' action=''>
 		<fieldset>
-
+		
 		<legend>Put up a Book</legend>
 
 		<div class="control-group">
 		<label class="control-label">ISBN</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="Full Name">
+		<input type="text" class="input-xlarge" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
 		</div>
 		</div>
 		
@@ -74,7 +77,7 @@
 		<div class="control-group">
 		<label class="control-label">Authors</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Email">
+		<input type="text" class="input-xlarge" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Full Name">
 		</div>
 		</div>
 		
@@ -107,7 +110,14 @@
 			</div>
 		</div>
 		</div>
-
+		
+			<div class="control-group">
+		<label class="control-label">Description</label>
+		<div class="controls">
+		<input type="text" class="input-xlarge" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Full Name">
+		</div>
+		</div>
+		
 		</fieldset>
 		<fieldset>
 		<legend>Selling Preferences</legend>
@@ -115,7 +125,7 @@
 		<div class="control-group">
 		<label class="control-label">Preferred Price</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Email">
+		<input type="text" class="input-xlarge" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
       <input type="checkbox"> Negotiable
@@ -126,7 +136,7 @@
 			<div class="control-group">
 		<label class="control-label">Preferred Meetup Place</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="meetup_place" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Email">
+		<input type="text" class="input-xlarge" id="meetup_place" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
@@ -142,7 +152,8 @@
 		<div class="control-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<button type="submit" class="btn btn-success" >Post Advertisement</button>
+		<a type="submit" class="btn btn-success" href="userprofile.html" id = "btn-submit">Post Advertisement</a>
+		
 		</div>
 		</div>
 		</fieldset>
@@ -155,5 +166,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="sellbook.js"></script>
   </body>
 </html>

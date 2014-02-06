@@ -39,7 +39,8 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+			 <!--button type="submit" class="btn btn-success">Sign in</button-->
+            <a href="home.html" class="btn btn-success" role="button">Sign in</a>
 			<button type="submit" class="btn btn-primary active">Register</button>
           </form>
         </div><!--/.nav-collapse -->
@@ -49,7 +50,7 @@
 	
 	<div class="row">
 	<div class="span8">
-		<div class="alert alert-success">
+		<div class="alert alert-success" id="success-alert">
 Registration successful!
 </div>
 		<form class="form-horizontal" id="registerHere" method='post' action=''>
@@ -89,7 +90,8 @@ Registration successful!
 		<div class="control-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<button type="submit" class="btn btn-success" >Create My Account</button>
+		<button type="submit" class="btn btn-success hidden" id="btn-submit">Create My Account</button>
+		<a href="home.html" role="button" class="btn btn-success" id="btn-home">Create My Account</a>
 		</div>
 		</div>
 

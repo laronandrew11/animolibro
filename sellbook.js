@@ -2,39 +2,39 @@
  $(document).ready(function()
  {
   $("#success-alert").hide();
-
 // Popover 
  $('#registerHere input').hover(function()
  {
  $(this).popover('show')
  });
 
- 
 // Validation
  $("#registerHere").validate({
 rules:{
-user_name:"required",
-user_email:{required:true,email: true},
-user_password:{required:true,minlength: 6},
-confirm_password:{required:true,equalTo: "#user_password"},
+book_isbn:{required:true,minlength: 13},
+book_title:{required:true},
+book_authors:{required:true},
+book_price:{required:true},
+meetup_place:{required:true},
+user_password:{required:true},
  },
 
 messages:{
-user_name:"Enter your first and last name",
-user_email:{
- required:"Enter your email address",
- email:"Enter valid email address"},
+book_isbn:{
+ required:"Enter the book's ISBN number to automatically fill out other information.",
+ minlength:"ISBN number must be minimum 13 characters"},
+book_title:{
+ required:"Enter the book's full title."},
+book_authors:{
+ required:"Enter the book's authors."},
+book_price:{
+ required:"Set your asking price for this book."},
+meetup_place:{
+ required:"Where do you want to meet your buyers?"},
 user_password:{
- required:"Enter your password",
- minlength:"Password must be minimum 6 characters"},
-confirm_password:{
- required:"Enter confirm password",
- equalTo:"Password and Confirm Password must match"},
+ required:"Enter a password."}
  },
 
-
- 
- 
 errorClass: "help-inline",
 errorElement: "span",
 highlight:function(element, errorClass, validClass)
@@ -51,6 +51,6 @@ unhighlight: function(element, errorClass, validClass)
  $("#btn-submit").onclick(function(){
 
  $("#success-alert").show();
+  alert("WADASDASDAS");
  });
  });
-
