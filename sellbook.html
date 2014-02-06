@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!doctype html>
+<html><head>
     <title>AnimoLibro - DLSU Book Exchange</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -30,7 +29,7 @@
             <li><a href="home.html">Home</a></li>
              <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-			<li class=active><a href="sellbook.html">Sell</a></li>
+			<li class="active"><a href="sellbook.html">Sell</a></li>
 			<li><a href="findbooks.html">Find</a></li>
           </ul>
          <ul class="nav navbar-nav navbar-right">
@@ -51,63 +50,63 @@
     </div>
 	<div class="container">
 	<div class="row">
-	<div class="span8">
-	<div class="alert alert-success" id = "success-alert">
+	<div class="col-sm-8 col-md-8">
+	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
-		<form class="form-horizontal" id="registerHere" method='post' action=''>
+		<form class="form-horizontal" id="registerHere" method="post" action="">
 		<fieldset>
 		
 		<legend>Put up a Book</legend>
 
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">ISBN</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
+		<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Title</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Full Name">
 		</div>
 		</div>
 
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Authors</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Full Name">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Publisher</label> <!--honestly not essential-->
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher." data-original-title="Full Name">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Category</label>  <!--change to combobox-->
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_category" name="book_category" rel="popover" data-content="Select the book's category." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_category" name="book_category" rel="popover" data-content="Select the book's category." data-original-title="Full Name">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Used in Subject:</label> <!--change to combobox-->
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Full Name">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Condition</label>
 		<div class="controls">
 			<div class="radio-inline">
 				<label>
-				<input type="radio" name="conditionRadios" id="conditionRadios1" value="option1" checked>
+				<input type="radio" name="conditionRadios" id="conditionRadios1" value="option1" checked="">
 					Excellent
 				</label>
 			</div>
@@ -132,10 +131,10 @@
 		</div>
 		</div>
 		
-			<div class="control-group">
+			<div class="form-group">
 		<label class="control-label">Description</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Full Name">
 		</div>
 		</div>
 		
@@ -143,10 +142,10 @@
 		<fieldset>
 		<legend>Selling Preferences</legend>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Preferred Price</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
+		<input type="text" class="input-xlarge form-control" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
       <input type="checkbox"> Negotiable
@@ -154,30 +153,30 @@
   </div>
 		</div>
 		
-			<div class="control-group">
+			<div class="form-group">
 		<label class="control-label">Preferred Meetup Place</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="meetup_place" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
+		<input type="text" class="input-xlarge form-control" id="meetup_place" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
-			<div class="control-group">
+			<div class="form-group">
 		<label class="control-label">Password</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 	
 		
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<a type="submit" class="btn btn-success" href="userprofile.html" id = "btn-submit">Post Advertisement</a>
+		<a type="submit" class="btn btn-success" href="userprofile.html" id="btn-submit">Post Advertisement</a>
 		
 		</div>
 		</div>
-		</fieldset>
+		</div></fieldset>
 		</form>
 	</div>
 	</div>
@@ -189,5 +188,5 @@
     <script src="js/bootstrap.min.js"></script>
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	<script src="sellbook.js"></script>
-  </body>
-</html>
+  
+</body></html>

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!doctype html>
+<html><head>
     <title>AnimoLibro - DLSU Book Exchange</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -49,63 +48,78 @@
 	<div class="container">
 	
 	<div class="row">
-	<div class="span8">
+	<div class="col-sm-8 col-md-8">
 		<div class="alert alert-success" id="success-alert">
 Registration successful!
 </div>
-		<form class="form-horizontal" id="registerHere" method='post' action=''>
+		<form class="form-horizontal" id="registerHere" method="post" action="">
 		<fieldset>
 
 		<legend>Registration</legend>
 
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Name</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
 		</div>
 		</div>
 
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">DLSU E-mail (*******@dlsu.ph)</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
+		<input type="text" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
 		</div>
 		</div>
 		
 				
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Contact Number (optional)</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="user_contactno" name="user_contactno" rel="popover" data-content="What’s your contact number?" data-original-title="Email">
+		<input type="text" class="input-xlarge form-control" id="user_contactno" name="user_contactno" rel="popover" data-content="What’s your contact number?" data-original-title="Email">
 		</div>
 		</div>
 		
-			<div class="control-group">
+			<div class="form-group">
 		<label class="control-label">Course (optional)</label> <!--change to combobox-->
 		<div class="controls">
-		<input type="text" class="input-xlarge" id="user_course" name="user_course" rel="popover" data-content="What’s your course?" data-original-title="Email">
+		<input type="text" class="input-xlarge form-control" id="user_course" name="user_course" rel="popover" data-content="What’s your course?" data-original-title="Email">
 		</div>
 		</div>
+		
+		<!--div class="btn-group">
+		 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Course <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#">Item I</a></li>
+      <li><a href="#">Item II</a></li>
+      <li><a href="#">Item III</a></li>
+      <li><a href="#">Item IV</a></li>
+      <li><a href="#">Item V</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Other</a></li>
+    </ul>
+		</div-->
+		
+
 
 		
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Password</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label">Confirm Password</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
+		<input type="password" class="input-xlarge form-control" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
 		</div>
 		</div>
 		
 	
 		
-		<div class="control-group">
+		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
 		<button type="submit" class="btn btn-success hidden" id="btn-submit">Create My Account</button>
@@ -124,7 +138,9 @@ Registration successful!
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+	<script src="dropdown.js"></script>
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	<script src="register.js"></script>
-  </body>
-</html>
+	
+  
+</body></html>
