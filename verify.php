@@ -18,8 +18,12 @@ if(isset($_POST['submit'])){
     //Choose some sort of password encryption, I choose sha256 
     //Password function (Not In all versions of MySQL). 
     $email = mysql_real_escape_string($_POST['Email']); 
-    $pas = hash('sha256', mysql_real_escape_string($_POST['Password'])); 
-    $sql = mysql_query("SELECT * FROM UserAccount  
+    $pas = mysql_real_escape_string($_POST['Password']); 
+    $test = "SELECT * FROM UserAccount  
+        WHERE email='$email' AND 
+        passwordhash='$pas' 
+        LIMIT 1";
+	$sql = mysql_query("SELECT * FROM UserAccount  
         WHERE email='$email' AND 
         passwordhash='$pas' 
         LIMIT 1"); 
