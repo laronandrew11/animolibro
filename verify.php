@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
         header("Location: home.html"); // Modify to go to the page you would like 
         exit; 
     }else{ 
-        header("Location: login_page.php"); 
+		echo "Wrong Email/Password";
         exit; 
     } 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
