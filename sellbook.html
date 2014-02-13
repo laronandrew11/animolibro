@@ -54,7 +54,7 @@
 	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
-		<form class="form-horizontal" id="registerHere" method="post" action="">
+		<form action="php/sellbook.php" class="form-horizontal" role="form" id="sellForm" method="post" >
 		<fieldset>
 		
 		<legend>Put up a Book</legend>
@@ -160,7 +160,7 @@
 		<input type="text" class="input-xlarge form-control" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
-      <input type="checkbox"> Negotiable
+      <input type="checkbox" name="negotiable"> Negotiable
     </label>
   </div>
 		</div>
@@ -184,7 +184,8 @@
 		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<a type="submit" class="btn btn-success" href="userprofile.html" id="btn-submit">Post Advertisement</a>
+		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Post Advertisement">
+		<!--a type="submit" class="btn btn-success" href="userprofile.html" id="btn-submit">Post Advertisement</a-->
 		
 		</div>
 		</div>
