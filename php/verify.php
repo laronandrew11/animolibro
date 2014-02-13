@@ -31,10 +31,10 @@ if(isset($_POST['submit'])){
         $row = mysql_fetch_array($sql); 
         session_start(); 
         $_SESSION['username'] = $row['username'];
-        header("Location: home.html"); // Modify to go to the page you would like 
+        header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
         exit; 
     }else{ 
-        header("Location: login_page.php"); 
+        header("Location: http://localhost/animolibro/login_page.html"); 
         exit; 
     } 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
