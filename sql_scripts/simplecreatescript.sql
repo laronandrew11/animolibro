@@ -1,11 +1,11 @@
-CREATE DATABASE AnimoLibro;
-USE AnimoLibro;
+CREATE DATABASE AnimoLibroSimple;
+USE AnimoLibroSimple;
 
 
 -- -----------------------------------------------------
 -- Table AnimoLibro.Course
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Course (
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Course (
   id INT NOT NULL AUTO_INCREMENT ,
   name VARCHAR(45) NOT NULL ,
   code VARCHAR(45) NOT NULL ,
@@ -18,7 +18,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table AnimoLibro.User
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.UserAccount (
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.UserAccount (
   id INT NOT NULL AUTO_INCREMENT ,
   username VARCHAR(45) NOT NULL ,
   passwordhash VARCHAR(45) NOT NULL ,
@@ -32,48 +32,34 @@ CREATE  TABLE IF NOT EXISTS AnimoLibro.UserAccount (
   INDEX fk_User_Course1_idx (Course_id ASC) ,
   CONSTRAINT fk_User_Course1
     FOREIGN KEY (Course_id )
-    REFERENCES AnimoLibro.Course (id )
+    REFERENCES AnimoLibroSimple.Course (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table AnimoLibro.Category
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Category (
-  id INT NOT NULL AUTO_INCREMENT ,
-  name VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (id) ,
-  UNIQUE INDEX name_UNIQUE (name ASC) )
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table AnimoLibro.Book
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Book (
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Book (
   id INT NOT NULL AUTO_INCREMENT ,
   title VARCHAR(45) NOT NULL ,
   authors VARCHAR(45) NOT NULL ,
   publisher VARCHAR(45) NULL ,
   isbn VARCHAR(45) NULL ,
-  Category_id INT NOT NULL ,
+  category VARCHAR(45) NOT NULL ,
+  subjects VARCHAR(45) NOT NULL,
   PRIMARY KEY (id) ,
-  UNIQUE INDEX isbn_UNIQUE (isbn ASC) ,
-  INDEX fk_Book_Category_idx (Category_id ASC) ,
-  CONSTRAINT fk_Book_Category
-    FOREIGN KEY (Category_id )
-    REFERENCES AnimoLibro.Category (id )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX isbn_UNIQUE (isbn ASC) )
+
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table AnimoLibro.Ad
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Ad (
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Ad (
   id INT NOT NULL AUTO_INCREMENT ,
   cost FLOAT NOT NULL ,
   meetup VARCHAR(45) NOT NULL ,
@@ -90,59 +76,25 @@ CREATE  TABLE IF NOT EXISTS AnimoLibro.Ad (
   INDEX fk_Ad_Book1_idx (Book_id ASC) ,
   CONSTRAINT fk_Ad_User1
     FOREIGN KEY (buyer_id )
-    REFERENCES AnimoLibro.UserAccount (id )
+    REFERENCES AnimoLibroSimple.UserAccount (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Ad_User2
     FOREIGN KEY (seller_id )
-    REFERENCES AnimoLibro.UserAccount (id )
+    REFERENCES AnimoLibroSimple.UserAccount (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_Ad_Book1
     FOREIGN KEY (Book_id )
-    REFERENCES AnimoLibro.Book (id )
+    REFERENCES AnimoLibroSimple.Book (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table AnimoLibro.Subject
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Subject (
-  id INT NOT NULL AUTO_INCREMENT ,
-  code VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (id) ,
-  UNIQUE INDEX code_UNIQUE (code ASC) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table AnimoLibro.Subject_uses_Book
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.Subject_uses_Book (
-  Book_id INT NOT NULL ,
-  Subject_id INT NOT NULL ,
-  PRIMARY KEY (Book_id, Subject_id) ,
-  INDEX fk_Book_has_Subject_Subject1_idx (Subject_id ASC) ,
-  INDEX fk_Book_has_Subject_Book1_idx (Book_id ASC) ,
-  CONSTRAINT fk_Book_has_Subject_Book1
-    FOREIGN KEY (Book_id )
-    REFERENCES AnimoLibro.Book (id )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_Book_has_Subject_Subject1
-    FOREIGN KEY (Subject_id )
-    REFERENCES AnimoLibro.Subject (id )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table AnimoLibro.User_wants_Book
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS AnimoLibro.User_wants_Book (
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.User_wants_Book (
   User_id INT NOT NULL ,
   Book_id INT NOT NULL ,
   PRIMARY KEY (User_id, Book_id) ,
@@ -150,12 +102,12 @@ CREATE  TABLE IF NOT EXISTS AnimoLibro.User_wants_Book (
   INDEX fk_User_has_Book_User1_idx (User_id ASC) ,
   CONSTRAINT fk_User_has_Book_User1
     FOREIGN KEY (User_id )
-    REFERENCES AnimoLibro.UserAccount (id )
+    REFERENCES AnimoLibroSimple.UserAccount (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_User_has_Book_Book1
     FOREIGN KEY (Book_id )
-    REFERENCES AnimoLibro.Book (id )
+    REFERENCES AnimoLibroSimple.Book (id )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
