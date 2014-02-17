@@ -46,7 +46,8 @@ if(isset($_POST['submit'])){
 				echo $negotiable;
 				echo $condition;*/
 					$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id) 
-        VALUES ('$price','$meetup','$condition','$negotiable',0,'$description',0,'$bookid')"; //insert seller id 0 until we get sessions figured out
+        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',1,$bookid)"; //insert seller id 0 until we get sessions figured out
+			echo $add_ad;
 				if(mysql_query($add_ad)){
 					echo "SUCCESS";
 				}else {echo "failed to add ad";}
