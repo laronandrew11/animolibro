@@ -28,9 +28,9 @@ if(isset($_POST['submit'])){
 	$negotiable = mysql_real_escape_string(true);
 	}
 	$meetup = mysql_real_escape_string($_POST['meetup_place']);
-	$password = mysql_real_escape_string($_POST['user_password']);
+	$password = mysql_real_escape_string($_POST['user_password']); //hashing to be added in future
 	
-	//$seller =  $_SESSION['username']; //not sure if this is right
+	$seller =  $_SESSION['username']; //not sure if this is right
 	
 	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
         VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; //later on, add a way to save and reference categories and subjects
@@ -41,12 +41,15 @@ if(isset($_POST['submit'])){
 			if(mysql_num_rows($get_book_id) == 1){
 				$row= mysql_fetch_array($get_book_id); 
 				$bookid= mysql_real_escape_string((int)$row['id']);
+				$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller' AND 
+        passwordhash='$password'  LIMIT 1"));
+				$sellerid=
 				/*echo $bookid;
 				echo $price;
 				echo $negotiable;
 				echo $condition;*/
 					$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id) 
-        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',1,$bookid)"; //insert seller id 0 until we get sessions figured out
+        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; //insert seller id 0 until we get sessions figured out
 			echo $add_ad;
 				if(mysql_query($add_ad)){
 					echo "SUCCESS";
