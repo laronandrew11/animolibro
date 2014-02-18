@@ -30,8 +30,11 @@ if(isset($_POST['submit'])){
     if(mysql_num_rows($sql) == 1){ 
         $row = mysql_fetch_array($sql); 
         session_start(); 
-        $_SESSION['username'] = $row['username'];
-        header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
+        $_SESSION['animolibrousername'] = $row['username'];
+		$_SESSION['logged'] = true;
+        //header("Location: http://localhost/animolibro/php/users_page.php"); 
+		header("Location: http://localhost/animolibro/home.php");
+		//header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
         exit; 
     }else{ 
         header("Location: http://localhost/animolibro/login_page.html"); 
