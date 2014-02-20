@@ -64,10 +64,10 @@
 		<p>Need a textbook? Start your search here.</p>
 		<p><div class="row">
         <div class="col-lg-4">
-            <form method="get" action="/" class="form-inline" >
+            <form action="php/search.php" method="get" action="/" class="form-inline" >
                 <input name="loc" class="span5" type="text"  placeholder="Find a textbook by title...">
                 <!--button type="submit" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button-->
-				 <a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a>
+				 <a name = "submit" type="submit" role="button" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a>
             </form>
         </div></p>
 	</div>
