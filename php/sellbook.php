@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 	$password = mysql_real_escape_string($_POST['user_password']); //hashing to be added in future
 	
 	session_start(); 
-	$seller =  $_SESSION['username']; //not sure if this is right
+	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
 	
 	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
         VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; //later on, add a way to save and reference categories and subjects
