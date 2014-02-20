@@ -26,11 +26,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="home.php">Home</a></li>
              <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
 			<li><a href="sellbookpage.php">Sell</a></li>
-			<li><a href="findbooks.php">Find</a></li>
+			<li class="active"><a href="#">Find</a></li>
           </ul>
          <ul class="nav navbar-nav navbar-right">
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
@@ -40,7 +40,7 @@
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				  <li><a href="php/logout.php">Log-out</a></li>
+				  <li><a href="#">Hey</a></li>
 				  <li><a href="#"></a></li>
 				  <li><a href="#"></a></li>
 				  <li class="divider"></li>
@@ -53,24 +53,42 @@
     </div>';
 	
 ?>
-	<script src ="home.php"></script>
-	<div class="jumbotron">
-	<h1>Sell a book</h1>
-		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
-		<p><a class="btn btn-primary btn-lg" role="button" href="sellbook.html">Sell a textbook</a></p>
-	</div>
-	<div class="jumbotron">
-	<h1>Find a book</h1>
-		<p>Need a textbook? Start your search here.</p>
-		<p><div class="row">
-        <div class="col-lg-4">
-            <form method="get" action="/" class="form-inline" >
-                <input name="loc" class="span5" type="text"  placeholder="Find a textbook by title...">
-                <!--button type="submit" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button-->
-				 <a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a>
-            </form>
-        </div></p>
-	</div>
+	<div class="row">
+        <div class="col-lg-4 center">
+			<h4>Search Results</h4>
+          <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Fundamentals of Web Design, 4th Edition</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-6 col-md-4">
+                        <img src="assets/bookcoversmall.jpg"  alt="" class="img-rounded img-responsive" />
+                    </div>
+					<p>Category: Information Technology
+					<p>Author: Bob
+					<p>Copies Available: 4
+					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
+				</div>
+			</div>
+			   <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">This Book Is Full of Spiders</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-6 col-md-4">
+                        <img src="assets/bookcover2small.jpg"  alt="" class="img-rounded img-responsive" />
+                    </div>
+					<p>Category: Survival
+					<p>Author: D. Wong
+					<p>Copies Available: 9
+					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
+				</div>
+			</div>
+
+       
+
+      </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>

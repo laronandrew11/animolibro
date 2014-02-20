@@ -26,9 +26,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="home.php">Home</a></li>
              <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li class="active"><a href="#">Contact</a></li>
 			<li><a href="sellbookpage.php">Sell</a></li>
 			<li><a href="findbooks.php">Find</a></li>
           </ul>
@@ -40,7 +40,7 @@
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				  <li><a href="php/logout.php">Log-out</a></li>
+				  <li><a href="#">Hey</a></li>
 				  <li><a href="#"></a></li>
 				  <li><a href="#"></a></li>
 				  <li class="divider"></li>
@@ -53,25 +53,7 @@
     </div>';
 	
 ?>
-	<script src ="home.php"></script>
-	<div class="jumbotron">
-	<h1>Sell a book</h1>
-		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
-		<p><a class="btn btn-primary btn-lg" role="button" href="sellbook.html">Sell a textbook</a></p>
-	</div>
-	<div class="jumbotron">
-	<h1>Find a book</h1>
-		<p>Need a textbook? Start your search here.</p>
-		<p><div class="row">
-        <div class="col-lg-4">
-            <form method="get" action="/" class="form-inline" >
-                <input name="loc" class="span5" type="text"  placeholder="Find a textbook by title...">
-                <!--button type="submit" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button-->
-				 <a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a>
-            </form>
-        </div></p>
-	</div>
-
+	<script src = "contact.php"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
