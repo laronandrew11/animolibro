@@ -52,7 +52,7 @@
 	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
-		<form action="php/register.php" class="form-horizontal" id="registerHere" method="post" action="">
+		<form action="php/register.php" class="form-horizontal" id="registerHere" method="post">
 		<fieldset>
 
 		<legend>Registration</legend>
@@ -90,10 +90,10 @@
 		<label class="control-label">Course (optional)</label> 
 		<div class="controls">
 		<select name="course">
-		<option value="choice1">CS-ST</option>
-		<option value="choice2">CS-CSE</option>
-		<option value="choice3">CS-NE</option>
-		<option value="choice4">CS-IST</option>
+		<option value=1>CS-ST</option>
+		<option value=2>CS-CSE</option>
+		<option value=3>CS-NE</option>
+		<option value=4>CS-IST</option>
 		</select>
 		</div>
 		</div>
@@ -122,8 +122,8 @@
 		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<button type="submit" class="btn btn-success hidden" id="btn-submit">Create My Account</button>
-		<a href="home.html" role="button" class="btn btn-success" id="btn-home">Create My Account</a>
+		<button type="submit" class="btn btn-success" name="submit">Create My Account</button>
+		<!--a href="home.html" role="button" class="btn btn-success" id="btn-home">Create My Account</a-->
 		</div>
 		</div>
 
