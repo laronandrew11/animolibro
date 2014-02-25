@@ -1,0 +1,2 @@
+INSERT INTO Book (title, isbn, authors, subjects, category, publisher) VALUES ('The Book',987654,'John Joseph and Bob Loblaw','ALGOCOM','Mathematics','Prentice Hill');
+INSERT INTO Book (title, isbn, authors, subjects, category, publisher) VALUES ('Another Book',987456,'John Joseph and Bob Loblaw','ALGOCOM','Mathematics','Prentice Hill');
