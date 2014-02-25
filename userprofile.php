@@ -98,9 +98,9 @@
                         <h4>';
                             echo $row['username'];
 							echo'</h4>
-                        <small><cite title="Quezon City"><i class="glyphicon glyphicon-map-marker">
+                        <small><cite title="Location"><i class="glyphicon glyphicon-map-marker">
                         </i> Quezon City </cite></small><br>
-						<small><cite title=" CS-ST"><i class="glyphicon glyphicon-book">
+						<small><cite title=" Course"><i class="glyphicon glyphicon-book">
                         </i>';
 						echo $course;
 						echo'</cite></small>
@@ -122,16 +122,19 @@
         </div>
     </div>
 </div>';
+echo'<div class="row">
+	<div class="col-lg-8 center">
+        <div class="col-lg-6">
+			<h4>Selling</h4>';
 //display ads
 if(mysql_num_rows($sql2) >= 1){ 
 
-		while($row = mysql_fetch_array($sql))
+		while($ad_row = mysql_fetch_array($sql2))
 		{
-			echo"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
-			$bookid=$row['book_id'];
-			$bookquery=mysql_query("SELECT * from Book WHERE id = $bookid");
+			$bookid=$ad_row['Book_id'];
+			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
 			$bookrow=mysql_fetch_array($bookquery);
 			$booktitle=$bookrow['title'];
 			$bookauthors=$bookrow['authors'];
@@ -148,11 +151,18 @@ if(mysql_num_rows($sql2) >= 1){
 					<p>Author: ';
 					echo $bookauthors;
 					echo'<p>Condition: ';
-					echo $row['copy_condition'];
+					echo $ad_row['copy_condition'];
 					echo '<p>Price: Php ';
-					echo $row['cost']; echo '(negotiable: '; echo $row['negotiable'];
+					echo $ad_row['cost']; 
+					if( $ad_row['negotiable'] ==1)
+					{
+					echo " (negotiable)";
+					}
+					else{
+					echo " (non-negotiable)";
+					}
 					echo'<p>Meetup: ';
-					echo $row['meetup'];
+					echo $ad_row['meetup'];
 					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>
 				
 				</div>
@@ -162,11 +172,11 @@ if(mysql_num_rows($sql2) >= 1){
 	
 ?>
 
- <div class="row">
+ <!--div class="row">
 	<div class="col-lg-8 center">
         <div class="col-lg-6">
-			<h4>Selling</h4>
-          <div class="panel panel-default">
+			<h4>Selling</h4-->
+          <!--div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Human-Computer Interaction</h3>
 				</div>
@@ -213,7 +223,7 @@ if(mysql_num_rows($sql2) >= 1){
 					<p>Meetup: Gokongwei Lobby
 					<button type="button" class="btn btn-warning pull-right accept-btn">Accept Buyer</button>
 				</div>
-			</div>
+			</div-->
 		</div>	
         <div class="col-lg-6">
 			<h4>Looking for</h4>
