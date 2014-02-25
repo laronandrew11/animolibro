@@ -68,16 +68,23 @@
     The Above code can be in a different file, then you can place include'filename.php'; instead. 
     */ 
 	
+	//query to get current user's info
 	$query ="SELECT * FROM UserAccount  
         WHERE username = '$username'";
 	$sql = mysql_query($query);
 	 if(mysql_num_rows($sql) == 1){ 
 		$row = mysql_fetch_array($sql);
+		$userid=$row['id'];
 		$coursequery = mysql_query("SELECT code from Course WHERE id='$row[Course_id]'");
 		$courserow=mysql_fetch_array($coursequery);
 		$course=$courserow['code'];
+
 		}
 	
+	//query to get current user's ads
+	$adquery="SELECT * FROM Ad WHERE seller_id = $userid";
+	$sql2=mysql_query($adquery);
+	 
 	//display user profile box: username, location, course, email, contactno
 	echo 	'<div class="container">
     <div class="row">
@@ -115,6 +122,43 @@
         </div>
     </div>
 </div>';
+//display ads
+if(mysql_num_rows($sql2) >= 1){ 
+
+		while($row = mysql_fetch_array($sql))
+		{
+			echo"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+			//echo $row['title'] . " " . $row['LastName'];
+			// "<br>";
+			$bookid=$row['book_id'];
+			$bookquery=mysql_query("SELECT * from Book WHERE id = $bookid");
+			$bookrow=mysql_fetch_array($bookquery);
+			$booktitle=$bookrow['title'];
+			$bookauthors=$bookrow['authors'];
+			echo'<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">';
+					echo $booktitle;
+					echo'</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-6 col-md-4">
+                        <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
+                    </div>
+					<p>Author: ';
+					echo $bookauthors;
+					echo'<p>Condition: ';
+					echo $row['copy_condition'];
+					echo '<p>Price: Php ';
+					echo $row['cost']; echo '(negotiable: '; echo $row['negotiable'];
+					echo'<p>Meetup: ';
+					echo $row['meetup'];
+					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>
+				
+				</div>
+			</div>';
+		}
+	}
 	
 ?>
 
