@@ -1,5 +1,4 @@
 <?php 
-//TO DO: find out why in the @)$!)($)(!$)(@$ ads aren't being added
 if(isset($_POST['submit'])){ 
     $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
@@ -56,7 +55,7 @@ if(isset($_POST['submit'])){
         VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; //insert seller id 0 until we get sessions figured out
 			echo $add_ad;
 				if(mysql_query($add_ad)){
-					echo "SUCCESS";
+					header("Location: http://localhost/animolibro/userprofile.php"); 
 				}else {echo "failed to add ad";}
 			}
 			else{echo "failed to query book id";}
