@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
     if(mysql_query($query))
 	{
 	 session_start(); 
-        $_SESSION['animolibrousername'] = $row['username'];
+        $_SESSION['animolibrousername'] = $name;
 		$_SESSION['logged'] = true;
         //header("Location: http://localhost/animolibro/php/users_page.php"); 
 		header("Location: http://localhost/animolibro/home.php");
