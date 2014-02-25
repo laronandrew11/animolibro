@@ -166,10 +166,15 @@
 		AND category = '$category'
 		AND publisher LIKE '%$publisher%')";
 		//echo $query;
+		
+	
 	$sql = mysql_query($query);
     if(mysql_num_rows($sql) >= 1){ 
 		while($row = mysql_fetch_array($sql))
 		{
+			$bookid=$row['id'];
+			$copyquery =mysql_query("SELECT COUNT(*) AS numcopies FROM Ad WHERE Book_id = $bookid");
+			$copy_row=mysql_fetch_array($copyquery);
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			echo ' <div class="panel panel-default">
@@ -187,8 +192,10 @@
 					echo '<p>Author: ';
 					echo $row['authors'];
 					
-					echo'<p>Copies Available: 4
-					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
+					echo'<p>Copies Available: ';
+					echo $copy_row['numcopies'];
+					
+					echo '<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
 				</div>
 			</div>';
 		}
