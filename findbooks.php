@@ -1,5 +1,8 @@
 <?php
 	session_start();
+		if(isset($_POST["submit0"])){ 
+		$passed_title = $_POST["loc"];
+		}else {$passed_title="";}
 	echo '<!DOCTYPE html>
 <html>
   <head>
@@ -61,7 +64,7 @@
 			<div class="form-group">
 			<label class="control-label">Search by Title:</label>
 			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book full title." data-original-title="Title">
+			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" value="'.$passed_title.'" data-content="Enter the book full title." data-original-title="Title">
 			</div>
 			</div>
 			
@@ -136,7 +139,7 @@
 	<div class="row">
         <div class="col-lg-4 center">
 			<h4>Search Results</h4>';
-	
+
 	if(isset($_POST['submit'])){ 
     $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
@@ -157,14 +160,14 @@
 	 $author = mysql_real_escape_string($_POST['book_author']); 
 	  $subject = mysql_real_escape_string($_POST['subject']); 
 	 $category = mysql_real_escape_string($_POST['category']); 
-	  $publisher = mysql_real_escape_string($_POST['book_publisher']); 
+	  $search_publisher = mysql_real_escape_string($_POST['book_publisher']); 
 	
 	$query ="SELECT * FROM Book  
         WHERE (title LIKE '%$title%'
 		OR isbn = $isbn OR authors LIKE '%$author%') 
 		AND (subjects ='$subject'
 		AND category = '$category'
-		AND publisher LIKE '%$publisher%')";
+		AND publisher LIKE '%$search_publisher%')";
 		//echo $query;
 		
 	
@@ -172,6 +175,7 @@
     if(mysql_num_rows($sql) >= 1){ 
 		while($row = mysql_fetch_array($sql))
 		{
+		
 			$bookid=$row['id'];
 			$isbn=$row['isbn'];
 			$title=$row['title'];
@@ -180,6 +184,8 @@
 			$copyquery =mysql_query("SELECT COUNT(*) AS numcopies FROM Ad WHERE Book_id = $bookid");
 			$copy_row=mysql_fetch_array($copyquery);
 			$numcopies=$copy_row['numcopies'];
+			$publisher=$row['publisher'];
+			$subject=$row['subject'];
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			echo ' <div class="panel panel-default">
