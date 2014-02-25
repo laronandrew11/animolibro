@@ -3,7 +3,7 @@ if(isset($_POST['submit'])){
     $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
     $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibro";    //Database Name 
+    $dbDatabase = "animolibrosimple";    //Database Name 
      
     $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
     //Connect to the databasse 
