@@ -104,10 +104,10 @@
 		<label class="control-label">Category</label> 
 		<div class="controls">
 		<select name="category">
-		<option value="choice1">Chemical Engineering</option>
-		<option value="choice2">Programming</option>
-		<option value="choice3">Design</option>
-		<option value="choice4">Management</option>
+		<option value="Computer">Computer</option>
+		<option value="Law">Law</option>
+		<option value="Mathematics">Mathematics</option>
+		<option value="Science">Science</option>
 		</select>
 		</div>
 		</div>
@@ -115,7 +115,14 @@
 		<div class="form-group">
 		<label class="control-label">Used in Subject:</label> <!--change to combobox?-->
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects">
+		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
+		<select name="book_subject">
+			<option value="ALGOCOM">ALGOCOM</option>
+			<option value="HCIFACE">HCIFACE</option>
+			<option value="PROFSWD">PROFSWD</option>
+			<option value="STRESME">STRESME</option>
+			<option value="WEBAPPS">WEBAPPS</option>
+			</select>
 		</div>
 		</div>
 		
