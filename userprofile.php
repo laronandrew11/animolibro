@@ -52,8 +52,34 @@
       </div>
     </div>';
 	
-?>
-	<div class="container">
+	
+	$username= $_SESSION['animolibrousername'];
+	$dbHost = "localhost";        //Location Of Database usually its localhost 
+    $dbUser = "root";            //Database User Name 
+    $dbPass = "";            //Database Password 
+    $dbDatabase = "animolibrosimple";    //Database Name 
+     
+    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
+    //Connect to the databasse 
+    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
+    //Selects the database 
+     
+    /* 
+    The Above code can be in a different file, then you can place include'filename.php'; instead. 
+    */ 
+	
+	$query ="SELECT * FROM UserAccount  
+        WHERE username = '$username'";
+	$sql = mysql_query($query);
+	 if(mysql_num_rows($sql) == 1){ 
+		$row = mysql_fetch_array($sql);
+		$coursequery = mysql_query("SELECT code from Course WHERE id='$row[Course_id]'");
+		$courserow=mysql_fetch_array($coursequery);
+		$course=$courserow['code'];
+		}
+	
+	//display user profile box: username, location, course, email, contactno
+	echo 	'<div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 center">
             <div class="well well-sm">
@@ -62,17 +88,22 @@
                         <img src="assets/profilepic.png" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4>
-                            Andrew Laron</h4>
+                        <h4>';
+                            echo $row['username'];
+							echo'</h4>
                         <small><cite title="Quezon City"><i class="glyphicon glyphicon-map-marker">
                         </i> Quezon City </cite></small><br>
 						<small><cite title=" CS-ST"><i class="glyphicon glyphicon-book">
-                        </i>CS-ST </cite></small>
+                        </i>';
+						echo $course;
+						echo'</cite></small>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i> andrew_laron@dlsu.ph
-                            <br />
-							<i class="glyphicon glyphicon-earphone"></i> 09225551234
-                            <br />
+                            <i class="glyphicon glyphicon-envelope"></i>';
+						echo $row['email'];
+                            echo'<br />
+							<i class="glyphicon glyphicon-earphone"></i>';
+							echo $row['contactnumber'];
+                            echo'<br />
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -83,7 +114,10 @@
             </div>
         </div>
     </div>
-</div>
+</div>';
+	
+?>
+
  <div class="row">
 	<div class="col-lg-8 center">
         <div class="col-lg-6">
