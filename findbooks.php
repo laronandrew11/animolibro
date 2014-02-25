@@ -173,14 +173,19 @@
 		while($row = mysql_fetch_array($sql))
 		{
 			$bookid=$row['id'];
+			$isbn=$row['isbn'];
+			$title=$row['title'];
+			$category=$row['category'];
+			$authors=$row['authors'];
 			$copyquery =mysql_query("SELECT COUNT(*) AS numcopies FROM Ad WHERE Book_id = $bookid");
 			$copy_row=mysql_fetch_array($copyquery);
+			$numcopies=$copy_row['numcopies'];
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			echo ' <div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
-					echo $row['title'];
+					echo $title;
 					echo'</h3>
 				</div>
 				<div class="panel-body">
@@ -188,14 +193,18 @@
                         <img src="assets/bookcoversmall.jpg"  alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Category: ';
-					echo $row['category'];
+					echo $category;
 					echo '<p>Author: ';
-					echo $row['authors'];
+					echo $authors;
 					
 					echo'<p>Copies Available: ';
-					echo $copy_row['numcopies'];
+					echo $numcopies;
 					
-					echo '<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
+					$hrefstring= 'bookprofile.php?isbn='. $isbn .'&bookid='.$bookid.'&title=' . $title.'&category='.$category.'&subject='.$subject.'&authors='.$authors.'&publisher='.$publisher.'&numcopies='.$numcopies;
+					
+					echo '<a role="button" href = "';
+					echo $hrefstring;
+					echo'" class="btn btn-primary pull-right" role=>View</a>
 				</div>
 			</div>';
 		}
