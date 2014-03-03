@@ -50,38 +50,18 @@
       </div>
     </div>
 	
-	<div class="container">
 	<div class="row">
-	<div class="col-sm-8 col-md-8">
-		<div class="col-lg-6">
-        
-			<legend>Find a Book</legend>
-		
-			<div class="form-group">
-			<label class="control-label">Search by Title:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Title">
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="control-label">Search by ISBN:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN." data-original-title="ISBN">
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="control-label">Search by Author:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_author" name="book_author" rel="popover" data-content="Enter the book's author." data-original-title="Author">
-			</div>
-			</div>
-			
-			<div class="form-group">
+		<form action="findbooks.php" class="form-horizontal" role="form" id="searchForm" method="post" >
+				
+		<div class="col-lg-8 center">
+			<div class="col-lg-6">
+			<h4>Find a Book</h4>
+			<div class="panel panel-default">
+				<div class="panel-body">
+				<div class="form-group">
 			<label class="control-label">Subject:</label> 
 			<div class="controls">
-			<select name="category">
+			<select name="subject">
 			<option value="choice1">ALGOCOM</option>
 			<option value="choice2">HCIFACE</option>
 			<option value="choice3">PROFSWD</option>
@@ -109,11 +89,46 @@
 			<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher" data-original-title="Publisher:">
 			</div>
 			</div>
-
+			
+		</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-6">
+		<h4>   </h4>
+		<div class="panel panel-default">
+			<div class="panel-body">
+		
 			<div class="form-group">
+			<label class="control-label">Search by Title:</label>
+			<div class="controls">
+			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Title">
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<label class="control-label">Search by ISBN:</label>
+			<div class="controls">
+			<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN." data-original-title="ISBN">
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<label class="control-label">Search by Author:</label>
+			<div class="controls">
+			<input type="text" class="input-xlarge form-control" id="book_author" name="book_author" rel="popover" data-content="Enter the book's author." data-original-title="Author">
+			</div>
+			</div>
+			
+		</div>
+		</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
 			<label class="control-label">Sort By</label> 
 			<div class="controls">
-			<select name="category">
+			<select name="sortby">
 			<option value="choice1">Date Added</option>
 			<option value="choice2">Number of Copies</option>
 			<option value="choice3">Title</option>
@@ -121,30 +136,17 @@
 			<option value="choice5">Subject</option>
 			</select>
 			</div>
+			<div class="controls">
+		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
+		
+		</div>
 			</div>
 				
-			<a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a>
-    </div>
-	</div>
-    </div>
-	
-	<div class="row">
-        <div class="col-lg-4 center">
-			<h4>Search Results</h4>
-          <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Fundamentals of Web Design, 4th Edition</h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcoversmall.jpg"  alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Category: Information Technology
-					<p>Author: Bob
-					<p>Copies Available: 4
-					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
-				</div>
-			</div>
+			
+		</form>
+		</div>
+		
+
 			   <div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">This Book Is Full of Spiders</h3>

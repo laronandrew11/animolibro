@@ -43,9 +43,7 @@
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				  <li><a href="#">Hey</a></li>
-				  <li><a href="#"></a></li>
-				  <li><a href="#"></a></li>
+				    <li><a href="php/logout.php">Log-out</a></li>
 				  <li class="divider"></li>
 				  <li><a href="#"></a></li>
 				</ul>
@@ -56,11 +54,13 @@
     </div>';
 	echo '<div class="container">
 	<div class="row">
-	<div class="col-sm-8 col-md-8">
-		<div class="col-lg-6">
+	<div class="col-sm-8 col-md-8 center">
+		<div class="col-lg-12">
         <form action="findbooks.php" class="form-horizontal" role="form" id="searchForm" method="post" >
 			<legend>Find a Book</legend>
-		
+			<div class ="col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
 			<div class="form-group">
 			<label class="control-label">Search by Title:</label>
 			<div class="controls">
@@ -82,6 +82,13 @@
 			</div>
 			</div>
 			
+			</div>
+			</div>
+			</div>
+			
+			<div class = "col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
 			<div class="form-group">
 			<label class="control-label">Subject:</label> 
 			<div class="controls">
@@ -113,7 +120,12 @@
 			<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book publisher" data-original-title="Publisher:">
 			</div>
 			</div>
-
+			
+			</div>
+			</div>
+			</div>
+			
+			<div class="col-lg-4">
 			<div class="form-group">
 			<label class="control-label">Sort By</label> 
 			<div class="controls">
@@ -130,8 +142,9 @@
 		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
 		
 		</div>
-			
+			</div>
 			</form>
+			
 			<!--a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
     </div>
 	</div>
@@ -185,7 +198,7 @@
 			$copy_row=mysql_fetch_array($copyquery);
 			$numcopies=$copy_row['numcopies'];
 			$publisher=$row['publisher'];
-			$subject=$row['subject'];
+			$subject=$row['subjects'];
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			echo ' <div class="panel panel-default">
