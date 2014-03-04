@@ -53,80 +53,29 @@
       </div>
     </div>';
 	echo '<div class="container">
-	<div class="row">
-	<div class="col-sm-8 col-md-8 center">
-		<div class="col-lg-12">
-        <form action="findbooks.php" class="form-horizontal" role="form" id="searchForm" method="post" >
-			<legend>Find a Book</legend>
-			<div class ="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-body">
-			<div class="form-group">
-			<label class="control-label">Search by Title:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" value="'.$passed_title.'" data-content="Enter the book full title." data-original-title="Title">
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="control-label">Search by ISBN:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book ISBN." data-original-title="ISBN">
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="control-label">Search by Author:</label>
-			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_author" name="book_author" rel="popover" data-content="Enter the book author." data-original-title="Author">
-			</div>
-			</div>
-			
-			</div>
-			</div>
-			</div>
-			
-			<div class = "col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-body">
-			<div class="form-group">
-			<label class="control-label">Subject:</label> 
-			<div class="controls">
-			<select name="subject">
-			<option value="ALGOCOM">ALGOCOM</option>
-			<option value="HCIFACE">HCIFACE</option>
-			<option value="PROFSWD">PROFSWD</option>
-			<option value="STRESME">STRESME</option>
-			<option value="WEBAPPS">WEBAPPS</option>
-			</select>
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="control-label">Category:</label> 
-			<div class="controls">
-			<select name="category">
-			<option value="Computer">Computer</option>
-			<option value="Law">Law</option>
-			<option value="Mathematics">Mathematics</option>
-			<option value="Science">Science</option>
-			</select>
-			</div>
-			</div>
+<div class="row">
+		<form action="findbooks.php" class="form-horizontal" role="form" id="searchForm" method="post" >
+				
+		<div class="col-lg-8 center">
+
+
 	
+	<div class="col-lg-6 center">
+		
+			
 			<div class="form-group">
-			<label class="control-label">Publisher:</label>
+			<label class="control-label">Search by Title, ISBN, Author, Publisher, Category, or Subject:</label>
 			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book publisher" data-original-title="Publisher:">
+			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter your search keywords." data-original-title="Title">
 			</div>
+		    <div class="controls">
+		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
+		
+		</div>
 			</div>
 			
-			</div>
-			</div>
-			</div>
-			
-			<div class="col-lg-4">
-			<div class="form-group">
+	</div>	
+	<!--div class="form-group">
 			<label class="control-label">Sort By</label> 
 			<div class="controls">
 			<select name="sortby">
@@ -137,16 +86,14 @@
 			<option value="choice5">Subject</option>
 			</select>
 			</div>
-			</div>
-			<div class="controls">
-		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
+		
+			</div-->	
+	</div>	
 		
 		</div>
-			</div>
-			</form>
-			
-			<!--a role="button" href="findbooks.html" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
-    </div>
+		
+		</form>
+	</div>
 	</div>
     </div>
 	<div class="row">
@@ -168,19 +115,16 @@
     The Above code can be in a different file, then you can place include'filename.php'; instead. 
     */ 
 
-    $title = mysql_real_escape_string($_POST['book_title']); 
-    $isbn = mysql_real_escape_string($_POST['book_isbn']); 
-	 $author = mysql_real_escape_string($_POST['book_author']); 
-	  $subject = mysql_real_escape_string($_POST['subject']); 
-	 $category = mysql_real_escape_string($_POST['category']); 
-	  $search_publisher = mysql_real_escape_string($_POST['book_publisher']); 
-	
+    $keywords = mysql_real_escape_string($_POST['book_title']); 
+	$keywordarray= explode(" ", $keywords);
+	foreach($keywordarray as $keyword)
+	{
 	$query ="SELECT * FROM Book  
-        WHERE (title LIKE '%$title%'
-		OR isbn = $isbn OR authors LIKE '%$author%') 
-		AND (subjects ='$subject'
-		AND category = '$category'
-		AND publisher LIKE '%$search_publisher%')";
+        WHERE title LIKE '%$keyword%'
+		OR isbn LIKE '%$keyword%' OR authors LIKE '%$keyword%' 
+		OR subjects LIKE'%$keyword%' 
+		OR category LIKE '%$keyword%' 
+		OR publisher LIKE '%$keyword%'";
 		//echo $query;
 		
 	
@@ -228,11 +172,12 @@
 			</div>';
 		}
 		
-        exit; 
+        //exit; 
     }else{ 
-        echo "No results found";
-        exit; 
+        //echo "No results found";
+        //exit; 
     } 
+	}
 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
   
