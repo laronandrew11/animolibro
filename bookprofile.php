@@ -34,7 +34,7 @@
           </ul>
          <ul class="nav navbar-nav navbar-right">
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
-	echo '<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> ';
+	echo '<li><a href="userprofile.php"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
 	echo '</a></li>';
 	echo '<li class="dropdown">
