@@ -117,6 +117,8 @@
 
     $keywords = mysql_real_escape_string($_POST['book_title']); 
 	$keywordarray= explode(" ", $keywords);
+	$i=0;
+	$listedIDs=[];
 	foreach($keywordarray as $keyword)
 	{
 	$query ="SELECT * FROM Book  
@@ -130,6 +132,7 @@
 	
 	$sql = mysql_query($query);
     if(mysql_num_rows($sql) >= 1){ 
+		
 		while($row = mysql_fetch_array($sql))
 		{
 		
@@ -143,6 +146,12 @@
 			$numcopies=$copy_row['numcopies'];
 			$publisher=$row['publisher'];
 			$subject=$row['subjects'];
+			if(in_array($bookid, $listedIDs)==false){
+			$listedIDs[$i] = $bookid;
+			$i ++;
+			
+			
+			
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			echo ' <div class="panel panel-default">
@@ -170,7 +179,9 @@
 					echo'" class="btn btn-primary pull-right" role=>View</a>
 				</div>
 			</div>';
+			}
 		}
+	
 		
         //exit; 
     }else{ 
@@ -178,7 +189,7 @@
         //exit; 
     } 
 	}
-
+		//print_r( $listedIDs);
 }else{    //If the form button wasn't submitted go to the index page, or login page 
   
 } 
