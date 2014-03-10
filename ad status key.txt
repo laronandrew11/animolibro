@@ -1,0 +1,4 @@
+0-unclaimed
+1-buyer has requested
+2-seller has accepted
+3-seller has rejectd
