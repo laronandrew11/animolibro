@@ -139,6 +139,7 @@
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			$adid=$ad_row['id'];
+			$status=$ad_row['status'];
 			$condition=$ad_row['copy_condition'];
 			$sellerid=$ad_row['seller_id'];
 			$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
@@ -180,8 +181,13 @@
 					echo'<input type="hidden" name="url" value="';
 					echo $_SERVER['REQUEST_URI'];
 					echo'">';
-					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">
-				</form>
+					if($status == 0)
+					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
+					else
+					{
+						echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
+					}
+				echo '</form>
 				</div>
 			</div>';
 			
