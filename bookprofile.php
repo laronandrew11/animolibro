@@ -132,7 +132,6 @@
 	echo '<div class="row">
         <div class="col-lg-4 center">
 			<h4>Sellers</h4>';
-	
 	if(mysql_num_rows($sql1) >= 1){ 
 
 		while($ad_row = mysql_fetch_array($sql1))
@@ -147,10 +146,11 @@
 			$sellername=$seller_row['username'];
 			//$bookauthors=$bookrow['authors'];
 			
-				echo'<div class="panel panel-default">
+				echo'<form action = "php/buybook.php" method = "POST">
+				<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
-					echo $sellername, $adid; 
+					echo $sellername; 
 					echo'<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -174,7 +174,14 @@
 					}
 					echo'<p>Meetup: ';
 					echo $ad_row['meetup'];
-					echo'<button type="button" class="btn btn-primary pull-right buy-btn" id="btn-submit1">Buy</button>
+					echo'<input type="hidden" name="adid" value="';
+					echo $adid;
+					echo'">';
+					echo'<input type="hidden" name="url" value="';
+					echo $_SERVER['REQUEST_URI'];
+					echo'">';
+					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">
+				</form>
 				</div>
 			</div>';
 			
