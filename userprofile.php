@@ -172,9 +172,9 @@ if(mysql_num_rows($sql2) >= 1){
 					echo '<div class="btn-group">
 							<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">Buyer Has Requested<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Accept</a></li>
+								<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
 								<li class="divider"></li>
-								<li><a href="#">Reject</a></li>
+								<li><input class="btn btn-danger" name="submit2" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
 							</ul>
 						  </div>';
 					}
