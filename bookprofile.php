@@ -181,7 +181,7 @@
 					echo'<input type="hidden" name="url" value="';
 					echo $_SERVER['REQUEST_URI'];
 					echo'">';
-					if($status == 0)
+					if($status == 0 || $status == 3)
 					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
 					else
 					{

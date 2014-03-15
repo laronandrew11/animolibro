@@ -132,6 +132,7 @@ if(mysql_num_rows($sql2) >= 1){
 		{
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
+			$adid=$ad_row['id'];
 			$bookid=$ad_row['Book_id'];
 			$bookstat=$ad_row['status'];
 			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
@@ -144,6 +145,7 @@ if(mysql_num_rows($sql2) >= 1){
 					echo $booktitle;
 					echo'</h3>
 				</div>
+				<form action = "php/confirmstat.php" method = "POST">
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
                         <img src="http://placehold.it/95x125" alt="" class="img-rounded img-responsive" />
@@ -163,6 +165,9 @@ if(mysql_num_rows($sql2) >= 1){
 					}
 					echo'<p>Meetup: ';
 					echo $ad_row['meetup'];
+					echo'<input type="hidden" name="adid" value="';
+					echo $adid;
+					echo'">';
 					if($bookstat == 0)
 					{
 					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
@@ -172,13 +177,22 @@ if(mysql_num_rows($sql2) >= 1){
 					echo '<div class="btn-group">
 							<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">Buyer Has Requested<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu">
-								<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
+								<li><input class="btn btn-success" name="submit" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
 								<li class="divider"></li>
-								<li><input class="btn btn-danger" name="submit2" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
+								<li><input class="btn btn-danger" name="submit" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
 							</ul>
 						  </div>';
 					}
+					else if($bookstat == 2)
+					{
+						echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+					}
+					else if($bookstat == 3)
+					{
+						echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+					}
 				echo '</div>
+				</form>
 			</div>';
 		}
 	}
