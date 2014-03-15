@@ -133,6 +133,7 @@ if(mysql_num_rows($sql2) >= 1){
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
 			$bookid=$ad_row['Book_id'];
+			$bookstat=$ad_row['status'];
 			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
 			$bookrow=mysql_fetch_array($bookquery);
 			$booktitle=$bookrow['title'];
@@ -162,9 +163,22 @@ if(mysql_num_rows($sql2) >= 1){
 					}
 					echo'<p>Meetup: ';
 					echo $ad_row['meetup'];
-					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>
-				
-				</div>
+					if($bookstat == 0)
+					{
+					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
+					}
+					else if($bookstat == 1)
+					{
+					echo '<div class="btn-group">
+							<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">Buyer Has Requested<span class="caret"></span></button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Accept</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Reject</a></li>
+							</ul>
+						  </div>';
+					}
+				echo '</div>
 			</div>';
 		}
 	}
