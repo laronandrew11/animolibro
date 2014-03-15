@@ -146,7 +146,8 @@
 			$seller_row=mysql_fetch_array($sellerquery);
 			$sellername=$seller_row['username'];
 			//$bookauthors=$bookrow['authors'];
-			
+			if($status != 2)
+			{
 				echo'<form action = "php/buybook.php" method = "POST">
 				<div class="panel panel-default">
 				<div class="panel-heading">
@@ -183,13 +184,14 @@
 					echo'">';
 					if($status == 0 || $status == 3)
 					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
-					else
+					else if($status == 1)
 					{
 						echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
 					}
 				echo '</form>
 				</div>
 			</div>';
+			}
 			
 		}
 	}
