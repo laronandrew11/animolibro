@@ -139,6 +139,7 @@
 		{
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
+			$adid=$ad_row['id'];
 			$condition=$ad_row['copy_condition'];
 			$sellerid=$ad_row['seller_id'];
 			$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
@@ -149,7 +150,7 @@
 				echo'<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
-					echo $sellername; 
+					echo $sellername, $adid; 
 					echo'<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
