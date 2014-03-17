@@ -30,6 +30,9 @@ if(isset($_POST['submit'])){
 	{
 	 session_start(); 
         $_SESSION['animolibrousername'] = $name;
+		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
+		$row = mysql_fetch_array($id_query);
+		$_SESSION['animolibroid'] = $row['id'];
 		$_SESSION['logged'] = true;
         //header("Location: http://localhost/animolibro/php/users_page.php"); 
 		header("Location: http://localhost/animolibro/home.php");
