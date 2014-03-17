@@ -224,7 +224,7 @@ if(mysql_num_rows($sql3) >= 1) {
 	echo $bookauthors;
 	echo '<p>Condition: ';
 	echo $ad_row['copy_condition'];
-	echo '<p>Price: '
+	echo '<p>Price: ';
 	echo $ad_row['cost']; 
 	if( $ad_row['negotiable'] ==1)
 	{
@@ -234,7 +234,7 @@ if(mysql_num_rows($sql3) >= 1) {
 	{
 		echo " (non-negotiable)";
 	}
-	echo '<p>Meetup: '
+	echo '<p>Meetup: ';
 	echo $ad_row['meetup'];
 	if($bookstat == 1)
 	{
