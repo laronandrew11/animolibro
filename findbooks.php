@@ -142,7 +142,7 @@
 			$title=$row['title'];
 			$category=$row['category'];
 			$authors=$row['authors'];
-			$copyquery =mysql_query("SELECT COUNT(*) AS numcopies FROM Ad WHERE Book_id = $bookid");
+			$copyquery =mysql_query("SELECT COUNT(*) AS numcopies FROM Ad WHERE Book_id = $bookid AND (status=0 OR status=3) ");
 			$copy_row=mysql_fetch_array($copyquery);
 			$numcopies=$copy_row['numcopies'];
 			$publisher=$row['publisher'];
