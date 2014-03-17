@@ -196,7 +196,65 @@ if(mysql_num_rows($sql2) >= 1){
 			</div>';
 		}
 	}
-	
+$lookquery="SELECT * FROM Ad WHERE buyer_id = $userid";
+$sql3=mysql_query($lookquery);
+if(mysql_num_rows($sql3) >= 1) {
+	while($ad_row = mysql_fetch_array($sql3)) {
+	$adid=$ad_row['id'];
+	$bookid=$ad_row['Book_id'];
+	$bookstat=$ad_row['status'];
+	$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
+	$bookrow=mysql_fetch_array($bookquery);
+	$booktitle=$bookrow['title'];
+	$bookauthors=$bookrow['authors'];
+	echo '</div>	
+        <div class="col-lg-6">
+			<h4>Looking for</h4>';
+	echo'<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">';
+	echo $booktitle;
+	echo '</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-sm-6 col-md-4">
+                        <img src="assets/bookcoversmall.jpg" alt="" class="img-rounded img-responsive" />
+                    </div>
+					<p>Author: ';
+	echo $bookauthors;
+	echo '<p>Condition: ';
+	echo $ad_row['copy_condition'];
+	echo '<p>Price: '
+	echo $ad_row['cost']; 
+	if( $ad_row['negotiable'] ==1)
+	{
+		echo " (negotiable)";
+	}
+	else
+	{
+		echo " (non-negotiable)";
+	}
+	echo '<p>Meetup: '
+	echo $ad_row['meetup'];
+	if($bookstat == 1)
+	{
+	echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
+	}
+	else if($bookstat == 2)
+	{
+	echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+	}
+	else if($bookstat == 3)
+	{
+	echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+	}
+	echo'			</div>
+			</div>
+        </div>
+		</div>
+      </div>';
+	}
+	}
 ?>
 
  <!--div class="row">
@@ -251,7 +309,7 @@ if(mysql_num_rows($sql2) >= 1){
 					<button type="button" class="btn btn-warning pull-right accept-btn">Accept Buyer</button>
 				</div>
 			</div-->
-		</div>	
+		<!-- </div>	
         <div class="col-lg-6">
 			<h4>Looking for</h4>
 			<div class="panel panel-default">
@@ -301,7 +359,7 @@ if(mysql_num_rows($sql2) >= 1){
 			</div>
         </div>
 		</div>
-      </div>
+      </div> -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
