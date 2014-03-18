@@ -196,6 +196,9 @@ if(mysql_num_rows($sql2) >= 1){
 			</div>';
 		}
 	}
+echo '</div>	
+      <div class="col-lg-6">
+			<h4>Looking for</h4>';
 $lookquery="SELECT * FROM Ad WHERE buyer_id = $userid";
 $sql3=mysql_query($lookquery);
 if(mysql_num_rows($sql3) >= 1) {
@@ -207,9 +210,6 @@ if(mysql_num_rows($sql3) >= 1) {
 	$bookrow=mysql_fetch_array($bookquery);
 	$booktitle=$bookrow['title'];
 	$bookauthors=$bookrow['authors'];
-	echo '</div>	
-        <div class="col-lg-6">
-			<h4>Looking for</h4>';
 	echo'<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
@@ -250,11 +250,11 @@ if(mysql_num_rows($sql3) >= 1) {
 	}
 	echo'			</div>
 			</div>
-        </div>
-		</div>
+        ';
+	}
+	}
+echo '</div>
       </div>';
-	}
-	}
 ?>
 
  <!--div class="row">
