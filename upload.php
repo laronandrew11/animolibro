@@ -17,7 +17,7 @@
 	session_start(); 
 	$type=$_SESSION['upload_type'];
 // A list of permitted file extensions
-$allowed = array('png', 'jpg', 'gif','zip');
+$allowed = array('png', 'jpg', 'gif','svg');
 
 if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
@@ -33,6 +33,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	$queryString ="INSERT INTO Image (type, href)
         VALUES ($type,'$name')";
 		if(mysql_query($queryString)){
+		$_SESSION["imagename"]=$name;
 		echo '{"status":"success"}';
 			}
 		exit;

@@ -32,9 +32,18 @@ if(isset($_POST['submit'])){
 	
 	session_start(); 
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
+	echo $_SESSION['imagename'];
+	$coverpic_name = $_SESSION['imagename'];
 	
-	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; //later on, add a way to save and reference categories and subjects
+	$get_coverpic = "SELECT id FROM Image WHERE href = '$coverpic_name'";
+	echo $get_coverpic;
+	$cover_query=mysql_query($get_coverpic);
+	if(mysql_num_rows($cover_query) == 1){
+				$cover_row= mysql_fetch_array($cover_query); 
+				$cover_id= mysql_real_escape_string((int)$cover_row['id']);
+				}
+	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects,cover_pic_id)
+        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects',$cover_id)"; //later on, add a way to save and reference categories and subjects
 	
 	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller' AND 
         passwordhash='$password'  LIMIT 1"));
@@ -55,6 +64,7 @@ if(isset($_POST['submit'])){
         VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; //insert seller id 0 until we get sessions figured out
 			echo $add_ad;
 				if(mysql_query($add_ad)){
+
 					header("Location: http://localhost/animolibro/userprofile.php"); 
 				}else {echo "failed to add ad";}
 			}
