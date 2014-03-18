@@ -79,6 +79,26 @@
 		$course=$courserow['code'];
 
 		}
+	$profileIDquery="SELECT profile_pic_id FROM USERACCOUNT WHERE id=$userid";	
+	//section for getting ads
+	$profileIDsql=mysql_query($profileIDquery);
+	$row2=mysql_fetch_array($profileIDsql);
+	$profilepic_id=$row2['profile_pic_id'];
+	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+	if(!empty($profilequery)){
+	if(mysql_num_rows($profilequery)==1)
+	{
+	$profile_row=mysql_fetch_array($profilequery);
+	
+	$profile_filename=$profile_row['href'];
+	}
+	else{
+			$profile_filename="placeholder.gif";
+	}
+	}
+	else{
+			$profile_filename="placeholder.gif";
+	}
 	
 	//query to get current user's ads
 	$adquery="SELECT * FROM Ad WHERE seller_id = $userid";
@@ -91,7 +111,7 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="assets/profilepic.png" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>';
@@ -140,21 +160,21 @@ if(mysql_num_rows($sql2) >= 1){
 			
 			$booktitle=$bookrow['title'];
 			$bookauthors=$bookrow['authors'];
-			$coverpic_id=$bookrow['cover_pic_id'];
-	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-	if(!empty($coverquery)){
-	if(mysql_num_rows($coverquery)==1)
+			$profilepic_id=$bookrow['profile_pic_id'];
+	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+	if(!empty($profilequery)){
+	if(mysql_num_rows($profilequery)==1)
 	{
-	$cover_row=mysql_fetch_array($coverquery);
+	$profile_row=mysql_fetch_array($profilequery);
 	
-	$cover_filename=$cover_row['href'];
+	$profile_filename=$profile_row['href'];
 	}
 	else{
-			$cover_filename="placeholder.gif";
+			$profile_filename="placeholder.gif";
 	}
 	}
 	else{
-			$cover_filename="placeholder.gif";
+			$profile_filename="placeholder.gif";
 	}
 			echo'<div class="panel panel-default">
 				<div class="panel-heading">
@@ -165,7 +185,7 @@ if(mysql_num_rows($sql2) >= 1){
 				<form action = "php/confirmstat.php" method = "POST">
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: ';
 					echo $bookauthors;
@@ -227,22 +247,22 @@ if(mysql_num_rows($sql3) >= 1) {
 	$bookrow=mysql_fetch_array($bookquery);
 	$booktitle=$bookrow['title'];
 	$bookauthors=$bookrow['authors'];
-	$coverpic_id=$bookrow['cover_pic_id'];
-	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-	if(!empty($coverquery)){
-	if(mysql_num_rows($coverquery)==1)
+	$profilepic_id=$bookrow['profile_pic_id'];
+	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+	if(!empty($profilequery)){
+	if(mysql_num_rows($profilequery)==1)
 	{
-	$cover_row=mysql_fetch_array($coverquery);
+	$profile_row=mysql_fetch_array($profilequery);
 	
-	$cover_filename=$cover_row['href'];
+	$profile_filename=$profile_row['href'];
 	}
 	else{
-			$cover_filename="placeholder.gif";
+			$profile_filename="placeholder.gif";
 	}
 	}
 	else{
-			$cover_filename="placeholder.gif";
-	}S
+			$profile_filename="placeholder.gif";
+	}
 	echo'<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
@@ -251,7 +271,7 @@ if(mysql_num_rows($sql3) >= 1) {
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/$cover_filename" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/$profile_filename" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: ';
 	echo $bookauthors;
@@ -317,7 +337,7 @@ echo '</div>
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcover2small.jpg" alt="" class="img-rounded img-responsive" />
+                        <img src="assets/bookprofile2small.jpg" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: D. Wong
 					<p>Condition: Good
@@ -351,7 +371,7 @@ echo '</div>
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcoversmall.jpg" alt="" class="img-rounded img-responsive" />
+                        <img src="assets/bookprofilesmall.jpg" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: Bob
 					<p>Condition: Good
