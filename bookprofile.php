@@ -77,10 +77,27 @@
 	
 	$query1 ="SELECT * FROM Ad  
         WHERE Book_id= $bookid";
-		
+	$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
 	//section for getting ads
 	$sql1 = mysql_query($query1);
+	$sql2=mysql_query($query2);
+	$row2=mysql_fetch_array($sql2);
+	$coverpic_id=$row2['cover_pic_id'];
+	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+	if(!empty($coverquery)){
+	if(mysql_num_rows($coverquery)==1)
+	{
+	$cover_row=mysql_fetch_array($coverquery);
 	
+	$cover_filename=$cover_row['href'];
+	}
+	else{
+			$cover_filename="placeholder.gif";
+	}
+	}
+	else{
+			$cover_filename="placeholder.gif";
+	}
 	
 
 	
@@ -96,7 +113,7 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcover.jpg" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>';
