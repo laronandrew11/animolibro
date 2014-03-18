@@ -9,6 +9,11 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
 <link href="css/customized-components.css" rel="stylesheet">
+<!-- Google web fonts -->
+
+
+		<!-- The main CSS file -->
+		<link href="css/upload.css" rel="stylesheet" />
 
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -60,11 +65,30 @@
 	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
+		<div class="row">
+			<div class="col-sm-8 col-md-8">
+			<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<div id="drop">
+				Drop Here
+
+				<a>Browse</a>
+				<input type="file" name="upl" multiple />
+			</div>
+
+			<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+
+		</form>
+		</div>
+		</div>
+		
 		<form action="php/sellbook.php" class="form-horizontal" role="form" id="sellForm" method="post" >
 		<fieldset>
 		
 		<legend>Put up a Book</legend>
-
+		
+	
 		<div class="form-group">
 		<label class="control-label">ISBN</label>
 		<div class="controls">
@@ -209,10 +233,21 @@
 	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
+	
+		<script src="js/upload/jquery.knob.js"></script>
+
+		<!-- jQuery File Upload Dependencies -->
+		<script src="js/upload/jquery.ui.widget.js"></script>
+		<script src="js/upload/jquery.iframe-transport.js"></script>
+		<script src="js/upload/jquery.fileupload.js"></script>
+		
+		<script src="js/upload/script.js"></script>
+		
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	<script src="js/sellbook.js"></script>
+
   
 </body></html>
