@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     //Connect to the databasse 
     mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
     //Selects the database 
-     
+     session_start(); 
     /* 
     The Above code can be in a different file, then you can place include'filename.php'; instead. 
     */ 
@@ -23,20 +23,30 @@ if(isset($_POST['submit'])){
 	$password = mysql_real_escape_string($_POST['user_password']);
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
 
-
-        $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash) 
-            VALUES('$name','$email',$contact,$course,$password)";
-	echo $query;
+		$profilepic_name = $_SESSION['imagename'];
+	
+	$get_profilepic = "SELECT id FROM Image WHERE href = '$profilepic_name'";
+	$profile_query=mysql_query($get_profilepic);
+	if(mysql_num_rows($profile_query) == 1){
+				$profile_row= mysql_fetch_array($profile_query); 
+				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
+				}
+				
+        $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id) 
+            VALUES('$name','$email',$contact,$course,$password, $profile_id)";
     if(mysql_query($query))
 	{
 
-		
+			
         $_SESSION['animolibrousername'] = $name;
 		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
-		$row = mysql_fetch_array($id_query);
+		$row = mysql_fetch_array(mysql_query($id_query));
+		$id= $row['id'];
 		$_SESSION['animolibroid'] = $row['id'];
+	
+				
 		$_SESSION['logged'] = true;
-        //header("Location: http://localhost/animolibro/php/users_page.php"); 
+
 		header("Location: http://localhost/animolibro/home.php");
 	}else{ echo "Registration failed";}
     exit; 

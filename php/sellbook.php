@@ -32,11 +32,9 @@ if(isset($_POST['submit'])){
 	
 	session_start(); 
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
-	echo $_SESSION['imagename'];
 	$coverpic_name = $_SESSION['imagename'];
 	
 	$get_coverpic = "SELECT id FROM Image WHERE href = '$coverpic_name'";
-	echo $get_coverpic;
 	$cover_query=mysql_query($get_coverpic);
 	if(mysql_num_rows($cover_query) == 1){
 				$cover_row= mysql_fetch_array($cover_query); 
