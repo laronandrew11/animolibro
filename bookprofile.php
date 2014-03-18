@@ -145,6 +145,7 @@
 			$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
 			$seller_row=mysql_fetch_array($sellerquery);
 			$sellername=$seller_row['username'];
+		
 			//$bookauthors=$bookrow['authors'];
 			if($status != 2)
 			{

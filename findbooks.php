@@ -147,6 +147,23 @@
 			$numcopies=$copy_row['numcopies'];
 			$publisher=$row['publisher'];
 			$subject=$row['subjects'];
+				
+			$coverpic_id=$row['cover_pic_id'];
+	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+	if(!empty($coverquery)){
+	if(mysql_num_rows($coverquery)==1)
+	{
+	$cover_row=mysql_fetch_array($coverquery);
+	
+	$cover_filename=$cover_row['href'];
+	}
+	else{
+			$cover_filename="placeholder.gif";
+	}
+	}
+	else{
+			$cover_filename="placeholder.gif";
+	}
 			if(in_array($bookid, $listedIDs)==false){
 			$listedIDs[$i] = $bookid;
 			$i ++;
@@ -163,7 +180,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcoversmall.jpg"  alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$cover_filename.'"  alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Category: ';
 					echo $category;
