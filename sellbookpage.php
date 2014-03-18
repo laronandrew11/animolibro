@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['upload_type']=0; //so upload.php knows that we are uploading a cover image for the book
 	echo '<!DOCTYPE html>
 <html>
   <head>

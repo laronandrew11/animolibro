@@ -1,4 +1,5 @@
 <?php 
+	 
 //TO DO: find out why in the @)$!)($)(!$)(@$ ads aren't being added
 if(isset($_POST['submit'])){ 
     $dbHost = "localhost";        //Location Of Database usually its localhost 
@@ -28,7 +29,8 @@ if(isset($_POST['submit'])){
 	echo $query;
     if(mysql_query($query))
 	{
-	 session_start(); 
+
+		
         $_SESSION['animolibrousername'] = $name;
 		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
 		$row = mysql_fetch_array($id_query);
