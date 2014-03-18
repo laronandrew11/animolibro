@@ -160,21 +160,21 @@ if(mysql_num_rows($sql2) >= 1){
 			
 			$booktitle=$bookrow['title'];
 			$bookauthors=$bookrow['authors'];
-			$profilepic_id=$bookrow['profile_pic_id'];
-	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-	if(!empty($profilequery)){
-	if(mysql_num_rows($profilequery)==1)
+			$coverpic_id=$bookrow['cover_pic_id'];
+	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+	if(!empty($coverquery)){
+	if(mysql_num_rows($coverquery)==1)
 	{
-	$profile_row=mysql_fetch_array($profilequery);
+	$cover_row=mysql_fetch_array($coverquery);
 	
-	$profile_filename=$profile_row['href'];
+	$cover_filename=$cover_row['href'];
 	}
 	else{
-			$profile_filename="placeholder.gif";
+			$cover_filename="placeholder.gif";
 	}
 	}
 	else{
-			$profile_filename="placeholder.gif";
+			$cover_filename="placeholder.gif";
 	}
 			echo'<div class="panel panel-default">
 				<div class="panel-heading">
@@ -185,7 +185,7 @@ if(mysql_num_rows($sql2) >= 1){
 				<form action = "php/confirmstat.php" method = "POST">
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: ';
 					echo $bookauthors;
@@ -247,21 +247,21 @@ if(mysql_num_rows($sql3) >= 1) {
 	$bookrow=mysql_fetch_array($bookquery);
 	$booktitle=$bookrow['title'];
 	$bookauthors=$bookrow['authors'];
-	$profilepic_id=$bookrow['profile_pic_id'];
-	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-	if(!empty($profilequery)){
-	if(mysql_num_rows($profilequery)==1)
+	$coverpic_id=$bookrow['cover_pic_id'];
+	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+	if(!empty($coverquery)){
+	if(mysql_num_rows($coverquery)==1)
 	{
-	$profile_row=mysql_fetch_array($profilequery);
+	$cover_row=mysql_fetch_array($coverquery);
 	
-	$profile_filename=$profile_row['href'];
+	$cover_filename=$cover_row['href'];
 	}
 	else{
-			$profile_filename="placeholder.gif";
+			$cover_filename="placeholder.gif";
 	}
 	}
 	else{
-			$profile_filename="placeholder.gif";
+			$cover_filename="placeholder.gif";
 	}
 	echo'<div class="panel panel-default">
 				<div class="panel-heading">
@@ -271,7 +271,7 @@ if(mysql_num_rows($sql3) >= 1) {
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/$profile_filename" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: ';
 	echo $bookauthors;

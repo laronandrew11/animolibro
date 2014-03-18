@@ -162,7 +162,24 @@
 			$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
 			$seller_row=mysql_fetch_array($sellerquery);
 			$sellername=$seller_row['username'];
-		
+			
+			$profilepic_id=$seller_row['profile_pic_id'];
+	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+	if(!empty($profilequery)){
+	if(mysql_num_rows($profilequery)==1)
+	{
+	$profile_row=mysql_fetch_array($profilequery);
+	
+	$profile_filename=$profile_row['href'];
+	}
+	else{
+			$profile_filename="placeholder.gif";
+	}
+	}
+	else{
+			$profile_filename="placeholder.gif";
+	}
+			
 			//$bookauthors=$bookrow['authors'];
 			if($status != 2)
 			{
@@ -179,7 +196,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
-                        <img src="assets/profilepicsmall.png" alt="" class="img-rounded img-responsive" />
+                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Condition: ';
 					echo $condition;					
