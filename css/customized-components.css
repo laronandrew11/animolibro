@@ -3,8 +3,13 @@ body {
   padding-top: 70px;
   	
 }
-.navbar-brand{
-font-family:'Oswald';
+.navbar-brand,
+legend, h1
+{
+font-family:'Oswald','Helvetica Neue',sans-serif;
+}
+.control-label{
+
 }
 .center {
      float: none;

@@ -60,27 +60,16 @@
 	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
-	<div class="row">
-			<div class="col-sm-8 col-md-8">
-			<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-			<div id="drop">
-				Drop Here
-
-				<a>Browse</a>
-				<input type="file" name="upl" multiple />
-			</div>
-
-			<ul>
-				<!-- The file uploads will be shown here -->
-			</ul>
-
-		</form>
-		</div>
-		</div>
+	
 		<form action="php/register.php" class="form-horizontal" id="registerHere" method="post">
+		
+		
+		
 		<fieldset>
 
-		<legend>Registration (all fields required)</legend>
+		<legend>Registration (all fields required unless otherwise marked)</legend>
+
+		
 		
 		<div class="form-group">
 		<label class="control-label">Name</label>
@@ -123,11 +112,21 @@
 		</div>
 		</div>
 
-		
+				<div class="form-group">
+			<label class="control-label">Profile Picture (optional)</label>
+			<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<div class="col-lg-6 center" id="drop">
+				Drop Profile Pic Here Or
+				<a  class="btn btn-primary" >Browse</a>
+				<input type="file" name="upl" />
+			</div>
 
+			<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+		</form>
+		</div>
 
-		
-		
 		<div class="form-group">
 		<label class="control-label">Password</label>
 		<div class="controls">
