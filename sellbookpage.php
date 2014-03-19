@@ -85,7 +85,9 @@
 		<form action="php/sellbook.php" class="form-horizontal" role="form" id="sellForm" method="post" >
 		<fieldset>
 		
-		<legend>Put up a Book</legend>
+		<legend style="margin-left: -15px">Put up a Book</legend>
+
+		<p style="margin-left: -15px"> <font size="2" color="red">***All fields are required</font></p>
 		
 	
 		<div class="form-group">
@@ -190,7 +192,7 @@
 		
 		</fieldset>
 		<fieldset>
-		<legend>Selling Preferences</legend>
+		<legend style="margin-left: -15px">Selling Preferences</legend>
 		
 		<div class="form-group">
 		<label class="control-label">Preferred Price</label>
@@ -199,21 +201,22 @@
 		 <div class="checkbox">
     <label>
       <input type="checkbox" name="negotiable"> Negotiable
+      <br />
     </label>
   </div>
 		</div>
 		
 			<div class="form-group">
-		<label class="control-label">Preferred Meetup Place</label>
+		<label class="control-label" style="margin-left: 15px">Preferred Meetup Place</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="meetup_place" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
+		<input type="text" class="input-xlarge form-control" id="meetup_place" style="margin-left: 15px" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
 			<div class="form-group">
-		<label class="control-label">Password</label>
+		<label class="control-label" style="margin-left: 15px">Password</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" class="input-xlarge form-control" id="user_password" style="margin-left: 15px" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 	
@@ -222,7 +225,7 @@
 		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Post Advertisement">
+		<input type="submit" class="btn btn-success" style="margin-left: 15px" role="button" name = "submit" value = "Post Advertisement">
 		<!--a type="submit" class="btn btn-success" href="userprofile.html" id="btn-submit">Post Advertisement</a-->
 		
 		</div>

@@ -3,9 +3,14 @@ body {
   	
 }
 .navbar-brand,
-legend, h1
+legend, h1, p
 {
 font-family:'Oswald','Helvetica Neue',sans-serif;
+}
+.navbar-brand,
+p
+{
+font-style: italic;
 }
 .control-label{
 
