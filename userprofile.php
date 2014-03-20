@@ -37,10 +37,12 @@
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
 			  if(/*$_SESSION["external_profile"]==*/ $_GET['user']!=$_SESSION['animolibrousername']){
 		$username=$_GET['user'];
+		$myprofile=false;
 		echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 		}
 	else {$username= $_SESSION['animolibrousername'];
 		echo '<li  class="active"><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+		$myprofile=true;
 	}
 	
 	echo $_SESSION['animolibrousername'];
@@ -187,7 +189,16 @@ if(mysql_num_rows($sql2) >= 1){
 					echo $booktitle;
 					echo'</h3>
 				</div>
-				<form action = "php/confirmstat.php" method = "POST">
+				<form action = "php/';
+				if($myprofile==true)
+				{
+					echo 'confirmstat';
+				}
+				else
+				{
+					echo 'buybook';
+				}
+				echo '.php" method = "POST">
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
                         <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
@@ -207,31 +218,43 @@ if(mysql_num_rows($sql2) >= 1){
 					}
 					echo'<p>Meetup: ';
 					echo $ad_row['meetup'];
-					echo'<input type="hidden" name="adid" value="';
-					echo $adid;
-					echo'">';
-					if($bookstat == 0)
+					echo'<input type="hidden" name="adid" value="'.$adid.'">';
+					echo'<input type="hidden" name="myprofile" value="'.$myprofile.'">';
+					if($myprofile==true)
 					{
-					echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
+						if($bookstat == 0)
+						{
+						echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
+						}
+						else if($bookstat == 1)
+						{
+						echo '<div class="btn-group">
+								<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">';
+								echo'<span class="caret"></span></button>
+								<ul class="dropdown-menu" role="menu">
+									<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
+									<li class="divider"></li>
+									<li><input class="btn btn-danger" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
+								</ul>
+							  </div>';
+						}
+						else if($bookstat == 2)
+						{
+							echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+						}
+						else if($bookstat == 3)
+						{
+							echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+						}
 					}
+					else{
+					echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
+						if($bookstat == 0 || $bookstat == 3)
+					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
 					else if($bookstat == 1)
 					{
-					echo '<div class="btn-group">
-							<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">Buyer Has Requested<span class="caret"></span></button>
-							<ul class="dropdown-menu" role="menu">
-								<li><input class="btn btn-success" name="submit" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
-								<li class="divider"></li>
-								<li><input class="btn btn-danger" name="submit" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
-							</ul>
-						  </div>';
+						echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
 					}
-					else if($bookstat == 2)
-					{
-						echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
-					}
-					else if($bookstat == 3)
-					{
-						echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
 					}
 				echo '</div>
 				</form>

@@ -1,5 +1,5 @@
 <?php 
-if(isset($_POST['submit'])&&$_SESSION["external_profile"]==false){ 
+if(isset($_POST['submit1'])&&$_POST['myprofile']==true){ 
     $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
     $dbPass = "";            //Database Password 
@@ -15,7 +15,7 @@ if(isset($_POST['submit'])&&$_SESSION["external_profile"]==false){
     */ 
      
     $adid = mysql_real_escape_string($_POST['adid']);  //change to number instead of string?
-	$status = mysql_real_escape_string($_POST['submit']);
+	$status = mysql_real_escape_string($_POST['submit1']);
 	session_start(); 
 	$buyerid =  $_SESSION['animolibroid']; //not sure if this is right
 	if($status == "Accept")
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])&&$_SESSION["external_profile"]==false){
 	}
 	
 	if(mysql_query($update_ad)){
-		header("Location: http://localhost/animolibro/userprofile.php");
+		header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION['animolibrousername']);
 	}
 	else echo "ERROR";
         //session_start(); 
@@ -37,7 +37,7 @@ if(isset($_POST['submit'])&&$_SESSION["external_profile"]==false){
     exit; 
 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
-	header("Location: index.php");     
+	header("Location: http://localhost/animolibro/home.php");     
     exit; 
 }
 ?>

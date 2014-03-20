@@ -45,7 +45,7 @@ if(isset($_POST['submit'])){
 
 			
         $_SESSION['animolibrousername'] = $name;
-		$_SESSION["external_profile"]=false;
+		//$_SESSION["external_profile"]=false;
 		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
 		$row = mysql_fetch_array(mysql_query($id_query));
 		$id= $row['id'];
