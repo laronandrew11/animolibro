@@ -32,6 +32,23 @@ if(isset($_POST['submit'])){
 	
 	session_start(); 
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
+	
+	/*Check if book has already been added to DB*/
+	$check_book="SELECT title FROM Book WHERE isbn= $isbn";
+	$check_query=mysql_query($check_book);
+
+		
+		if(!empty($check_query)&&mysql_num_rows($check_query) == 1){
+		//$row= mysql_fetch_array($check_query); 
+				//$title= mysql_real_escape_string((int)$row['title']);
+		$add_book="Book already added";
+		echo $add_book;
+		}
+		
+
+	else{
+	/*get cover picture*/
+	if(!empty($_SESSION['imagename'])){
 	$coverpic_name = $_SESSION['imagename'];
 	
 	$get_coverpic = "SELECT id FROM Image WHERE href = '$coverpic_name'";
@@ -39,17 +56,23 @@ if(isset($_POST['submit'])){
 	if(mysql_num_rows($cover_query) == 1){
 				$cover_row= mysql_fetch_array($cover_query); 
 				$cover_id= mysql_real_escape_string((int)$cover_row['id']);
-				}
+	
+	/*add book to DB if necessary*/
 	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects,cover_pic_id)
         VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects',$cover_id)"; //later on, add a way to save and reference categories and subjects
-	
+	}
+	}
+	else $add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
+        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; 
+	}
 	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller' AND 
         passwordhash='$password'  LIMIT 1"));
 				$sellerid=mysql_real_escape_string((int)$seller_row['id']);
 		if($sellerid!=0)
 		{
-		if(mysql_query($add_book)){
-			$get_book_id=mysql_query("SELECT * FROM Book WHERE title='$title'");
+		if($add_book=="Book already added"||mysql_query($add_book)){
+			
+			$get_book_id=mysql_query("SELECT id FROM Book WHERE isbn='$isbn'");
 			if(mysql_num_rows($get_book_id) == 1){
 				$row= mysql_fetch_array($get_book_id); 
 				$bookid= mysql_real_escape_string((int)$row['id']);
@@ -58,8 +81,10 @@ if(isset($_POST['submit'])){
 				echo $price;
 				echo $negotiable;
 				echo $condition;*/
+				
+				/*Add advertisement to DB*/
 					$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id) 
-        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; //insert seller id 0 until we get sessions figured out
+        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; 
 			echo $add_ad;
 				if(mysql_query($add_ad)){
 

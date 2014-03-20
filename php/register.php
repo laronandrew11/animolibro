@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 	$course = mysql_real_escape_string($_POST['course']);
 	$password = mysql_real_escape_string($_POST['user_password']);
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
-
+	if(!empty($_SESSION['imagename'])){
 		$profilepic_name = $_SESSION['imagename'];
 	
 	$get_profilepic = "SELECT id FROM Image WHERE href = '$profilepic_name'";
@@ -30,15 +30,22 @@ if(isset($_POST['submit'])){
 	if(mysql_num_rows($profile_query) == 1){
 				$profile_row= mysql_fetch_array($profile_query); 
 				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
-				}
-				
-        $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id) 
+				 $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id) 
             VALUES('$name','$email',$contact,$course,$password, $profile_id)";
+				}
+	}
+	else{
+		$query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash) 
+            VALUES('$name','$email',$contact,$course,$password)";
+	}
+				
+       
     if(mysql_query($query))
 	{
 
 			
         $_SESSION['animolibrousername'] = $name;
+		$_SESSION["external_profile"]=false;
 		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
 		$row = mysql_fetch_array(mysql_query($id_query));
 		$id= $row['id'];

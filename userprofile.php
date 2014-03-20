@@ -35,7 +35,14 @@
           </ul>
          <ul class="nav navbar-nav navbar-right">
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
-	echo '<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> ';
+			  if(/*$_SESSION["external_profile"]==*/ $_GET['user']!=$_SESSION['animolibrousername']){
+		$username=$_GET['user'];
+		echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+		}
+	else {$username= $_SESSION['animolibrousername'];
+		echo '<li  class="active"><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+	}
+	
 	echo $_SESSION['animolibrousername'];
 	echo '</a></li>';
 	echo '<li class="dropdown">
@@ -50,9 +57,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>';
-	
-	
-	$username= $_SESSION['animolibrousername'];
+		
 	$dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
     $dbPass = "";            //Database Password 
@@ -306,13 +311,24 @@ if(mysql_num_rows($sql3) >= 1) {
         ';
 	}
 	}
-echo '</div>
-      </div>
-	  <!-- begin htmlcommentbox.com -->
+echo '
+
+</div>
+	
+		<div class="row">
+		<div class="col-lg-12">
+	<!-- begin htmlcommentbox.com -->
  <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
  <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
  <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=(hcb_user.PAGE || ""+window.location), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24HvaXrhoLUlS7EjSFDgieF%2F"+"&opts=16862&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
-<!-- end htmlcommentbox.com -->';
+<!-- end htmlcommentbox.com -->
+		</div>	
+		</div>
+		
+      </div>
+	  
+	 
+	  ';
 ?>
 
  <!--div class="row">

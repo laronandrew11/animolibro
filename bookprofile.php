@@ -35,7 +35,7 @@
           </ul>
          <ul class="nav navbar-nav navbar-right">
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
-	echo '<li><a href="userprofile.php"><span class="glyphicon glyphicon-user"></span> ';
+	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
 	echo '</a></li>';
 	echo '<li class="dropdown">
@@ -76,7 +76,7 @@
 	  $numcopies = $_GET['numcopies'];
 	$sellerid = $_SESSION['animolibroid'];
 	$query1 ="SELECT * FROM Ad  
-        WHERE Book_id= $bookid, seller_id != $sellerid";
+        WHERE Book_id= $bookid AND seller_id != $sellerid";
 	$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
 	//section for getting ads
 	$sql1 = mysql_query($query1);
@@ -149,7 +149,7 @@
 	echo '<div class="row">
         <div class="col-lg-4 center">
 			<h4>Sellers</h4>';
-	if(mysql_num_rows($sql1) >= 1){ 
+	if(!empty($sql1)&&mysql_num_rows($sql1) >= 1){ 
 
 		while($ad_row = mysql_fetch_array($sql1))
 		{
@@ -217,6 +217,7 @@
 					echo'<input type="hidden" name="url" value="';
 					echo $_SERVER['REQUEST_URI'];
 					echo'">';
+					echo'<p><a href=userprofile.php?user='.$sellername.'>View seller profile</a>';
 					if($status == 0 || $status == 3)
 					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
 					else if($status == 1)
@@ -229,7 +230,7 @@
 			}
 			
 		}
-	}
+	}else echo "No sellers found. Perhaps you are the only seller.";
 	echo '<!-- begin htmlcommentbox.com -->
  <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
  <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />

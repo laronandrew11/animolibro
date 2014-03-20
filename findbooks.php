@@ -38,7 +38,7 @@
           </ul>
          <ul class="nav navbar-nav navbar-right">
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
-	echo '<li><a href="userprofile.php"><span class="glyphicon glyphicon-user"></span> ';
+	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
 	echo '</a></li>';
 	echo '<li class="dropdown">
@@ -61,13 +61,13 @@
 
 
 	
-	<div class="col-lg-6 center">
+	<div class="col-lg-8 center">
 		
 			
 			<div class="form-group">
-			<label class="control-label">Search by Title, ISBN, Author, Publisher, Category, or Subject:</label>
+			<label class="control-label">Find a Book</label>
 			<div class="controls">
-			<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter your search keywords." data-original-title="Title">
+			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter your search keywords." data-original-title="Title">
 			</div>
 		    <div class="controls">
 		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">

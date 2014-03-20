@@ -32,6 +32,7 @@ if(isset($_POST['submit'])){
         session_start(); 
         $_SESSION['animolibrousername'] = $row['username'];
 		$_SESSION['animolibroid'] = $row['id'];
+		$_SESSION["external_profile"]=false;
 		$_SESSION['logged'] = true;
         //header("Location: http://localhost/animolibro/php/users_page.php"); 
 		header("Location: http://localhost/animolibro/home.php");

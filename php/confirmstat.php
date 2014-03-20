@@ -1,5 +1,5 @@
 <?php 
-if(isset($_POST['submit'])){ 
+if(isset($_POST['submit'])&&$_SESSION["external_profile"]==false){ 
     $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
     $dbPass = "";            //Database Password 
@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
 	$buyerid =  $_SESSION['animolibroid']; //not sure if this is right
 	if($status == "Accept")
 	{
-		$update_ad ="UPDATE Ad SET status = 2 WHERE id = $adid"; //later on, add a way to save and reference categories and subjects
+		$update_ad ="UPDATE Ad SET status = 2 WHERE id = $adid"; 
 	}
 	else
 	{
@@ -39,5 +39,5 @@ if(isset($_POST['submit'])){
 }else{    //If the form button wasn't submitted go to the index page, or login page 
 	header("Location: index.php");     
     exit; 
-} 
+}
 ?>
