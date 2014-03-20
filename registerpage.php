@@ -9,12 +9,12 @@
     <!-- Bootstrap -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 	
 	<link href="css/customized-components.css" rel="stylesheet">
 	<link href="css/upload.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -118,10 +118,33 @@
 		<label class="control-label">Course</label> 
 		<div class="controls">
 		<select name="course">
-		<option value=1>CS-ST</option>
+		<?php
+			$dbHost = "localhost";        //Location Of Database usually its localhost 
+    $dbUser = "root";            //Database User Name 
+    $dbPass = "";            //Database Password 
+    $dbDatabase = "animolibrosimple";    //Database Name 
+     
+    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
+    //Connect to the databasse 
+    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
+    //Selects the database 
+     
+	 $queryString="SELECT * FROM Course";
+	 $query=mysql_query($queryString);
+	 if(mysql_num_rows($query) >= 1){ 
+		
+		while($row = mysql_fetch_array($query))
+		{
+			$id=$row['id'];
+			$code=$row['code'];
+			echo '<option value='.$id.'>'.$code.'</option>';
+		}
+	}
+		?>
+		<!--option value=1>CS-ST</option>
 		<option value=2>CS-CSE</option>
 		<option value=3>CS-NE</option>
-		<option value=4>CS-IST</option>
+		<option value=4>CS-IST</option-->
 		</select>
 		</div>
 		</div>
@@ -158,7 +181,7 @@
 	</div>
 	</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
