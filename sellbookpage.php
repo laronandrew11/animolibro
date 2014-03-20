@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	$_SESSION['upload_type']=0; //so upload.php knows that we are uploading a cover image for the book
-	echo '<!DOCTYPE html>
+?>
+	<!DOCTYPE html>
 <html>
   <head>
     <title>AnimoLibro - DLSU Book Exchange</title>
@@ -18,10 +19,10 @@
 
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <!--[endif]-->
   </head>
-  <body>';
-	echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,11 +42,12 @@
 			<li><a href="findbooks.php">Find</a></li>
           </ul>
          <ul class="nav navbar-nav navbar-right">
-			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
+		 <?php
 	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
-	echo '</a></li>';
-	echo '<li class="dropdown">
+	?>
+	</a></li>
+	<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 				  <li><a href="php/logout.php">Log-out</a></li>
@@ -56,9 +58,9 @@
 		</ul>
         </div><!--/.nav-collapse -->
       </div>
-    </div>';
+    </div>
 	
-?>
+
 <script src="sellbookpage.php"></script>
 <div class="container">
 	<div class="row">
@@ -131,10 +133,33 @@
 		<label class="control-label">Category</label> 
 		<div class="controls">
 		<select name="category">
-		<option value="Computer">Computer</option>
+			<?php
+			$dbHost = "localhost";        //Location Of Database usually its localhost 
+    $dbUser = "root";            //Database User Name 
+    $dbPass = "";            //Database Password 
+    $dbDatabase = "animolibrosimple";    //Database Name 
+     
+    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
+    //Connect to the databasse 
+    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
+    //Selects the database 
+     
+	 $queryString="SELECT DISTINCT category FROM Book";
+	 $query=mysql_query($queryString);
+	 if(mysql_num_rows($query) >= 1){ 
+		
+		while($row = mysql_fetch_array($query))
+		{
+			$category=$row['category'];
+		
+			echo '<option value='.$category.'>'.$category.'</option>';
+		}
+	}
+		?>
+		<!--option value="Computer">Computer</option>
 		<option value="Law">Law</option>
 		<option value="Mathematics">Mathematics</option>
-		<option value="Science">Science</option>
+		<option value="Science">Science</option-->
 		</select>
 		</div>
 		</div>
@@ -144,11 +169,27 @@
 		<div class="controls">
 		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
 		<select name="book_subject">
-			<option value="ALGOCOM">ALGOCOM</option>
+		
+			<?php
+			
+     
+	 $queryString="SELECT DISTINCT subjects FROM Book";
+	 $query=mysql_query($queryString);
+	 if(mysql_num_rows($query) >= 1){ 
+		
+		while($row = mysql_fetch_array($query))
+		{
+			$subject=$row['subjects'];
+		
+			echo '<option value='.$subject.'>'.$subject.'</option>';
+		}
+	}
+		?>
+			<!--option value="ALGOCOM">ALGOCOM</option>
 			<option value="HCIFACE">HCIFACE</option>
 			<option value="PROFSWD">PROFSWD</option>
 			<option value="STRESME">STRESME</option>
-			<option value="WEBAPPS">WEBAPPS</option>
+			<option value="WEBAPPS">WEBAPPS</option-->
 			</select>
 		</div>
 		</div>
