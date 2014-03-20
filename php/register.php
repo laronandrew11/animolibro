@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
 	$contact = mysql_real_escape_string($_POST['user_contactno']);
 	$course = mysql_real_escape_string($_POST['course']);
 	$password = mysql_real_escape_string($_POST['user_password']);
+	$com_code = md5(uniqid(rand()));
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
 	if(!empty($_SESSION['imagename'])){
 		$profilepic_name = $_SESSION['imagename'];
@@ -30,8 +31,8 @@ if(isset($_POST['submit'])){
 	if(mysql_num_rows($profile_query) == 1){
 				$profile_row= mysql_fetch_array($profile_query); 
 				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
-				 $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id) 
-            VALUES('$name','$email',$contact,$course,$password, $profile_id)";
+				 $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id,com_code) 
+            VALUES('$name','$email',$contact,$course,$password, $profile_id, $com_code)";
 				}
 	}
 	else{
@@ -44,17 +45,30 @@ if(isset($_POST['submit'])){
 	{
 
 			
-        $_SESSION['animolibrousername'] = $name;
+        //$_SESSION['animolibrousername'] = $name;
 		//$_SESSION["external_profile"]=false;
 		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
 		$row = mysql_fetch_array(mysql_query($id_query));
 		$id= $row['id'];
-		$_SESSION['animolibroid'] = $row['id'];
-	
-				
-		$_SESSION['logged'] = true;
+		//$_SESSION['animolibroid'] = $row['id'];
+		//$_SESSION['logged'] = true;
+		$to = $email;
+		$subject = "AnimoLibro Registration Confirmation";
+		$header = "AnimoLibro: Confirmation from AnimoLibro";
+		$message = "Please click the link to verify and activate your account: \n";
+		$message .= "http://localhost/animolibro/activationpage.php?passkey=$com_code";
 
-		header("Location: http://localhost/animolibro/home.php");
+		$sentmail = mail($to,$subject,$message,$header);
+		
+		if($sentmail)
+        {
+			echo "Your Confirmation link Has Been Sent To Your E-mail Address.";
+		}
+		else
+        {
+			echo "Cannot send Confirmation link to your E-mail Address";
+		}
+		header("Location: http://localhost/animolibro/portal.html");
 	}else{ echo "Registration failed";}
     exit; 
 } 	

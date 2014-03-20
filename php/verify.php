@@ -25,7 +25,8 @@ if(isset($_POST['submit'])){
         LIMIT 1";
 	$sql = mysql_query("SELECT * FROM UserAccount  
         WHERE email='$email' AND 
-        passwordhash='$pas' 
+        passwordhash='$pas' AND
+		com_code IS NULL
         LIMIT 1"); 
     if(mysql_num_rows($sql) == 1){ 
         $row = mysql_fetch_array($sql); 

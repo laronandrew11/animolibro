@@ -26,6 +26,7 @@ CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.UserAccount (
   contactnumber INT NULL ,
   stars BIGINT NOT NULL ,
   Course_id INT NULL ,
+  Com_code VARCHAR( 255 ) default NULL,
   PRIMARY KEY (id) ,
   UNIQUE INDEX username_UNIQUE (username ASC) ,
   UNIQUE INDEX email_UNIQUE (email ASC) ,
