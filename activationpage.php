@@ -10,11 +10,11 @@ mysql_select_db($dbDatabase, $db)or die("Couldn't select the database.");
 //Selects the database 
 
 $passkey = $_GET['passkey'];
-$sql = "UPDATE user SET com_code=NULL WHERE com_code='$passkey'";
-$result = mysql_query($mysqli,$sql) or die(mysql_error());
+$sql = "UPDATE UserAccount SET com_code=NULL WHERE com_code='$passkey'";
+$result = mysql_query($sql) or die(mysql_error());
 if($result)
 {
-	echo '<div>Your account is now active. You may now <a href="login.php">Log in</a></div>';
+	echo '<div>Your account is now active. You may now <a href="login_page.html">Log in</a></div>';
 }
 else
 {

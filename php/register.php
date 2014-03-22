@@ -40,8 +40,7 @@ if(isset($_POST['submit'])){
 		$query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,com_code) 
             VALUES('$name','$email',$contact,$course,$password,'$com_code')";
 	}
-				
-    echo $query;   
+				 
     if(mysql_query($query))
 	{
 
@@ -54,12 +53,13 @@ if(isset($_POST['submit'])){
 		//$_SESSION['animolibroid'] = $row['id'];
 		//$_SESSION['logged'] = true;
 		$to = $email;
+		
 		$subject = "AnimoLibro Registration Confirmation";
 		$header = "AnimoLibro: Confirmation from AnimoLibro";
 		$message = "Please click the link to verify and activate your account: \n";
 		$message .= "http://localhost/animolibro/activationpage.php?passkey=$com_code";
 
-		$sentmail = mail($to,$subject,$message,$header);
+		$sentmail = mail($to,$subject,$message);
 		
 		if($sentmail)
         {
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])){
         {
 			echo "Cannot send Confirmation link to your E-mail Address";
 		}
-		//header("Location: http://localhost/animolibro/portal.html");
+		header("Location: http://localhost/animolibro/portal.html");
 	}else{ echo "Registration failed";}
     exit; 
 } 	
