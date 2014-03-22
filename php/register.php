@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
 	$course = mysql_real_escape_string($_POST['course']);
 	$password = mysql_real_escape_string($_POST['user_password']);
 	$com_code = md5(uniqid(rand()));
+
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
 	if(!empty($_SESSION['imagename'])){
 		$profilepic_name = $_SESSION['imagename'];
@@ -32,15 +33,15 @@ if(isset($_POST['submit'])){
 				$profile_row= mysql_fetch_array($profile_query); 
 				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
 				 $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id,com_code) 
-            VALUES('$name','$email',$contact,$course,$password, $profile_id, $com_code)";
+            VALUES('$name','$email',$contact,$course,$password, $profile_id, '$com_code')";
 				}
 	}
 	else{
-		$query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash) 
-            VALUES('$name','$email',$contact,$course,$password)";
+		$query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,com_code) 
+            VALUES('$name','$email',$contact,$course,$password,'$com_code')";
 	}
 				
-       
+    echo $query;   
     if(mysql_query($query))
 	{
 
@@ -68,7 +69,7 @@ if(isset($_POST['submit'])){
         {
 			echo "Cannot send Confirmation link to your E-mail Address";
 		}
-		header("Location: http://localhost/animolibro/portal.html");
+		//header("Location: http://localhost/animolibro/portal.html");
 	}else{ echo "Registration failed";}
     exit; 
 } 	
