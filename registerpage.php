@@ -47,8 +47,8 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
 			 <!--button type="submit" class="btn btn-success">Sign in</button-->
-            <a href="home.html" class="btn btn-success" role="button">Sign in</a>
-			<button type="submit" class="btn btn-primary active">Register</button>
+            <input type="submit" class="btn btn-success" role="button" name = "submit" value = "Sign-in">
+			<<a role="button" href = "#" class="btn btn-primary active" role=>Register</a>
           </form>
         </div><!--/.nav-collapse -->
       </div>
@@ -57,9 +57,9 @@
 	
 	<div class="row">
 	<div class="col-sm-8 col-md-8">
-	<div class="alert alert-success" id="success-alert">
+	<!--div class="alert alert-success" id="success-alert">
 		Registration successful!
-	</div>
+	</div-->
 	
 				<div class="form-group">
 			<label class="control-label">Profile Picture (optional)</label>

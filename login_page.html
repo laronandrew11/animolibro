@@ -35,9 +35,20 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-	<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
-		Wrong Email & Password Combination!
-	</div>
+	<?php
+		if($_SESSION['accountactivated']==false){
+			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
+		Please activate your account via e-mail.
+	</div>';
+		}
+		else if($_SESSION['correctlogin']==false)
+		{
+			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
+		Incorrect username or password.
+	</div>';
+		}
+	?>
+	
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <form action="php/verify.php" class ="form-signin" role = "form" method = "post">

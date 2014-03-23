@@ -25,22 +25,38 @@ if(isset($_POST['submit'])){
         LIMIT 1";
 	$sql = mysql_query("SELECT * FROM UserAccount  
         WHERE email='$email' AND 
-        passwordhash='$pas' AND
-		com_code IS NULL
-        LIMIT 1"); 
+        passwordhash='$pas' 
+        LIMIT 1"); /*AND
+		com_code IS NULL*/
+		session_start(); 
     if(mysql_num_rows($sql) == 1){ 
         $row = mysql_fetch_array($sql); 
-        session_start(); 
+		$_SESSION['correctlogin']=true;
+		if($row['Com_code']==null)
+		{
+        
         $_SESSION['animolibrousername'] = $row['username'];
 		$_SESSION['animolibroid'] = $row['id'];
 		//$_SESSION["external_profile"]=false;
 		$_SESSION['logged'] = true;
         //header("Location: http://localhost/animolibro/php/users_page.php"); 
+		$_SESSION['accountactivated']=true;
+
 		header("Location: http://localhost/animolibro/home.php");
-		//header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
+
         exit; 
+		}
+		else{
+		$_SESSION['accountactivated']=false;
+			header("Location: http://localhost/animolibro/login_page.php"); 
+			
+		}
+		
     }else{ 
-        header("Location: http://localhost/animolibro/login_page.html"); 
+	$_SESSION['accountactivated']=false;
+	$_SESSION['correctlogin']=false;
+	
+        header("Location: http://localhost/animolibro/login_page.php"); 
         exit; 
     } 
 }else{    //If the form button wasn't submitted go to the index page, or login page 

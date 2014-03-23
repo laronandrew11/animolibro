@@ -14,10 +14,13 @@ $sql = "UPDATE UserAccount SET com_code=NULL WHERE com_code='$passkey'";
 $result = mysql_query($sql) or die(mysql_error());
 if($result)
 {
-	echo '<div>Your account is now active. You may now <a href="login_page.html">Log in</a></div>';
+session_start();
+	$_SESSION['accountactivated']=true;
+	header("location: http://localhost/animolibro/login_page.php");
 }
 else
 {
+	$_SESSION['accountactivated']=false;
 	echo "Some error occurred.";
 }
 ?>

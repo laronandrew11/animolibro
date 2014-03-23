@@ -1,7 +1,7 @@
 
  $(document).ready(function()
  {
-  $("#success-alert").hide();
+  //$("#success-alert").hide();
 
 // Popover 
  $('#registerHere input').hover(function()
@@ -50,7 +50,7 @@ unhighlight: function(element, errorClass, validClass)
   //Submission
  $("#btn-submit").onclick(function(){
 
- $("#success-alert").show();
+ //$("#success-alert").show();
  });
  });
 

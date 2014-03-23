@@ -63,13 +63,15 @@ if(isset($_POST['submit'])){
 		
 		if($sentmail)
         {
-			echo "Your Confirmation link Has Been Sent To Your E-mail Address.";
+			$_SESSION['confirmationsent']=true;
+			//echo "Your Confirmation link Has Been Sent To Your E-mail Address.";
 		}
 		else
         {
-			echo "Cannot send Confirmation link to your E-mail Address";
+			$_SESSION['confirmationsent']=false;
+			//echo "Cannot send Confirmation link to your E-mail Address";
 		}
-		header("Location: http://localhost/animolibro/portal.html");
+		header("Location: http://localhost/animolibro/portal.php");
 	}else{ echo "Registration failed";}
     exit; 
 } 	
