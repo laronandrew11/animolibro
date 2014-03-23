@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AnimoLibro - DLSU Book Exchange</title>
+    <title>Sign in to AnimoLibro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
     <!-- Bootstrap -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
 	<link href="css/customized-components.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,41 +24,51 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
+          <a class="navbar-brand" href="#">AnimoLibro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <!--li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li-->
+            <li><a href="portal.html">Home</a></li>
+            <!--li><a href="about.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li-->
           </ul>
-          <form action="php/verify.php" class="navbar-form navbar-right" role="form" method = "post">
-            <div class="form-group">
-              <input type="text" name="Email" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" name="Password" placeholder="Password" class="form-control">
-            </div>
-            <!--button type="submit" class="btn btn-success">Sign in</button-->
-			<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Sign-in">
-			<a role="button" href = "registerpage.php" class="btn btn-primary" role=>Register</a>
-          </form>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-	<div class="container">
-
+	<?php
+	session_start();
+		if($_SESSION['correctlogin']==true && $_SESSION['accountactivated']==false){
+			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
+		Please activate your account via e-mail.
+	</div>';
+		}
+		else if($_SESSION['correctlogin']==false)
+		{
+			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
+		Incorrect username or password.
+	</div>';
+		}
+		if($_SESSION['accountactivated']==true)
+		{
+		echo'<div type="danger-alert" class="alert alert-success" data-dismiss="alert" aria-hidden="true">
+		Account activated. You may now log in.
+	</div>';
+		}
+	?>
+	
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Buy and sell used textbooks in a few clicks.</h1>
-        <p>AnimoLibro is a platform for De La Salle University students to buy, sell or lend used books.</p>
-        <p>Joining is easy.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="registerpage.php" role="button">Register now &raquo;</a>
-        </p>
+        <form action="php/verify.php" class ="form-signin" role = "form" method = "post">
+			<h2>Sign in to AnimoLibro</h2>
+			<div class="form-group">
+			<input name = "Email" type="text" class="form-control" placeholder="Email" required="" autofocus="">
+			</div>
+			<div class="form-group">
+			<input name = "Password" type="password" class="form-control" placeholder="Password" required="">
+			</div>
+			<input type="submit" class="btn btn-primary btn-block" role="button" name = "submit" value = "Sign-in">
+		</form>
       </div>
-
-    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
