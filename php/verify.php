@@ -19,13 +19,14 @@ if(isset($_POST['submit'])){
     //Password function (Not In all versions of MySQL). 
     $email = mysql_real_escape_string($_POST['Email']); 
     $pas = mysql_real_escape_string($_POST['Password']); 
+	$pas_hash=md5($pas);
     $test = "SELECT * FROM UserAccount  
         WHERE email='$email' AND 
-        passwordhash='$pas' 
+        passwordhash='$pas_hash' 
         LIMIT 1";
 	$sql = mysql_query("SELECT * FROM UserAccount  
         WHERE email='$email' AND 
-        passwordhash='$pas' 
+        passwordhash='$pas_hash' 
         LIMIT 1"); /*AND
 		com_code IS NULL*/
 		session_start(); 

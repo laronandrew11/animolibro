@@ -37,6 +37,8 @@
     </div>
 	<?php
 	session_start();
+	if(!empty($_SESSION['correctlogin']))
+	{
 		if($_SESSION['correctlogin']==true && $_SESSION['accountactivated']==false){
 			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
 		Please activate your account via e-mail.
@@ -47,6 +49,7 @@
 			echo'<div type="danger-alert" class="alert alert-danger" data-dismiss="alert" aria-hidden="true">
 		Incorrect username or password.
 	</div>';
+		}
 		}
 		if($_SESSION['accountactivated']==true)
 		{
