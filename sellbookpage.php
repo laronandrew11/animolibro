@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AnimoLibro</a>
+          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -68,39 +68,29 @@
 	<div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div>
-					<div class="form-group">
-			<label class="control-label">Cover Picture (optional)</label>
-			<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-			<div class="col-lg-6 center" id="drop">
-				Drop Cover Pic Here Or
-				<a  class="btn btn-primary" >Browse</a>
-				<input type="file" name="upl" />
-			</div>
+	
+		<legend style="margin-left: -15px">Put up a Book</legend>
 
-			<ul>
-				<!-- The file uploads will be shown here -->
-			</ul>
-		</form>
-		</div>
+		<p style="margin-left: -15px"> <font size="2" color="red">Fields marked with * are required</font></p>
+		
+					
+
+			
+
 
 		
 		<form action="php/sellbook.php" class="form-horizontal" role="form" id="sellForm" method="post" >
-		<fieldset>
-		
-		<legend style="margin-left: -15px">Put up a Book</legend>
-
-		<p style="margin-left: -15px"> <font size="2" color="red">***All fields are required</font></p>
-		
+		<fieldset>		
 	
 		<div class="form-group">
-		<label class="control-label">ISBN</label>
+		<label class="control-label">ISBN*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
 		</div>
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Title</label>
+		<label class="control-label">Title*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Title">
 		</div>
@@ -109,14 +99,14 @@
 
 
 		<div class="form-group">
-		<label class="control-label">Authors</label>
+		<label class="control-label">Authors*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Authors">
 		</div>
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Publisher</label> <!--honestly not essential-->
+		<label class="control-label">Publisher*</label> <!--honestly not essential-->
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher." data-original-title="Publisher">
 		</div>
@@ -130,7 +120,7 @@
 		</div-->
 		
 		<div class="form-group">
-		<label class="control-label">Category</label> 
+		<label class="control-label">Category*</label> 
 		<div class="controls">
 		<select name="category">
 			<?php
@@ -165,7 +155,7 @@
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Used in Subject:</label> <!--change to combobox?-->
+		<label class="control-label">Used in Subject: *</label> <!--change to combobox?-->
 		<div class="controls">
 		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
 		<select name="book_subject">
@@ -195,7 +185,7 @@
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Condition</label>
+		<label class="control-label">Condition*</label>
 		<div class="controls">
 			<div class="radio-inline">
 				<label>
@@ -225,41 +215,42 @@
 		</div>
 		
 			<div class="form-group">
-		<label class="control-label">Description</label>
+		<label class="control-label">Description*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Description">
 		</div>
 		</div>
 		
+	
 		</fieldset>
 		<fieldset>
 		<legend style="margin-left: -15px">Selling Preferences</legend>
 		
 		<div class="form-group">
-		<label class="control-label">Preferred Price</label>
+		<label class="control-label">Preferred Price*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
-      <input type="checkbox" name="negotiable"> Negotiable
+      <input type="checkbox" name="negotiable"> Negotiable*
       <br />
     </label>
   </div>
 		</div>
 		
 			<div class="form-group">
-		<label class="control-label" style="margin-left: 15px">Preferred Meetup Place</label>
+		<label class="control-label" style="margin-left: 15px">Preferred Meetup Place*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="meetup_place" style="margin-left: 15px" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
-			<div class="form-group">
+			<!--div class="form-group">
 		<label class="control-label" style="margin-left: 15px">Password</label>
 		<div class="controls">
 		<input type="password" class="input-xlarge form-control" id="user_password" style="margin-left: 15px" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
-		</div>
+		</div-->
 	
 		
 		
@@ -273,6 +264,19 @@
 		</div>
 		</div></fieldset>
 		</form>
+			<div class="form-group">
+			<label style="margin-left: -15px"class="control-label">Cover Picture (optional)</label>
+			<form style="margin-left: -15px"id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<div class="col-lg-6 center" id="drop">
+				Drop Cover Pic Here Or
+				<a  class="btn btn-primary" >Browse</a>
+				<input type="file" name="upl" />
+			</div>
+		<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+		</form>
+				</div>
 	</div>
 	</div>
 	</div>

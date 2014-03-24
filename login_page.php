@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AnimoLibro</a>
+          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
 	}
 	else {$negotiable=mysql_real_escape_string(0);}
 	$meetup = mysql_real_escape_string($_POST['meetup_place']);
-	$password = mysql_real_escape_string($_POST['user_password']); //hashing to be added in future
+	//$password = mysql_real_escape_string($_POST['user_password']); //hashing to be added in future
 	
 	session_start(); 
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
@@ -65,8 +65,7 @@ if(isset($_POST['submit'])){
 	else $add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
         VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; 
 	}
-	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller' AND 
-        passwordhash='$password'  LIMIT 1"));
+	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller'  LIMIT 1"));
 				$sellerid=mysql_real_escape_string((int)$seller_row['id']);
 		if($sellerid!=0)
 		{

@@ -26,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AnimoLibro</a>
+          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -98,7 +98,7 @@
 	</div>
     </div>
 	<div class="row">
-        <div class="col-lg-4 center">
+        <div class="col-lg-8 center">
 			<h4>Search Results</h4>';
 
 	if(isset($_POST['submit'])){ 
@@ -164,15 +164,17 @@
 	else{
 			$cover_filename="placeholder.gif";
 	}
+			
 			if(in_array($bookid, $listedIDs)==false){
 			$listedIDs[$i] = $bookid;
 			$i ++;
 			
 			
+	
 			
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
-			echo ' <div class="panel panel-default">
+			echo ' <div class="col-lg-6 col-md-6 col-sm-6"><div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
 					echo $title;
@@ -194,9 +196,9 @@
 					
 					echo '<a role="button" href = "';
 					echo $hrefstring;
-					echo'" class="btn btn-primary pull-right" role=>View</a>
+					echo'" class="btn btn-primary pull-right" role=>View Sellers</a>
 				</div>
-			</div>';
+			</div></div>';
 			}
 		}
 	

@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AnimoLibro</a>
+          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -60,10 +60,12 @@
 	<!--div class="alert alert-success" id="success-alert">
 		Registration successful!
 	</div-->
-	
+				<legend style="margin-left: -15px">Registration</legend>
+
+		<p style="margin-left: -15px"> <font size="2" color="red">***All fields are required</font></p>
 				<div class="form-group">
-			<label class="control-label">Profile Picture (optional)</label>
-			<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<label class="control-label" style="margin-left: -15px">Profile Picture (optional)</label>
+			<form style="margin-left: -15px"id="upload" method="post" action="upload.php" enctype="multipart/form-data">
 			<div class="col-lg-6 center" id="drop">
 				Drop Profile Pic Here Or
 				<a  class="btn btn-primary" >Browse</a>
@@ -75,15 +77,14 @@
 			</ul>
 		</form>
 		</div>
+		
 		<form action="php/register.php" class="form-horizontal" id="registerHere" method="post">
 		
 		
 		
 		<fieldset>
 
-		<legend>Registration (all fields required unless otherwise marked)</legend>
-
-		
+	
 		
 		<div class="form-group">
 		<label class="control-label">Name</label>

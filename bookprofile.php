@@ -23,7 +23,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AnimoLibro</a>
+          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -147,7 +147,7 @@
 </div>';
 	
 	echo '<div class="row">
-        <div class="col-lg-4 center">
+        <div class="col-lg-8 center">
 			<h4>Sellers</h4>';
 	if(!empty($sql1)&&mysql_num_rows($sql1) >= 1){ 
 
@@ -184,7 +184,7 @@
 			if($status != 2)
 			{
 				echo'<form action = "php/buybook.php" method = "POST">
-				<div class="panel panel-default">
+				<div class="col-lg-6 col-md-6"><div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
 					echo $sellername; 
@@ -224,16 +224,13 @@
 					}
 				echo '</form>
 				</div>
-			</div>';
+			</div></div>';
 			}
 			
 		}
 	}else echo "No sellers found. Perhaps you are the only seller.";
-	echo '<!-- begin htmlcommentbox.com -->
- <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
- <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
- <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=(hcb_user.PAGE || ""+window.location), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24HvaXrhoLUlS7EjSFDgieF%2F"+"&opts=16862&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
-<!-- end htmlcommentbox.com -->';
+	
+	
 	
 	
 	?>
