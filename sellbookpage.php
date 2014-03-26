@@ -65,9 +65,9 @@
 <div class="container">
 	<div class="row">
 	<div class="col-sm-8 col-md-8">
-	<div class="alert alert-success" id="success-alert">
+	<!--div class="alert alert-success" id="success-alert">
 		Registration successful!
-	</div>
+	</div-->
 	
 		<legend style="margin-left: -15px">Put up a Book</legend>
 
@@ -276,6 +276,7 @@
 				<!-- The file uploads will be shown here -->
 			</ul>
 		</form>
+		
 				</div>
 	</div>
 	</div>
