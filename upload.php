@@ -1,5 +1,5 @@
 <?php
-
+	 include('php/SimpleImage.php');
 
   $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
@@ -27,9 +27,15 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		echo '{"status":"error"}';
 		exit;
 	}
-		$name = rand(1,99999).".".end(explode(".",$_FILES["upl"]["name"]));
+	
+	$name = rand(1,99999).".".end(explode(".",$_FILES["upl"]["name"]));
+	
+	$image = new SimpleImage();
+	$image->load($_FILES['upl']['tmp_name']);
+	$image->resizeToHeight(250);
+	$image->save($name);
+		
 	if(move_uploaded_file($_FILES['upl']['tmp_name'], 'uploads/'.$name)){
-		//$name=$_FILES['upl']['name'];
 	$queryString ="INSERT INTO Image (type, href)
         VALUES ($type,'$name')";
 		if(mysql_query($queryString)){
