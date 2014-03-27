@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
 			echo $add_ad;
 				if(mysql_query($add_ad)){
 
-					header("Location: http://localhost/animolibro/userprofile.php"); 
+					header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION["animolibrousername"]); 
 				}else {echo "failed to add ad";}
 			}
 			else{echo "failed to query book id";}
