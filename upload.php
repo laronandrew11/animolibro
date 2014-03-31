@@ -33,9 +33,9 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	$image = new SimpleImage();
 	$image->load($_FILES['upl']['tmp_name']);
 	$image->resizeToHeight(250);
-	$image->save($name);
+	$image->save('uploads/'.$name);
 		
-	if(move_uploaded_file($_FILES['upl']['tmp_name'], 'uploads/'.$name)){
+	if(move_uploaded_file($name, 'uploads/'.$name)){
 	$queryString ="INSERT INTO Image (type, href)
         VALUES ($type,'$name')";
 		if(mysql_query($queryString)){
