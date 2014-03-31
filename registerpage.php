@@ -10,7 +10,7 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-	
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 	<link href="css/customized-components.css" rel="stylesheet">
 	<link href="css/upload.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
