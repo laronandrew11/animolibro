@@ -32,10 +32,10 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
 	$image = new SimpleImage();
 	$image->load($_FILES['upl']['tmp_name']);
-	$image->resizeToHeight(250);
+	$image->thumbnail(195,250);
 	$image->save('uploads/'.$name);
 		
-	if(move_uploaded_file($name, 'uploads/'.$name)){
+	//if(move_uploaded_file($name, 'uploads/'.$name)){
 	$queryString ="INSERT INTO Image (type, href)
         VALUES ($type,'$name')";
 		if(mysql_query($queryString)){
@@ -43,7 +43,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		echo '{"status":"success"}';
 			}
 		exit;
-	}
+	//}
 }
 
 echo '{"status":"error"}';
