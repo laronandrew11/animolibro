@@ -62,7 +62,7 @@
 	</div-->
 				<legend style="margin-left: -15px">Registration</legend>
 
-		<p style="margin-left: -15px"> <font size="2" color="red">***All fields are required</font></p>
+		<p style="margin-left: -15px"> <font size="2" color="red">Fields marked with * are required</font></p>
 				<div class="form-group">
 			<label class="control-label" style="margin-left: -15px">Profile Picture (optional)</label>
 			<form style="margin-left: -15px"id="upload" method="post" action="upload.php" enctype="multipart/form-data">
