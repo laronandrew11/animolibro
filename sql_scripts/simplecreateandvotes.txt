@@ -116,7 +116,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table AnimoLibro.votes
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `votes` (
+CREATE TABLE IF NOT EXISTS AnimoLibroSimple.Votes (
   `uid` int(8) unsigned NOT NULL,
   `gid` int(8) unsigned NOT NULL,
   `vote` int(1) NOT NULL,
