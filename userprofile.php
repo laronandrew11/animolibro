@@ -162,6 +162,7 @@ if(mysql_num_rows($sql2) >= 1){
 			$adid=$ad_row['id'];
 			$bookid=$ad_row['Book_id'];
 			$bookstat=$ad_row['status'];
+			$description=$ad_row['description'];
 			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
 			$bookrow=mysql_fetch_array($bookquery);
 			
@@ -218,6 +219,7 @@ if(mysql_num_rows($sql2) >= 1){
 					}
 					echo'<p>Meetup: ';
 					echo $ad_row['meetup'];
+					echo '<p>Copy Description: '.$description;
 					echo'<input type="hidden" name="adid" value="'.$adid.'">';
 					echo'<input type="hidden" name="myprofile" value="'.$myprofile.'">';
 					if($myprofile==true)
@@ -228,8 +230,8 @@ if(mysql_num_rows($sql2) >= 1){
 						}
 						else if($bookstat == 1)
 						{
-						echo '<div class="btn-group">
-								<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown" value="Requested">';
+						echo '<div class="btn-group pull-right">
+								<button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Request Pending';
 								echo'<span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu">
 									<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
@@ -275,6 +277,7 @@ if(mysql_num_rows($sql3) >= 1) {
 	$bookrow=mysql_fetch_array($bookquery);
 	$booktitle=$bookrow['title'];
 	$bookauthors=$bookrow['authors'];
+	$description=$ad_row['description'];
 	$coverpic_id=$bookrow['cover_pic_id'];
 	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
 	if(!empty($coverquery)){
@@ -317,6 +320,7 @@ if(mysql_num_rows($sql3) >= 1) {
 	}
 	echo '<p>Meetup: ';
 	echo $ad_row['meetup'];
+	echo '<p>Copy Description: '.$description;
 	if($bookstat == 1)
 	{
 	echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
@@ -329,6 +333,7 @@ if(mysql_num_rows($sql3) >= 1) {
 	{
 	echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
 	}
+	
 	echo'			</div>
 			</div>
         ';
