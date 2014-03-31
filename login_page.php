@@ -60,18 +60,31 @@
 	?>
 	
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="container">
+      <div class="row">
+      <div class="col-lg-3 col-md-3">
         <form action="php/verify.php" class ="form-signin" role = "form" method = "post">
-			<h2>Sign in to AnimoLibro</h2>
+			<legend style="margin-left: -15px">Sign In to AnimoLibro</legend>
 			<div class="form-group">
-			<input name = "Email" type="text" class="form-control" placeholder="Email" required="" autofocus="">
-			</div>
+    <label class="control-label" style="margin-left: -15px">Email</label>
+    <div class="controls">
+    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="email" name="email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
+    </div>
+    </div>
 			<div class="form-group">
-			<input name = "Password" type="password" class="form-control" placeholder="Password" required="">
-			</div>
-			<input type="submit" class="btn btn-primary btn-block" role="button" name = "submit" value = "Sign-in">
+    <label class="control-label" style="margin-left: -15px">Password</label>
+    <div class="controls">
+    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="password" name="password" rel="popover" data-content="Enter your Password." data-original-title="Password">
+    </div>
+    </div>
+			<div class="form-group">
+    <label class="control-label"></label>
+    <div class="controls">
+    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Sign In">
 		</form>
       </div>
+    </div>
+  </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
