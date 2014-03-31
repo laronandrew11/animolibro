@@ -124,8 +124,8 @@
                         <h4>';
                             echo $row['username'];
 							echo'</h4>
-                        <small><cite title="Location"><i class="glyphicon glyphicon-map-marker">
-                        </i> Quezon City </cite></small><br>
+                        <!--small><cite title="Location"><i class="glyphicon glyphicon-map-marker">
+                        </i> Quezon City </cite></small><br-->
 						<small><cite title=" Course"><i class="glyphicon glyphicon-book">
                         </i>';
 						echo $course;
