@@ -9,7 +9,9 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="css/customized-components.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/stars.css">
+	<link href="css/customized-components.css" rel="stylesheet">
+
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
@@ -138,11 +140,13 @@
 							<i class="glyphicon glyphicon-earphone"></i>';
 							echo $row['contactnumber'];
                             echo'<br />
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
+							<span class="star-rating">
+								<input type="radio" name="rating" value="1"><i></i>
+								<input type="radio" name="rating" value="2"><i></i>
+								<input type="radio" name="rating" value="3"><i></i>
+								<input type="radio" name="rating" value="4"><i></i>
+								<input type="radio" name="rating" value="5"><i></i>
+							</span>
                     </div>
                 </div>
             </div>
@@ -469,5 +473,6 @@ echo '
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
 	<script src="js/userprofile.js"></script>
+	<script src="js/stars.js"></script>
   </body>
 </html>
