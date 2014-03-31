@@ -14,7 +14,8 @@
     <![endif]-->
   </head>
   <body>';
-	echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  ?>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,7 +35,8 @@
 			<li><a href="findbooks.php">Find</a></li>
           </ul>
          <ul class="nav navbar-nav navbar-right">
-			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
+			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->
+	<?php
 	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
 	echo '</a></li>';
@@ -138,8 +140,9 @@
 							<i class="glyphicon glyphicon-info-sign"></i> ';
 							echo $numcopies;
 							echo ' copies available
-                            <br />
-                    </div>
+                            <br />';
+							
+                    echo'</div>
                 </div>
             </div>
         </div>
@@ -155,6 +158,7 @@
 		{
 			//echo $row['title'] . " " . $row['LastName'];
 			// "<br>";
+			$description=$ad_row['description'];
 			$adid=$ad_row['id'];
 			$status=$ad_row['status'];
 			$condition=$ad_row['copy_condition'];
@@ -213,7 +217,9 @@
 					echo $ad_row['meetup'];
 					echo'<input type="hidden" name="adid" value="';
 					echo $adid;
+					
 					echo'">';
+					echo '<p>Copy Description: '.$description;
 					echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
 					echo'<p><a href=userprofile.php?user='.$sellername.'>View seller profile</a>';
 					if($status == 0 || $status == 3)

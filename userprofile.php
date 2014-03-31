@@ -229,7 +229,7 @@ if(mysql_num_rows($sql2) >= 1){
 						else if($bookstat == 1)
 						{
 						echo '<div class="btn-group">
-								<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown">';
+								<button type="button" class="btn btn-primary pull-right dropdown-toggle" data-toggle="dropdown" value="Requested">';
 								echo'<span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu">
 									<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
