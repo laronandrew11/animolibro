@@ -1,6 +1,6 @@
 <?php 
 if(isset($_POST['submit'])){ 
-   include('php/dbConnect.php');
+   include('dbConnect.php');
      
     $adid = mysql_real_escape_string($_POST['adid']);  //change to number instead of string?
 	$url = mysql_real_escape_string($_POST['url']);

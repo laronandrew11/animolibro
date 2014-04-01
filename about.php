@@ -5,18 +5,9 @@
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AnimoLibro - DLSU Book Exchange</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="css/customized-components.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-   
-  </head>
+<?php
+include('head.php');
+?>
   <body>
 	<!--script src ="about.php"></script-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

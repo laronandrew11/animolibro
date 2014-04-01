@@ -30,6 +30,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		$_SESSION["imagename"]=$name;
 		echo '{"status":"success"}';
 			}
+		
 		exit;
 	//}
 }
