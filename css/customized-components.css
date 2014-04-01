@@ -25,14 +25,15 @@ p
     padding-left: 120px;
 }*/
 
-
+/*modified*/
 .navbar-inverse {
   background-color: #223A22;
   border-color: #082008;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #AAAAAA;
+  color: #CCCCCC;
+  font-size: 20px;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -41,15 +42,34 @@ p
   background-color: transparent;
 }
 
+.navbar-inverse .navbar-nav > li > a {
+  color: #999999;
+  font-size:15px;
+}
+
+.panel-default > .panel-heading {
+  color: #333333;
+  background-color: #f2fff2;
+  border-color: #ddeedd;
+}
+
+.well {
+  background-color: #f2fff2;
+  border: 1px solid #e3f4e3;
+}
+.jumbotron{
+	background-color: #f2fff2;	
+}
+
+/*end modified*/
+
 .navbar-inverse .navbar-text {
   color: #999999;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-  color: #999999;
-}
 
-.navbar-inverse .navbar-nav > li > a:hover,
+
+/*.navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #ffffff;
   background-color: transparent;
@@ -129,4 +149,4 @@ p
 
 .navbar-inverse .navbar-link:hover {
   color: #ffffff;
-}
+}*/
