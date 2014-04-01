@@ -117,7 +117,7 @@ if(mysql_num_rows($sql2) >= 1){
 			$buyerid=$ad_row['buyer_id'];
 			$buyerquery=mysql_query("SELECT * from UserAccount WHERE id = '$buyerid'");
 			$buyerrow=mysql_fetch_array($buyerquery);
-			$buyername=$ad_row['username'];
+			$buyername=$buyerrow['username'];
 			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
 			$bookrow=mysql_fetch_array($bookquery);
 			
