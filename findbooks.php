@@ -32,7 +32,7 @@
 			<div class="form-group">
 			<label class="control-label">Find a Book</label>
 			<div class="controls">
-			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter your search keywords." data-original-title="Title">
+			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class="input-xlarge form-control" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
 			</div>
 		    <div class="controls">
 		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
@@ -70,7 +70,7 @@
 echo'<div class="row">
         <div class="col-lg-8 center">
 			<h4>Search Results</h4>';
-    $keywords = mysql_real_escape_string($_POST['book_title']); 
+    $keywords = mysql_real_escape_string($_POST['typeahead']); 
 	$keywordarray= explode(" ", $keywords);
 	$i=0;
 	$listedIDs=[];
@@ -235,8 +235,27 @@ echo'<div class="row">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.js"></script>
+	<script src="dist/js/bootstrap.min.js"></script>
 	 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	  <script>
+		$(function() {
+			$("#typeahead").typeahead({
+				source:function(typeahead, query) {
+					$.ajax({
+						url: 'php/source.php',
+						type: 'POST',
+						data: 'query=' + query,
+						dataType: 'JSON',
+						async: false,
+						success: function(data) {
+							typeahead.process(data);
+						}
+					});
+				}
+			});
+		});
+	</script>
   </body>
 </html>
