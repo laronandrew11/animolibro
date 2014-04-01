@@ -20,7 +20,7 @@
 	  $numcopies = $_GET['numcopies'];
 	$sellerid = $_SESSION['animolibroid'];
 	$query1 ="SELECT * FROM Ad  
-        WHERE Book_id= $bookid AND seller_id != $sellerid";
+        WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY buyer_id";
 	$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
 	//section for getting ads
 	$sql1 = mysql_query($query1);
