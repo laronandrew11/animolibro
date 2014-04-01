@@ -2,7 +2,7 @@
 	 
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
-   $email = mysql_real_escape_string($_POST['user_email']);
+   $email = mysql_real_escape_string($_POST['email']);
    $newpass = md5(uniqid(rand()));
    $pwhash = md5($newpass);
    
@@ -10,10 +10,10 @@ if(isset($_POST['submit'])){
    
    if(mysql_query($query)) {
 		$to = $email;
-		
+		echo $to;
 		$subject = "AnimoLibro Password Recovery";
 		$message = "Your new password is: \n";
-		$message .= "$newpass"
+		$message .= "$newpass";
 		
 		$sentmail = mail($to,$subject,$message);
 		
