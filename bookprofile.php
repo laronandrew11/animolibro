@@ -152,11 +152,14 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">';
 					echo $sellername; 
-					echo'<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i></h3>
+					$split=explode(" ", $sellername);
+					echo'<iframe src="http://www.setrating.com/widget.php?ref=http%3A%2F%2Flocalhost%2Fanimolibro%2Fuserprofile.php%3Fuser%3D';
+					foreach($split as $value){
+						echo $value;
+						if(end($split)!=$value)
+							echo '%2520';
+					}
+					echo '&amp;type=star" allowtransparency="true" frameborder="0" border="0" framebackground="none" scrolling="no" style="width:89px; padding:0; height:16px; margin:0px; background:none; align:right;"></iframe></i></h3>
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
