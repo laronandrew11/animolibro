@@ -92,13 +92,7 @@
 							<i class="glyphicon glyphicon-earphone"></i>';
 							echo $row['contactnumber'];
                             echo'<br />
-							<span class="star-rating">
-								<input type="radio" name="rating" value="1"><i></i>
-								<input type="radio" name="rating" value="2"><i></i>
-								<input type="radio" name="rating" value="3"><i></i>
-								<input type="radio" name="rating" value="4"><i></i>
-								<input type="radio" name="rating" value="5"><i></i>
-							</span>
+							<script type="text/javascript" src="http://SetRating.com/SetRating.js"></script><script type="text/javascript">SetRatingWidget("star")</script>
                     </div>
                 </div>
             </div>
