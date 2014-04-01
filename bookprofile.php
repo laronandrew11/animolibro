@@ -92,7 +92,20 @@
 							echo $numcopies;
 							echo ' copies available
                             <br />';
-							
+							echo'Used in subjects: <br>';
+								$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
+	$subjectbooks= mysql_query($subjectbookquery);
+	while($subjectbookrow=mysql_fetch_array($subjectbooks))
+	{
+		$subjectID= $subjectbookrow['Subject_id'];
+		$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
+		while($subjectrow=mysql_fetch_array($subjectquery))
+						{
+							echo $subjectrow['code'].'<br>';
+		
+		
+						}	
+	}
                     echo'</div>
                 </div>
             </div>
@@ -134,6 +147,11 @@
 	else{
 			$profile_filename="placeholder.gif";
 	}
+	
+
+	
+	
+	
 			
 			//$bookauthors=$bookrow['authors'];
 			if($status != 2)
