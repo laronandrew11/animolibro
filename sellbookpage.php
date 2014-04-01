@@ -124,7 +124,7 @@
 			<?php
 			
      
-	 $queryString="SELECT DISTINCT subjects FROM Book";
+	 $queryString="SELECT DISTINCT subjects FROM Book"; //"SELECT code FROM Subject";
 	 $query=mysql_query($queryString);
 	 if(mysql_num_rows($query) >= 1){ 
 		
