@@ -35,8 +35,8 @@ include('head.php');
       <div class="container">
       <div class="row">
       <div class="col-lg-3 col-md-3">
-        <form action="php/verify.php" class ="form-signin" role = "form" method = "post">
-			<legend style="margin-left: -15px">Sign In to AnimoLibro</legend>
+        <form action="php/pwrecovery.php" class ="form-signin" role = "form" method = "post">
+			<legend style="margin-left: -15px">Forgot Password</legend>
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Email</label>
     <div class="controls">
@@ -44,20 +44,11 @@ include('head.php');
     </div>
     </div>
 			<div class="form-group">
-    <label class="control-label" style="margin-left: -15px">Password</label>
-    <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="password" name="password" rel="popover" data-content="Enter your Password." data-original-title="Password">
-    </div>
-    </div>
-			<div class="form-group">
     <label class="control-label"></label>
     <div class="controls">
-    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Sign In">
+    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Submit">
 		</form>
-	<br>
-	<br>
-	<form action="forgotpassword.php"><input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Forgot Password"></form>
-      </div>
+	</div>
     </div>
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
