@@ -114,6 +114,10 @@ if(mysql_num_rows($sql2) >= 1){
 			$bookid=$ad_row['Book_id'];
 			$bookstat=$ad_row['status'];
 			$description=$ad_row['description'];
+			$buyerid=$ad_row['buyer_id'];
+			$buyerquery=mysql_query("SELECT * from UserAccount WHERE id = '$buyerid'");
+			$buyerrow=mysql_fetch_array($buyerquery);
+			$buyername=$ad_row['username'];
 			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
 			$bookrow=mysql_fetch_array($bookquery);
 			
@@ -181,7 +185,10 @@ if(mysql_num_rows($sql2) >= 1){
 						}
 						else if($bookstat == 1)
 						{
-						echo '<div class="btn-group pull-right">
+						echo '<p>Buyer: ';
+						echo $buyername;
+						echo'
+								<div class="btn-group pull-right">
 								<button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Request Pending';
 								echo'<span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu">
@@ -193,10 +200,14 @@ if(mysql_num_rows($sql2) >= 1){
 						}
 						else if($bookstat == 2)
 						{
+							echo '<p>Buyer: ';
+							echo $buyername;
 							echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
 						}
 						else if($bookstat == 3)
 						{
+							echo '<p>Buyer: ';
+							echo $buyername;
 							echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
 						}
 					}
