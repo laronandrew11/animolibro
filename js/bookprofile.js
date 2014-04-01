@@ -1,6 +1,6 @@
  $(document).ready(function()
- {
- $('.buy-btn').on('click', function(){
+ {/*
+ $('.buy-btn').onsubmit= function(){
  alert('hey!!');
  	 BootstrapDialog.show({
             message: 'Are you sure you want to buy this book?',
@@ -13,7 +13,7 @@
 					$(this).text("Bought");
                 }
             }, {
-                cssClass: 'btn-warning'
+                cssClass: 'btn-warning',
                 label: 'Cancel',
                 action: function(dialogItself){
                     dialogItself.close();
@@ -21,7 +21,8 @@
             }]
         });
 	
- });
+ });*/
+ 
  })
 
 

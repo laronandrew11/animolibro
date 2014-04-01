@@ -147,7 +147,7 @@
 			//$bookauthors=$bookrow['authors'];
 			if($status != 2)
 			{
-				echo'<form action = "php/buybook.php" method = "POST">
+				echo'<form id="buyform" onsubmit="return confirm(\'Request to buy this book?\');" action = "php/buybook.php" method = "POST">
 				<div class="col-lg-6 col-md-6"><div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
@@ -276,6 +276,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
 	
-	<script src="js/bookprofile.js"></script>
+	<!--script src="js/bookprofile.js"></script-->
   </body>
 </html>
