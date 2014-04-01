@@ -61,15 +61,15 @@
 		</form>
 	</div>
 	</div>
-    </div>
-	<div class="row">
-        <div class="col-lg-8 center">
-			<h4>Search Results</h4>';
+    </div>'
+	;
 
 	if(isset($_POST['submit'])){ 
    include('php/dbConnect.php');
      
-
+echo'<div class="row">
+        <div class="col-lg-8 center">
+			<h4>Search Results</h4>';
     $keywords = mysql_real_escape_string($_POST['book_title']); 
 	$keywordarray= explode(" ", $keywords);
 	$i=0;
