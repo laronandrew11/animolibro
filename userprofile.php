@@ -51,7 +51,7 @@ include ('head.php');
 	}
 	
 	//query to get current user's ads
-	$adquery="SELECT * FROM Ad WHERE seller_id = $userid";
+	$adquery="SELECT * FROM Ad WHERE seller_id = $userid ORDER BY status=2,status=1";
 	$sql2=mysql_query($adquery);
 	 
 	//display user profile box: username, location, course, email, contactno
