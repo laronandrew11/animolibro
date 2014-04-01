@@ -76,6 +76,18 @@ echo'<div class="row">
 	$listedIDs=[];
 	foreach($keywordarray as $keyword)
 	{
+	//multi-subject stuff
+	$subjectquery=mysql_query("SELECT id from Subject WHERE code LIKE '%$keyword%'");
+	while($subjectrow=mysql_fetch_array($subjectquery))
+	{
+		$subjectid=$subjectrow['Subject_id');
+		$subjectbookquery="SELECT Book_id FROM Subject_uses_Book WHERE Subject_id = $subjectid";
+	}//store book IDs into an array $subjectbooks, then 
+	
+	
+	
+
+	
 	$query ="SELECT * FROM Book  
         WHERE title LIKE '%$keyword%'
 		OR isbn LIKE '%$keyword%' OR authors LIKE '%$keyword%' 

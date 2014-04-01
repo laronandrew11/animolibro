@@ -116,10 +116,11 @@
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Used in Subject: *</label> <!--change to combobox?-->
+		<label class="control-label">Used in Subject: *</label> <!--change to combobox-->
+		<p>Use Ctrl+Click to select multiple subjects
 		<div class="controls">
 		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
-		<select name="book_subject">
+		<select multiple name="book_subject">
 		
 			<?php
 			
