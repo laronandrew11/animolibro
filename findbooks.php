@@ -74,16 +74,24 @@ echo'<div class="row">
 	$keywordarray= explode(" ", $keywords);
 	$i=0;
 	$listedIDs=[];
+	$j=0;
+	$extraBookIDs=[];
 	foreach($keywordarray as $keyword)
 	{
 	//multi-subject stuff
 	$subjectquery=mysql_query("SELECT id from Subject WHERE code LIKE '%$keyword%'");
 	while($subjectrow=mysql_fetch_array($subjectquery))
 	{
-		$subjectid=$subjectrow['Subject_id'];
-		$subjectbookquery="SELECT Book_id FROM Subject_uses_Book WHERE Subject_id = $subjectid";
-		$subjectbookrow=mysql_fetch_array
-	}//store book IDs into an array $subjectbooks, then 
+		$subjectid=$subjectrow['id'];
+		$subjectbookquery="SELECT DISTINCT Book_id FROM Subject_uses_Book WHERE Subject_id = $subjectid";
+		$subjectbooks= mysql_query($subjectbookquery);
+		
+		while($subjectbookrow=mysql_fetch_array($subjectbooks))
+		{
+				$extraBookIDs[$j] = $subjectbookrow['Book_id'];
+			$j ++;	
+		}
+	}
 	
 	
 	
@@ -94,7 +102,13 @@ echo'<div class="row">
 		OR isbn LIKE '%$keyword%' OR authors LIKE '%$keyword%' 
 		OR subjects LIKE'%$keyword%' 
 		OR category LIKE '%$keyword%' 
-		OR publisher LIKE '%$keyword%'";
+		OR publisher LIKE '%$keyword%'
+		"
+		;
+		foreach($extraBookIDs as $extraID)
+		{
+		$query.=" OR id = ".$extraID;
+		}
 		//echo $query;
 		
 	
