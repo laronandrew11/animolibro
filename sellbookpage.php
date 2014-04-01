@@ -93,15 +93,7 @@
 		<div class="controls">
 		<select name="category">
 			<?php
-			$dbHost = "localhost";        //Location Of Database usually its localhost 
-    $dbUser = "root";            //Database User Name 
-    $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibrosimple";    //Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the databasse 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
-    //Selects the database 
+			include('php/dbConnect.php');
      
 	 $queryString="SELECT DISTINCT category FROM Book";
 	 $query=mysql_query($queryString);

@@ -1,21 +1,7 @@
 <?php 
 	 
-//TO DO: find out why in the @)$!)($)(!$)(@$ ads aren't being added
 if(isset($_POST['submit'])){ 
-    $dbHost = "localhost";        //Location Of Database usually its localhost 
-    $dbUser = "root";            //Database User Name 
-    $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibrosimple";    //Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the databasse 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
-    //Selects the database 
-     session_start(); 
-    /* 
-    The Above code can be in a different file, then you can place include'filename.php'; instead. 
-    */ 
-     
+   include('php/dbConnect.php');
 	$name = mysql_real_escape_string($_POST['user_name']);
 	$email = mysql_real_escape_string($_POST['user_email']);
 	$contact = mysql_real_escape_string($_POST['user_contactno']);

@@ -1,18 +1,6 @@
 <?php 
 if(isset($_POST['submit'])){ 
-    $dbHost = "localhost";        //Location Of Database usually its localhost 
-    $dbUser = "root";            //Database User Name 
-    $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibrosimple";    //Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the databasse 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
-    //Selects the database 
-     
-    /* 
-    The Above code can be in a different file, then you can place include'filename.php'; instead. 
-    */ 
+   include('php/dbConnect.php');
      
     $adid = mysql_real_escape_string($_POST['adid']);  //change to number instead of string?
 	$url = mysql_real_escape_string($_POST['url']);
