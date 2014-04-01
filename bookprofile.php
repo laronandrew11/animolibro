@@ -267,12 +267,15 @@
        
 
       </div>
+	  <link rel="stylesheet" href="dist/css/bootstrap-dialog.min.css">
+	  <script src="dist/js/bootstrap-dialog.js"></script>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
+	
 	<script src="js/bookprofile.js"></script>
   </body>
 </html>

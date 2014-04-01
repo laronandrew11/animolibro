@@ -8,11 +8,11 @@
 
 #upload2{
     font-family:'Oswald', sans-serif;
-    background-color:#373a3d;
+    background-color:#374a3d;
 
-    background-image:-webkit-linear-gradient(top, #373a3d, #313437);
-    background-image:-moz-linear-gradient(top, #373a3d, #313437);
-    background-image:linear-gradient(top, #373a3d, #313437);
+    background-image:-webkit-linear-gradient(top, #374a3d, #314437);
+    background-image:-moz-linear-gradient(top, #374a3d, #314437);
+    background-image:linear-gradient(top, #374a3d, #314437);
 
     /*width:250px;*/
     padding:30px;
@@ -23,7 +23,7 @@
 }
 
 #drop{
-    background-color: #2E3134;
+    background-color: #2E4134;
     padding: 40px 50px;
     margin-bottom: 30px;
     border: 20px solid rgba(0, 0, 0, 0);
@@ -63,20 +63,20 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
 #upload2 ul{
     list-style:none;
     margin:0 -30px;
-    border-top:1px solid #2b2e31;
-    border-bottom:1px solid #3d4043;
+    border-top:1px solid #2b3e31;
+    border-bottom:1px solid #3d5043;
 }
 
 #upload2 ul li{
 
-    background-color:#333639;
+    background-color:#334639;
 
-    background-image:-webkit-linear-gradient(top, #333639, #303335);
-    background-image:-moz-linear-gradient(top, #333639, #303335);
-    background-image:linear-gradient(top, #333639, #303335);
+    background-image:-webkit-linear-gradient(top, #334639, #304335);
+    background-image:-moz-linear-gradient(top, #334639, #304335);
+    background-image:linear-gradient(top, #334639, #304335);
 
-    border-top:1px solid #3d4043;
-    border-bottom:1px solid #2b2e31;
+    border-top:1px solid #3d5043;
+    border-bottom:1px solid #2b3e31;
     padding:15px;
     height: 52px;
 
