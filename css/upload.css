@@ -6,7 +6,7 @@
 -----------------------------*/
 
 
-#upload{
+#upload2{
     font-family:'Oswald', sans-serif;
     background-color:#373a3d;
 
@@ -60,14 +60,14 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
     display:none;
 }
 
-#upload ul{
+#upload2 ul{
     list-style:none;
     margin:0 -30px;
     border-top:1px solid #2b2e31;
     border-bottom:1px solid #3d4043;
 }
 
-#upload ul li{
+#upload2 ul li{
 
     background-color:#333639;
 
@@ -83,11 +83,11 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
     position: relative;
 }
 
-#upload ul li input{
+#upload2 ul li input{
     display: none;
 }
 
-#upload ul li p{
+#upload2 ul li p{
     width: 144px;
     overflow: hidden;
     white-space: nowrap;
@@ -98,20 +98,20 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
     left: 100px;
 }
 
-#upload ul li i{
+#upload2 ul li i{
     font-weight: normal;
     font-style:normal;
     color:#7f7f7f;
     display:block;
 }
 
-#upload ul li canvas{
+#upload2 ul li canvas{
     top: 15px;
     left: 32px;
     position: absolute;
 }
 
-#upload ul li span{
+#upload2 ul li span{
     width: 15px;
     height: 12px;
     background: url('../img/icons.png') no-repeat;
@@ -121,12 +121,12 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
     cursor:pointer;
 }
 
-#upload ul li.working span{
+#upload2 ul li.working span{
     height: 16px;
     background-position: 0 -12px;
 }
 
-#upload ul li.error p{
+#upload2 ul li.error p{
     color:red;
 }
 

@@ -63,20 +63,7 @@
 				<legend style="margin-left: -15px">Registration</legend>
 
 		<p style="margin-left: -15px"> <font size="2" color="red">Fields marked with * are required</font></p>
-				<div class="form-group">
-			<label class="control-label" style="margin-left: -15px">Profile Picture (optional)</label>
-			<form style="margin-left: -15px"id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-			<div class="col-lg-6 center" id="drop">
-				Drop Profile Pic Here Or
-				<a  class="btn btn-primary" >Browse</a>
-				<input type="file" name="upl" />
-			</div>
-
-			<ul>
-				<!-- The file uploads will be shown here -->
-			</ul>
-		</form>
-		</div>
+				
 		
 		<form action="php/register.php" class="form-horizontal" id="registerHere" method="post">
 		
@@ -120,15 +107,7 @@
 		<div class="controls">
 		<select name="course">
 		<?php
-			$dbHost = "localhost";        //Location Of Database usually its localhost 
-    $dbUser = "root";            //Database User Name 
-    $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibrosimple";    //Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the databasse 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
-    //Selects the database 
+	include('php/dbConnect.php');
      
 	 $queryString="SELECT * FROM Course";
 	 $query=mysql_query($queryString);
@@ -149,7 +128,20 @@
 		</select>
 		</div>
 		</div>
-
+		
+		<div class="form-group">
+			<label class="control-label" >Profile Picture (optional)</label>
+			<div id="upload2" >
+				<div class="col-lg-6 center" id="drop">
+				Drop Cover Pic Here Or
+				<a  class="btn btn-primary" >Browse</a>
+				<!--input type="file" name="upl" /-->
+			</div>
+			<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+			</div>
+		</div>
 
 		<div class="form-group">
 		<label class="control-label">Password</label>
@@ -177,6 +169,11 @@
 
 		</fieldset>
 		
+		</form>
+		<!--/form-->
+		
+			<form class="hidden" id="upload" method="post" action="upload.php" enctype="multipart/form-data">	
+				<input type="file" id="upl" name="upl" />
 		</form>
 	</div>
 	</div>

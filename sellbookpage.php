@@ -213,7 +213,20 @@
 		</div>
 		</div-->
 	
-		
+			<div class="form-group">
+			<label class="control-label" style="margin-left: 15px">Cover Picture (optional)</label>
+			
+			<div id="upload2" style="margin-left: 15px">
+				<div class="col-lg-6 center" id="drop">
+				Drop Cover Pic Here Or
+				<a  class="btn btn-primary" >Browse</a>
+				<!--input type="file" name="upl" /-->
+			</div>
+			<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+			</div>
+			</div>
 		
 		<div class="form-group">
 		<label class="control-label"></label>
@@ -225,20 +238,12 @@
 		</div>
 		</div></fieldset>
 		</form>
-			<div class="form-group">
-			<label style="margin-left: -15px"class="control-label">Cover Picture (optional)</label>
-			<form style="margin-left: -15px"id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-			<div class="col-lg-6 center" id="drop">
-				Drop Cover Pic Here Or
-				<a  class="btn btn-primary" >Browse</a>
-				<input type="file" name="upl" />
-			</div>
-		<ul>
-				<!-- The file uploads will be shown here -->
-			</ul>
+		
+			<form class="hidden" id="upload" method="post" action="upload.php" enctype="multipart/form-data">	
+				<input type="file" id="upl" name="upl" />
 		</form>
 		
-				</div>
+				
 	</div>
 	</div>
 	</div>
