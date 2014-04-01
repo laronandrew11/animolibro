@@ -61,15 +61,19 @@ p
 	background-color: #f2fff2;	
 }
 
+/*.active{
+background-color: #089808 !important;
+}*/
+
 /*end modified*/
 
-.navbar-inverse .navbar-text {
+/*.navbar-inverse .navbar-text {
   color: #999999;
 }
 
 
 
-/*.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #ffffff;
   background-color: transparent;

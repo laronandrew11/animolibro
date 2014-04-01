@@ -16,27 +16,10 @@
     <![endif]-->
   </head>
   <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="portal.php">Home</a></li>
-            <!--li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li-->
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+
 	<?php
+	
+	include('navbar_out.php');
 	session_start();
 	if(!empty($_SESSION['correctlogin']))
 	{
