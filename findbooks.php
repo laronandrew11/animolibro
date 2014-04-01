@@ -80,8 +80,9 @@ echo'<div class="row">
 	$subjectquery=mysql_query("SELECT id from Subject WHERE code LIKE '%$keyword%'");
 	while($subjectrow=mysql_fetch_array($subjectquery))
 	{
-		$subjectid=$subjectrow['Subject_id');
+		$subjectid=$subjectrow['Subject_id'];
 		$subjectbookquery="SELECT Book_id FROM Subject_uses_Book WHERE Subject_id = $subjectid";
+		$subjectbookrow=mysql_fetch_array
 	}//store book IDs into an array $subjectbooks, then 
 	
 	

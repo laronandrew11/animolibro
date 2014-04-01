@@ -120,18 +120,18 @@
 		<p>Use Ctrl+Click to select multiple subjects
 		<div class="controls">
 		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
-		<select multiple name="book_subject">
+		<select multiple name="book_subject[]">
 		
 			<?php
 			
      
-	 $queryString="SELECT DISTINCT subjects FROM Book"; //"SELECT code FROM Subject";
+	 $queryString=/*"SELECT DISTINCT subjects FROM Book"; */"SELECT code FROM Subject";
 	 $query=mysql_query($queryString);
 	 if(mysql_num_rows($query) >= 1){ 
 		
 		while($row = mysql_fetch_array($query))
 		{
-			$subject=$row['subjects'];
+			$subject=$row['code'];
 		
 			echo '<option value='.$subject.'>'.$subject.'</option>';
 		}

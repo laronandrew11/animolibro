@@ -6,7 +6,8 @@ if(isset($_POST['submit'])){
 	$authors = mysql_real_escape_string($_POST['book_authors']);
 	$publisher = mysql_real_escape_string($_POST['book_publisher']);
 	$category = mysql_real_escape_string($_POST['category']); //implement w/ Category table later
-	$subjects = mysql_real_escape_string($_POST['book_subject']); //implement properly later
+	//$subjects = mysql_real_escape_string($_POST['book_subject']); //implement properly later
+	$subjects = $_POST['book_subject'];
 	$condition = mysql_real_escape_string($_POST['conditionRadios']);
 	$description = mysql_real_escape_string($_POST['book_description']);
 	$price =mysql_real_escape_string($_POST['book_price']);
@@ -21,13 +22,14 @@ if(isset($_POST['submit'])){
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
 	
 	/*Check if book has already been added to DB*/
-	$check_book="SELECT title FROM Book WHERE isbn= $isbn";
+	$check_book="SELECT id FROM Book WHERE isbn= $isbn";
 	$check_query=mysql_query($check_book);
 
 		
 		if(!empty($check_query)&&mysql_num_rows($check_query) == 1){
-		//$row= mysql_fetch_array($check_query); 
+		$check_row= mysql_fetch_array($check_query); 
 				//$title= mysql_real_escape_string((int)$row['title']);
+		$bookID=$check_row['id'];
 		$add_book="Book already added";
 		echo $add_book;
 		}
@@ -50,8 +52,18 @@ if(isset($_POST['submit'])){
 	}
 	}
 	else $add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')"; 
+        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')";
+		
+	//get book ID for subject table update
+	/*$check_book="SELECT id FROM Book WHERE isbn= $isbn";
+	$check_query=mysql_query($check_book);
+	$check_row= mysql_fetch_array($check_query); 
+	$bookID=$check_row['id'];*/
 	}
+	
+	
+	
+	
 	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller'  LIMIT 1"));
 				$sellerid=mysql_real_escape_string((int)$seller_row['id']);
 		if($sellerid!=0)
@@ -67,6 +79,30 @@ if(isset($_POST['submit'])){
 				echo $price;
 				echo $negotiable;
 				echo $condition;*/
+				
+				//add subjects to book
+	foreach ($subjects as $subject)
+	{
+		$getSubjectID="SELECT id FROM Subject WHERE code = '$subject'";
+		$subjectIDquery=mysql_query($getSubjectID);
+		$subjectIDrow=mysql_fetch_array($subjectIDquery);
+		$subjectID=$subjectIDrow['id'];
+		$checkDuplicate="SELECT * FROM Subject_uses_Book WHERE Book_id=$bookid, Subject_id=$subjectID";
+		$dupliQuery=mysql_query($checkDuplicate);
+		
+		if(empty($dupliQuery)||mysql_num_rows($dupliQuery) == 0)
+		{
+		$addsubject="INSERT INTO Subject_uses_Book (Book_id, Subject_id) VALUES ($bookid, $subjectID)";
+		
+		if(mysql_query($addsubject))
+		{
+			
+		}
+		
+		}
+		
+	}
+				
 				
 				/*Add advertisement to DB*/
 					$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id) 
