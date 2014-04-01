@@ -1,5 +1,0 @@
-$uid =  $_SESSION['animolibrousername'];
-$gid = $userid
-$vote = $_GET['rating']
-
-INSERT INTO Votes(uid, gid, vote) VALUES ($uid, $gid, $vote);
