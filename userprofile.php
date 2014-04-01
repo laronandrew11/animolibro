@@ -132,14 +132,16 @@ if(mysql_num_rows($sql2) >= 1){
 					<h3 class="panel-title">';
 					echo $booktitle;
 					echo'</h3>
-				</div>
-				<form action = "php/';
+				</div>';
+				
 				if($myprofile==true)
 				{
+					echo'<form action = "php/';
 					echo 'confirmstat';
 				}
 				else
 				{
+					echo'<form onsubmit="return confirm(\'Request to buy this book?\');" action = "php/';
 					echo 'buybook';
 				}
 				echo '.php" method = "POST">
