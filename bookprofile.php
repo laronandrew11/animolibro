@@ -172,6 +172,7 @@
 					echo'">';
 					echo '<p>Copy Description: '.$description;
 					echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
+					$sellername = str_replace(' ', '%20', $sellername);
 					echo'<p><a href=userprofile.php?user='.$sellername.'>View seller profile</a>';
 					if($status == 0 || $status == 3)
 					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
