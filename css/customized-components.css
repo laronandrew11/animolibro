@@ -24,3 +24,115 @@ p
     padding-right: 120px;
     padding-left: 120px;
 }*/
+
+
+/*from "Readable" theme*/
+a {
+  color: #4582ec;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #134fb8;
+  text-decoration: underline;
+}
+
+hr {
+  margin-top: 22px;
+  margin-bottom: 22px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+.h1 small,
+.h2 small,
+.h3 small,
+.h4 small,
+.h5 small,
+.h6 small,
+h1 .small,
+h2 .small,
+h3 .small,
+h4 .small,
+h5 .small,
+h6 .small,
+.h1 .small,
+.h2 .small,
+.h3 .small,
+.h4 .small,
+.h5 .small,
+.h6 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #b3b3b3;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 22px;
+  margin-bottom: 11px;
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 11px;
+  margin-bottom: 11px;
+}
+
+.text-muted {
+  color: #b3b3b3;
+}
+
+.text-primary {
+  color: #4582ec;
+}
+
+.text-primary:hover {
+  color: #1863e6;
+}
+
+.text-warning {
+  color: #f0ad4e;
+}
+
+.text-warning:hover {
+  color: #ec971f;
+}
+
+.text-danger {
+  color: #d9534f;
+}
+
+.text-danger:hover {
+  color: #c9302c;
+}
+
+.text-success {
+  color: #5cb85c;
+}
+
+.text-success:hover {
+  color: #449d44;
+}
+
+.text-info {
+  color: #5bc0de;
+}
+
+.text-info:hover {
+  color: #31b0d5;
+}
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 11px;
+}

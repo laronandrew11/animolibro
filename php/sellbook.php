@@ -1,6 +1,6 @@
 <?php 
 if(isset($_POST['submit'])){ 
-   include('php/dbConnect.php');
+   include('dbConnect.php');
     $isbn = mysql_real_escape_string($_POST['book_isbn']);  //change to number instead of string?
     $title = mysql_real_escape_string($_POST['book_title']); 
 	$authors = mysql_real_escape_string($_POST['book_authors']);

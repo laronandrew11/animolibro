@@ -1,6 +1,6 @@
 <?php 
 if(isset($_POST['submit'])){ 
-   include('php/dbConnect.php');
+   include('dbConnect.php');
     //Lets search the databse for the user name and password 
     //Choose some sort of password encryption, I choose sha256 
     //Password function (Not In all versions of MySQL). 

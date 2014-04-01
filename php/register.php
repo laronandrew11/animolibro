@@ -1,7 +1,7 @@
 <?php 
 	 
 if(isset($_POST['submit'])){ 
-   include('php/dbConnect.php');
+   include('dbConnect.php');
 	$name = mysql_real_escape_string($_POST['user_name']);
 	$email = mysql_real_escape_string($_POST['user_email']);
 	$contact = mysql_real_escape_string($_POST['user_contactno']);

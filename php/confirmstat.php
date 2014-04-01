@@ -1,6 +1,6 @@
 <?php 
 if(isset($_POST['submit1'])&&$_POST['myprofile']==true){ 
-   include('php/dbConnect.php');
+   include('dbConnect.php');
      
     $adid = mysql_real_escape_string($_POST['adid']);  //change to number instead of string?
 	$status = mysql_real_escape_string($_POST['submit1']);
