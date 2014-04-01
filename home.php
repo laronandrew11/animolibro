@@ -15,42 +15,7 @@
     <![endif]-->
   </head>
   <body>';
-	echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-             <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
-			<li><a href="sellbookpage.php">Sell</a></li>
-			<li><a href="findbooks.php">Find</a></li>
-          </ul>
-         <ul class="nav navbar-nav navbar-right">
-			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
-	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-	echo $_SESSION['animolibrousername'];
-	echo '</a></li>';
-	echo '<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				  <li><a href="php/logout.php">Log-out</a></li>
-				  <li class="divider"></li>
-				  <li><a href="#"></a></li>
-				</ul>
-			  </li>
-		</ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>';
+include ('navbar.php');
 	
 ?>
 	<script src ="home.php"></script>

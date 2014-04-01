@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	$_SESSION['upload_type']=0; //so upload.php knows that we are uploading a cover image for the book
+	
 ?>
 	<!DOCTYPE html>
 <html>
@@ -18,51 +19,18 @@
 		<!-- The main CSS file -->
 		<link href="css/upload.css" rel="stylesheet" />
 
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      
     <!--[endif]-->
   </head>
   <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="home.php">Home</a></li>
-             <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
-			<li class="active"><a href="#">Sell</a></li>
-			<li><a href="findbooks.php">Find</a></li>
-          </ul>
-         <ul class="nav navbar-nav navbar-right">
-		 <?php
-	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-	echo $_SESSION['animolibrousername'];
+	<?php
+	include('navbar.php');
 	?>
-	</a></li>
-	<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				  <li><a href="php/logout.php">Log-out</a></li>
-				  <li class="divider"></li>
-				  <li><a href="#"></a></li>
-				</ul>
-			  </li>
-		</ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+		
+	
 	
 
-<script src="sellbookpage.php"></script>
+<!--script src="sellbookpage.php"></script-->
 <div class="container">
 	<div class="row">
 	<div class="col-sm-8 col-md-8">
@@ -299,6 +267,8 @@
 		
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	<script src="js/sellbook.js"></script>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 
   
 </body></html>

@@ -15,58 +15,8 @@
     <![endif]-->
   </head>
   <body>';
-  ?>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Animo&#9734Libro</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="home.php">Home</a></li>
-             <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
-			<li><a href="sellbookpage.php">Sell</a></li>
-			<li><a href="findbooks.php">Find</a></li>
-          </ul>
-         <ul class="nav navbar-nav navbar-right">
-			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->
-	<?php
-	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-	echo $_SESSION['animolibrousername'];
-	echo '</a></li>';
-	echo '<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				  <li><a href="php/logout.php">Log-out</a></li>
-				  <li class="divider"></li>
-				  <li><a href="#"></a></li>
-				</ul>
-			  </li>
-		</ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>';
-	
-    $dbHost = "localhost";        //Location Of Database usually its localhost 
-    $dbUser = "root";            //Database User Name 
-    $dbPass = "";            //Database Password 
-    $dbDatabase = "animolibrosimple";    //Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the databasse 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
-    //Selects the database 
-     
-    /* 
-    The Above code can be in a different file, then you can place include'filename.php'; instead. 
-    */ 
+  	include('navbar.php');
+	include('php/dbConnect.php');
 
 	//TODO: display relevant book info
 	$bookid=$_GET['bookid'];
