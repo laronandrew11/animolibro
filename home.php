@@ -7,7 +7,7 @@ include('head.php');
 include ('navbar.php');
 	
 ?>
-	<script src ="home.php"></script>
+	<!--script src ="home.php"></script-->
 	<div class="jumbotron">
 	<h1>Sell a book</h1>
 		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
@@ -19,8 +19,8 @@ include ('navbar.php');
 		<p><div class="row">
         <div class="col-lg-4">
             <form name=search action="findbooks.php" method="post"  class="form-inline" >
-                <input name="loc" class="span5" type="text"  placeholder="Find a textbook by title...">
-                <button type="submit" name="submit0" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button>
+                <input class="span5" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by title or keyword">
+                <button type="submit" name="submit" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button>
 				 <!--a name = "submit0" type="submit" role="button" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
             </form>
         </div></p>
@@ -32,6 +32,23 @@ include ('navbar.php');
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
-	
+	 <script>
+		$(function() {
+			$("#typeahead").typeahead({
+				source:function(typeahead, query) {
+					$.ajax({
+						url: 'php/source.php',
+						type: 'POST',
+						data: 'query=' + query,
+						dataType: 'JSON',
+						async: false,
+						success: function(data) {
+							typeahead.process(data);
+						}
+					});
+				}
+			});
+		});
+	</script>
   </body>
 </html>

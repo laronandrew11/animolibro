@@ -190,38 +190,6 @@ echo'<div class="row">
 	
 ?>
 	
-          <!--div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Fundamentals of Web Design, 4th Edition</h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcoversmall.jpg"  alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Category: Information Technology
-					<p>Author: Bob
-					<p>Copies Available: 4
-					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
-				</div>
-			</div>
-			   <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">This Book Is Full of Spiders</h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="assets/bookcover2small.jpg"  alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Category: Survival
-					<p>Author: D. Wong
-					<p>Copies Available: 9
-					<a role="button" href = "bookprofile.html" class="btn btn-primary pull-right" role=>View</a>
-				</div>
-			</div>
-
-       
-
-      </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
