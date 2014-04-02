@@ -8,11 +8,11 @@
 
 #upload2{
     font-family:'Oswald', sans-serif;
-    background-color:#374a3d;
+    background-color:#273f27;
 
-    background-image:-webkit-linear-gradient(top, #374a3d, #314437);
-    background-image:-moz-linear-gradient(top, #374a3d, #314437);
-    background-image:linear-gradient(top, #374a3d, #314437);
+    background-image:-webkit-linear-gradient(top, #233b23, #273f27);
+    background-image:-moz-linear-gradient(top, #233b23, #273f27);
+    background-image:linear-gradient(top, #233b23, #273f27);
 
     /*width:250px;*/
     padding:30px;
@@ -23,7 +23,7 @@
 }
 
 #drop{
-    background-color: #2E4134;
+    background-color: #223a22;
     padding: 40px 50px;
     margin-bottom: 30px;
     border: 20px solid rgba(0, 0, 0, 0);
@@ -69,11 +69,11 @@ font-family: "Open Sans", Helvetica, Arial, sans-serif;
 
 #upload2 ul li{
 
-    background-color:#334639;
+    background-color:#273f27;
 
-    background-image:-webkit-linear-gradient(top, #334639, #304335);
-    background-image:-moz-linear-gradient(top, #334639, #304335);
-    background-image:linear-gradient(top, #334639, #304335);
+    background-image:-webkit-linear-gradient(top, #233b23, #273f27);
+    background-image:-moz-linear-gradient(top, #233b23, #273f27);
+    background-image:linear-gradient(top, #233b23, #273f27);
 
     border-top:1px solid #3d5043;
     border-bottom:1px solid #2b3e31;
