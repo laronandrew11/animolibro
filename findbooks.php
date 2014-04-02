@@ -157,9 +157,10 @@ echo'<div class="row">
 					echo'</h3>
 				</div>
 				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-4 col-md-4 col-lg-4">
                         <img src="uploads/'.$cover_filename.'"  alt="" class="img-rounded img-responsive" />
                     </div>
+					<div class="card_info">
 					<p>Category: ';
 					echo $category;
 					echo '<p>Author: ';
@@ -173,6 +174,7 @@ echo'<div class="row">
 					echo '<a role="button" href = "';
 					echo $hrefstring;
 					echo'" class="btn btn-primary pull-right" role=>View Sellers</a>
+					</div>
 				</div>
 			</div></div>';
 			}
