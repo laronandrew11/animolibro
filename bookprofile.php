@@ -1,13 +1,15 @@
-<?php
-	session_start();
-	echo '<!DOCTYPE html>
-<html>';
 
+	<!DOCTYPE html>
+<html>
+<?php
+	
   include('head.php');
- 
+ session_start();
   echo'<body>';
+  
   	include('navbar.php');
 	include('php/dbConnect.php');
+	
 
 	//TODO: display relevant book info
 	$bookid=$_GET['bookid'];
@@ -78,13 +80,8 @@
                             echo'<br />
 							<i class="glyphicon glyphicon-pencil"></i>';
 							echo $authors;
-                            echo'<br />
-							<i class="glyphicon glyphicon-info-sign"></i> ';
-							echo $numcopies;
-							echo ' copies available
-                            <br />';
-							echo'Used in subjects: <br>';
-								$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
+                            echo'<br />';
+							$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
 	$subjectbooks= mysql_query($subjectbookquery);
 	while($subjectbookrow=mysql_fetch_array($subjectbooks))
 	{
@@ -92,11 +89,17 @@
 		$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
 		while($subjectrow=mysql_fetch_array($subjectquery))
 						{
-							echo $subjectrow['code'].'<br>';
+							echo '<i class="glyphicon glyphicon-book"></i>' .$subjectrow['code'].'<br>';
 		
 		
 						}	
 	}
+							echo'<i class="glyphicon glyphicon-info-sign"></i> ';
+							echo $numcopies;
+							echo ' copies available
+                            <br />';
+							//echo'Used in subjects: <br>';
+								
                     echo'</div>
                 </div>
             </div>
