@@ -1,5 +1,5 @@
 <?php
-	ession_start();
+	session_start();
 	echo '<!DOCTYPE html>
 <html>';
 include('head.php');

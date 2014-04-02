@@ -1,14 +1,15 @@
 <?php
-if(isset($_POST['changepassword'])){ 
+if(isset($_POST['submit'])){ 
    include('dbConnect.php');
    $currpass = mysql_real_escape_string($_POST['currpass']);
    $newpass = mysql_real_escape_string($_POST['newpass']);
    $newpassagain = mysql_real_escape_string($_POST['newpassagain']);
    session_start();
-   if($newpass == $newpassagain)
+   $username=$_SESSION['animolibrousername'];
+   if($newpass == $newpassagain){
 		$pwhash = md5($newpass);
 	   
-	    $query = "UPDATE UserAccount SET passwordhash='$pwhash' WHERE username='$_SESSION['animolibrousername']'";
+	    $query = "UPDATE UserAccount SET passwordhash='$pwhash' WHERE username='$username'";
 	   
 	    if(mysql_query($query)) {
 			$_SESSION['pwchange']=true;

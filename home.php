@@ -8,7 +8,7 @@ include ('navbar.php');
 	
 ?>
 <?php
-	session_start();
+	//session_start();
 	if(!empty($_SESSION['pwchange']))
 	{
 		if($_SESSION['pwchange']==true)
