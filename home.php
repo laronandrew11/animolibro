@@ -31,7 +31,7 @@ include ('navbar.php');
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.js"></script>
 	 <script>
 		$(function() {
 			$("#typeahead").typeahead({
