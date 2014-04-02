@@ -97,7 +97,7 @@ echo'<div class="row">
 		OR isbn LIKE '%$keyword%' OR authors LIKE '%$keyword%' 
 		OR subjects LIKE'%$keyword%' 
 		OR category LIKE '%$keyword%' 
-		OR publisher LIKE '%$keyword%'
+		OR publisher LIKE '%$keyword%' ORDER BY TITLE
 		"
 		;
 		foreach($extraBookIDs as $extraID)
