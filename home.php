@@ -7,6 +7,19 @@ include('head.php');
 include ('navbar.php');
 	
 ?>
+<?php
+	session_start();
+	if(!empty($_SESSION['pwchange']))
+	{
+		if($_SESSION['pwchange']==true)
+		{
+			echo '<div class="alert alert-success" id="success-alert">Your password has been changed.</div>';
+		}
+		else{
+			echo '<div class="alert alert-danger" id="failure-alert">Cannot change password.</div>';
+		}
+	}
+?>
 	<!--script src ="home.php"></script-->
 	<div class=" jumbotron col-md-6 col-lg-6 ">
 	<h1>Find a book</h1>

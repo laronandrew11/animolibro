@@ -26,6 +26,7 @@
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
+				  <li><a name="changepassword" href=changepw.php>Change Password</a></li>
 				  <li><a href="php/logout.php">Log out</a></li>
 				  <!--li class="divider"></li>
 				  <li><a href="#"></a></li-->
