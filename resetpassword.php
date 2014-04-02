@@ -24,6 +24,7 @@ include('head.php');
 		}
 	}
 		$email=$_GET['email'];
+		$hash=$_GET['hash'];
 	?>
 	
       <!-- Main component for a primary marketing message or call to action -->
@@ -33,7 +34,8 @@ include('head.php');
         <form action="php/pwreset.php" class ="form-signin" role = "form" method = "post">
 			<legend style="margin-left: -15px">Password Reset</legend>
 			<?php
-			echo '<input type="hidden" id="email" name="email" value="$email">';
+				echo '<input type="hidden" id="email" name="email" value="'.$email.'">';
+				echo '<input type="hidden" id="hash" name="hash" value="'.$hash.'">';
 			?>
 			<div class="form-group">
 				<label class="control-label" style="margin-left: -15px">New Password*</label>

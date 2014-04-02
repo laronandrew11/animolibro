@@ -6,12 +6,14 @@ if(isset($_POST['forgotpassword'])){
    
    $query = "SELECT * FROM UserAccount WHERE email='$email' LIMIT 1";
    
-   if(mysql_query($query)) {
+   if($hashquery = mysql_query($query)) {
+		$hashrow = mysql_fetch_array($hashquery);
+		$hash = $hashrow['passwordhash'];
 		$to = $email;
 		echo $to;
 		$subject = "AnimoLibro Password Recovery";
 		$message = "You're receiving this e-mail because you or someone else has requested a password for your user account.\nIt can be safely ignored if you did not request a password reset. Click the link below to reset your password.\n";
-		$message .= "http://localhost/animolibro/resetpassword.php?email='.$email.'";
+		$message .= "http://localhost/animolibro/resetpassword.php?email='.$email.'&hash='.$hash.'";
 		
 		$sentmail = mail($to,$subject,$message);
 		

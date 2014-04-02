@@ -2,12 +2,13 @@
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
    $email = mysql_real_escape_string($_POST['email']);
+   $hash = mysql_real_escape_string($_POST['hash']);
    $newpass = mysql_real_escape_string($_POST['newpass']);
    $newpassagain = mysql_real_escape_string($_POST['newpassagain']);
    if($newpass == $newpassagain){
 		$pwhash = md5($newpass);
 	   
-	    $query = "UPDATE UserAccount SET passwordhash='$pwhash' WHERE email='$email'";
+	    $query = "UPDATE UserAccount SET passwordhash='$pwhash' WHERE email='$email' AND passwordhash='$hash'";
 	   
 	    if(mysql_query($query)) {
 			$_SESSION['pwchange']=true;
