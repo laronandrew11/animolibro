@@ -8,16 +8,10 @@ include ('navbar.php');
 	
 ?>
 	<!--script src ="home.php"></script-->
-	
-	<div class="jumbotron col-md-6 col-lg-6 ">
-	<h1>Sell a book</h1>
-		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
-		<p><a class="btn btn-primary btn-lg" role="button" href="sellbookpage.php">Sell a textbook</a></p>
-	</div>
 	<div class=" jumbotron col-md-6 col-lg-6 ">
 	<h1>Find a book</h1>
 		<p>Need a textbook? Start your search here.</p>
-		<p><!--div class="row"-->
+		<p><div class="row">
         <div class="col-lg-12">
             <form name=search action="findbooks.php" method="post"  class="form-inline" >
                 <input class="span5 form-control input-xlarge" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:">
@@ -25,8 +19,14 @@ include ('navbar.php');
 				 <!--a name = "submit0" type="submit" role="button" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
             </form>
         </div></p>
-	<!--/div-->
 	</div>
+	</div>
+	<div class="jumbotron col-md-6 col-lg-6 ">
+	<h1>Sell a book</h1>
+		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
+		<p><a class="btn btn-primary btn-lg" role="button" href="sellbookpage.php">Sell a textbook</a></p>
+	</div>
+	
 
 	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
