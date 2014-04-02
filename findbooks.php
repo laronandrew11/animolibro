@@ -167,14 +167,14 @@ echo'<div class="row">
 					echo $authors;
 					
 					echo'<p>Copies Available: ';
-					echo $numcopies;
+					echo $numcopies.'</div>';
 					
 					$hrefstring= 'bookprofile.php?isbn='. $isbn .'&bookid='.$bookid.'&title=' . $title.'&category='.$category.'&subject='.$subject.'&authors='.$authors.'&publisher='.$publisher.'&numcopies='.$numcopies;
 					
 					echo '<a role="button" href = "';
 					echo $hrefstring;
 					echo'" class="btn btn-primary pull-right" role=>View Sellers</a>
-					</div>
+					
 				</div>
 			</div></div>';
 			}
