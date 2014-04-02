@@ -64,7 +64,9 @@ echo'<div class="row">
         <div class="col-lg-8 center">
 			<h4>Search Results</h4>';
     $keywords = mysql_real_escape_string($_POST['typeahead']); 
+	
 	$keywordarray= explode(" ", $keywords);
+	array_unshift($keywordarray, $keywords);
 	$i=0;
 	$listedIDs=[];
 	$j=0;
