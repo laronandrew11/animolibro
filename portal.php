@@ -20,7 +20,17 @@
 		else{
 			echo '<div class="alert alert-danger" id="failure-alert">Cannot send confirmation link to your e-mail address.</div>';
 		}
+	}
+	if(!empty($_SESSION['pwchange']))
+	{
+		if($_SESSION['pwchange']==true)
+		{
+			echo '<div class="alert alert-success" id="success-alert">Your password has been changed.</div>';
 		}
+		else{
+			echo '<div class="alert alert-danger" id="failure-alert">Cannot change password.</div>';
+		}
+	}
 	?>
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
