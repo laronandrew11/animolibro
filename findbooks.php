@@ -18,16 +18,17 @@ echo'  <body>';
 
 
 	
-	<div class="col-lg-8 center">
+	<div class="col-lg-10 center">
 		
 			
 			<div class="form-group">
-			<label class="control-label">Find a Book</label>
+			<h3>Find a Book</h3>
 			<div class="controls">
-			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class="input-xlarge form-control" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
-			</div>
-		    <div class="controls">
+			
+			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class=" form-control input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
+			
 		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
+		
 		
 		</div>
 			</div>

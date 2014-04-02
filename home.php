@@ -17,10 +17,10 @@ include ('navbar.php');
 	<h1>Find a book</h1>
 		<p>Need a textbook? Start your search here.</p>
 		<p><div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-10">
             <form name=search action="findbooks.php" method="post"  class="form-inline" >
-                <input class="span5" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by title or keyword">
-                <button type="submit" name="submit" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></button>
+                <input class="span5 form-control input-xlarge" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:">
+                <button type="submit" name="submit" class="btn btn-success"> Search <i class="glyphicon glyphicon-search"></i></button>
 				 <!--a name = "submit0" type="submit" role="button" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
             </form>
         </div></p>
