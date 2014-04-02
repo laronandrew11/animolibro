@@ -40,13 +40,13 @@ include('head.php');
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Email</label>
     <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="email" name="email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
+    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="email" name="Email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
     </div>
     </div>
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Password</label>
     <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="password" name="password" rel="popover" data-content="Enter your Password." data-original-title="Password">
+    <input type="password" style="margin-left: -15px" class="input-xlarge form-control" id="password" name="Password" rel="popover" data-content="Enter your Password." data-original-title="Password">
     </div>
     </div>
 			<div class="form-group">
@@ -56,7 +56,7 @@ include('head.php');
 		</form>
 	<br>
 	<br>
-	<form action="forgotpassword.php"><input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Forgot Password"></form>
+	<form action="forgotpassword.php"><input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "forgotpassword" value = "Forgot Password"></form>
       </div>
     </div>
   </div>
