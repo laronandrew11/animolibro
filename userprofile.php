@@ -70,14 +70,14 @@ include ('head.php');
                         <!--small><cite title="Location"><i class="glyphicon glyphicon-map-marker">
                         </i> Quezon City </cite></small><br-->
 						<small><cite title=" Course"><i class="glyphicon glyphicon-book">
-                        </i>';
+                        </i>&nbsp;';
 						echo $course;
 						echo'</cite></small>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i>';
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;';
 						echo $row['email'];
                             echo'<br />
-							<i class="glyphicon glyphicon-earphone"></i>';
+							<i class="glyphicon glyphicon-earphone"></i>&nbsp;';
 							echo $row['contactnumber'];
                             echo'<br />
 							<script type="text/javascript" src="http://SetRating.com/SetRating.js"></script><script type="text/javascript">SetRatingWidget("star")</script>

@@ -66,19 +66,19 @@
 						echo $title;
                             echo'</h4>
                         <small><cite title="ISBN"><i class="glyphicon glyphicon-barcode">
-                        </i> ISBN ';
+                        </i>&nbsp; ISBN ';
 						echo $isbn;
 						echo'</cite></small><br>
 						
 
                         <p>
-                            <i class="glyphicon glyphicon-briefcase"></i>';
+                            <i class="glyphicon glyphicon-briefcase"></i>&nbsp;';
 							echo $publisher;
                             echo'<br />
-							<i class="glyphicon glyphicon-folder-close"></i> ';
+							<i class="glyphicon glyphicon-folder-close"></i>&nbsp;';
 							echo $category;
                             echo'<br />
-							<i class="glyphicon glyphicon-pencil"></i>';
+							<i class="glyphicon glyphicon-pencil"></i>&nbsp;';
 							echo $authors;
                             echo'<br />';
 							$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
@@ -89,7 +89,7 @@
 		$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
 		while($subjectrow=mysql_fetch_array($subjectquery))
 						{
-							echo '<i class="glyphicon glyphicon-book"></i>' .$subjectrow['code'].'<br>';
+							echo '<i class="glyphicon glyphicon-book"></i>&nbsp;' .$subjectrow['code'].'<br>';
 		
 		
 						}	
