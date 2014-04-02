@@ -64,8 +64,9 @@ p
 .form-control{
 display: inline;
 width:80%;
- height: auto;
- padding:auto;
+}
+.nav_input{
+width:100%;
 }
 
 .form-control:focus {
