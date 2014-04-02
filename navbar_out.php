@@ -23,7 +23,7 @@
               <input type="password" name="Password" placeholder="Password" class="form-control">
             </div>
             <!--button type="submit" class="btn btn-success">Sign in</button-->
-			<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Sign-in">
+			<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Sign in">
 			<a role="button" href = "registerpage.php" class="btn btn-primary" role=>Register</a>
           </form>
         </div><!--/.nav-collapse -->
