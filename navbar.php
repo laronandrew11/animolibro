@@ -13,12 +13,15 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="home.php">Home</a></li>
-             <li><a href="about.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
-			<li><a href="sellbookpage.php">Sell</a></li>
 			<li><a href="findbooks.php">Find</a></li>
+			<li><a href="sellbookpage.php">Sell</a></li>
+			
+					           <li><a href="about.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li>
+			   
           </ul>
          <ul class="nav navbar-nav navbar-right">
+
 			  <!--<li><a href="userprofile.html"><span class="glyphicon glyphicon-user"></span>  Andrew Laron</a></li>-->';
 	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
 	echo $_SESSION['animolibrousername'];
