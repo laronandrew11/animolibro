@@ -22,7 +22,7 @@ echo'  <body>';
 		
 			
 			<div class="form-group">
-			<h3>Find a Book</h3>
+			<legend>Find a Book</legend>
 			<div class="controls">
 			
 			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class=" form-control form-control_inline input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
@@ -202,8 +202,6 @@ echo'<div class="row">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.js"></script>
 	<script src="dist/js/bootstrap.min.js"></script>
-	 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	  <script>
 		$(function() {
 			$("#typeahead").typeahead({

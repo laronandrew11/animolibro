@@ -12,7 +12,6 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="home.php">Home</a></li>
 			<li><a href="findbooks.php">Find</a></li>
 			<li><a href="sellbookpage.php">Sell</a></li>
 			
