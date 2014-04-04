@@ -57,7 +57,7 @@ include('head.php');
 		</div>
 		</div>
 		</form>
-	<a href="forgotpassword.php" type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "forgotpassword" >Forgot Password</a>
+	<a href="forgotpassword.php"  class="btn btn-success" style="margin-left: -15px"  name = "forgotpassword" >Forgot Password</a>
 
 
   </div>

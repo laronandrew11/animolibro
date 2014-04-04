@@ -9,6 +9,19 @@
 include('head.php');
 ?>
   <body>
+  <div class="container">
+
+	<legend>About</legend>
+	<p>AnimoLibro was produced for WEBAPPS, AY 2014-2015.</p>
+	
+	<p>&copy; 2014 Charles Malcaba, Andrew Laron, and Ronald Lim.</p>
+
+
+  
+
+	
+</div>
+	
 	<!--script src ="about.php"></script-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
