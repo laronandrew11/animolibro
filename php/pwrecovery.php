@@ -2,7 +2,7 @@
 	 
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
-   $email = mysql_real_escape_string($_POST['email']);
+   $email = mysql_real_escape_string($_POST['user_email']);
    
    $query = "SELECT * FROM UserAccount WHERE email='$email' LIMIT 1";
    

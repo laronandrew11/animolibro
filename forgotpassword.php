@@ -35,12 +35,12 @@ include('head.php');
       <div class="container">
       <div class="row">
       <div class="col-lg-3 col-md-3">
-        <form action="php/pwrecovery.php" class ="form-signin" role = "form" method = "post">
+        <form action="php/pwrecovery.php" id="loginHere" class ="form-signin" role = "form" method = "post">
 			<legend style="margin-left: -15px">Forgot Password</legend>
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Email</label>
     <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="email" name="email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
+    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
     </div>
     </div>
 			<div class="form-group">
@@ -55,5 +55,7 @@ include('head.php');
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
+		<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="js/login.js"></script>
   </body>
 </html>
