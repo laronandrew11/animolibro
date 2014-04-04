@@ -3,36 +3,44 @@
  {
   $("#success-alert").hide();
 // Popover 
- $('#registerHere input').hover(function()
+ $('#sellForm input').hover(function()
  {
  $(this).popover('show')
  });
 
 // Validation
- $("#registerHere").validate({
+ $("#sellForm").validate({
 rules:{
-book_isbn:{required:true,minlength: 13},
+book_isbn:{required:true,digits:true, minlength: 13 },
 book_title:{required:true},
 book_authors:{required:true},
-book_price:{required:true},
+book_publisher:{required:true},
+book_price:{required:true,number:true},
+book_description:{required:true},
 meetup_place:{required:true},
-user_password:{required:true},
+
  },
 
 messages:{
 book_isbn:{
- required:"Enter the book's ISBN number to automatically fill out other information.",
- minlength:"ISBN number must be minimum 13 characters"},
+ required:"Field must not be empty.",
+ minlength:"ISBN number must be minimum 13 characters",
+  digits:"ISBN should contain only digits 0-9"},
+ 
 book_title:{
- required:"Enter the book's full title."},
+ required:"Field must not be empty."},
 book_authors:{
- required:"Enter the book's authors."},
+ required:"Field must not be empty."},
+ book_publisher:{
+ required:"Field must not be empty."},
 book_price:{
- required:"Set your asking price for this book."},
+ required:"Field must not be empty.",
+ number:"Price must be a valid decimal number"},
+ book_description:{
+ required:"Field must not be empty."},
 meetup_place:{
- required:"Where do you want to meet your buyers?"},
-user_password:{
- required:"Enter a password."}
+ required:"Field must not be empty."},
+
  },
 
 errorClass: "help-inline",

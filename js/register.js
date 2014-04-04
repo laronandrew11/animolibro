@@ -15,20 +15,25 @@
 rules:{
 user_name:"required",
 user_email:{required:true,email: true},
+user_contactno:{required:true, number:true},
 user_password:{required:true,minlength: 6},
 confirm_password:{required:true,equalTo: "#user_password"},
  },
 
 messages:{
-user_name:"Enter your first and last name",
+user_name:"Field must not be empty",
 user_email:{
- required:"Enter your email address",
+ required:"Field must not be empty",
  email:"Enter valid email address"},
 user_password:{
- required:"Enter your password",
+ required:"Field must not be empty",
  minlength:"Password must be minimum 6 characters"},
+ user_contactno:{
+ required:"Field must not be empty",
+ number:"Contact number should contain only digits 0-9"
+ },
 confirm_password:{
- required:"Enter confirm password",
+ required:"Field must not be empty",
  equalTo:"Password and Confirm Password must match"},
  },
 
@@ -48,9 +53,9 @@ unhighlight: function(element, errorClass, validClass)
  }
  });
   //Submission
- $("#btn-submit").onclick(function(){
+ /*$("#btn-submit").onclick(function(){
 
  //$("#success-alert").show();
- });
+ });*/
  });
 
