@@ -27,7 +27,7 @@ include ('navbar.php');
 		<p><div class="row">
         <div class="col-lg-12">
             <form name=search action="findbooks.php" method="post"  class="form-inline" >
-                <input class="span5 form-control input-xlarge" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:">
+                <input class="span5 form-control form-control_inline input-xlarge" type="text"  id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:">
                 <button type="submit" name="submit" class="btn btn-success btn-lg"> Search <i class="glyphicon glyphicon-search"></i></button>
 				 <!--a name = "submit0" type="submit" role="button" class="btn btn-success"> <i class="glyphicon glyphicon-search"></i></a-->
             </form>
@@ -36,7 +36,7 @@ include ('navbar.php');
 	</div>
 	<div class="jumbotron col-md-6 col-lg-6 ">
 	<h1>Sell a book</h1>
-		<p>Done with your old textbooks? Let them continue to serve their purpose.</p>
+		<p>Done with your old textbooks? Pass them on.</p>
 		<p><a class="btn btn-primary btn-lg" role="button" href="sellbookpage.php">Sell a textbook</a></p>
 	</div>
 	

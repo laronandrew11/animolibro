@@ -4,10 +4,10 @@
   //$("#success-alert").hide();
 
 // Popover 
- $('#registerHere input').hover(function()
+ /*$('#registerHere input').hover(function()
  {
  $(this).popover('show')
- });
+ });*/
 
  
 // Validation

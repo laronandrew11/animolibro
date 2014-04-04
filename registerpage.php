@@ -33,14 +33,14 @@
 	
 		
 		<div class="form-group">
-		<label class="control-label">Name</label>
+		<label class="control-label">Name*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
 		</div>
 		</div>
 
 		<div class="form-group">
-		<label class="control-label">DLSU E-mail (*******@dlsu.ph)</label>
+		<label class="control-label">E-mail*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
 		</div>
@@ -48,7 +48,7 @@
 		
 		<!--sql currently requires course and contact no-->		
 		<div class="form-group">
-		<label class="control-label">Contact Number</label>
+		<label class="control-label">Contact Number*</label>
 		<div class="controls">
 		<input type="text" class="input-xlarge form-control" id="user_contactno" name="user_contactno" rel="popover" data-content="What’s your contact number?" data-original-title="Contact Number">
 		</div>
@@ -62,7 +62,7 @@
 		</div-->
 		
 		<div class="form-group">
-		<label class="control-label">Course</label> 
+		<label class="control-label">Course*</label> 
 		<div class="controls">
 		<select name="course">
 		<?php
@@ -103,14 +103,14 @@
 		</div>
 
 		<div class="form-group">
-		<label class="control-label">Password</label>
+		<label class="control-label">Password*</label>
 		<div class="controls">
 		<input type="password" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 		
 		<div class="form-group">
-		<label class="control-label">Confirm Password</label>
+		<label class="control-label">Confirm Password*</label>
 		<div class="controls">
 		<input type="password" class="input-xlarge form-control" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
 		</div>

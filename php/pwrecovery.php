@@ -1,6 +1,6 @@
 <?php 
 	 
-if(isset($_POST['forgotpassword'])){ 
+if(isset($_POST['submit'])){ 
    include('dbConnect.php');
    $email = mysql_real_escape_string($_POST['email']);
    

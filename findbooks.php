@@ -25,7 +25,7 @@ echo'  <body>';
 			<h3>Find a Book</h3>
 			<div class="controls">
 			
-			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class=" form-control input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
+			<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class=" form-control form-control_inline input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
 			
 		<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
 		

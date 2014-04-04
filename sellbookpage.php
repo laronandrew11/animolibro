@@ -180,16 +180,17 @@
 		<input type="text" class="input-xlarge form-control" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
-      <input type="checkbox" name="negotiable"> Negotiable*
+      <input type="checkbox" name="negotiable"> Negotiable
       <br />
     </label>
   </div>
 		</div>
+		</div>
 		
 			<div class="form-group">
-		<label class="control-label" style="margin-left: 15px">Preferred Meetup Place*</label>
+		<label class="control-label">Preferred Meetup Place*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="meetup_place" style="margin-left: 15px" name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
+		<input type="text" class="input-xlarge form-control" id="meetup_place"  name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
@@ -201,10 +202,10 @@
 		</div-->
 	
 			<div class="form-group">
-			<label class="control-label" style="margin-left: 15px">Cover Picture (optional)</label>
+			<label class="control-label"> Cover Picture (optional)</label>
 			
-			<div id="upload2" style="margin-left: 15px">
-				<div class="col-lg-6 center" id="drop">
+			<div id="upload2" >
+				<div class="col-lg-10 center" id="drop">
 				Drop Cover Pic Here Or
 				<a  class="btn btn-primary" >Browse</a>
 				<!--input type="file" name="upl" /-->
@@ -218,12 +219,12 @@
 		<div class="form-group">
 		<label class="control-label"></label>
 		<div class="controls">
-		<input type="submit" class="btn btn-success" style="margin-left: 15px" role="button" name = "submit" value = "Post Advertisement">
+		<input type="submit" class="btn btn-success"  role="button" name = "submit" value = "Post Advertisement">
 		<!--a type="submit" class="btn btn-success" href="userprofile.html" id="btn-submit">Post Advertisement</a-->
 		
 		</div>
 		</div>
-		</div></fieldset>
+		</fieldset>
 		</form>
 		
 			<form class="hidden" id="upload" method="post" action="upload.php" enctype="multipart/form-data">	

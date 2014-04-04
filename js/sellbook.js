@@ -1,12 +1,12 @@
 
  $(document).ready(function()
  {
-  $("#success-alert").hide();
+  //$("#success-alert").hide();
 // Popover 
- $('#sellForm input').hover(function()
+ /*$('#sellForm input').hover(function()
  {
  $(this).popover('show')
- });
+ });*/
 
 // Validation
  $("#sellForm").validate({
@@ -56,9 +56,9 @@ unhighlight: function(element, errorClass, validClass)
  }
  });
   //Submission
- $("#btn-submit").onclick(function(){
+ /*$("#btn-submit").onclick(function(){
 
  $("#success-alert").show();
   alert("WADASDASDAS");
- });
+ });*/
  });

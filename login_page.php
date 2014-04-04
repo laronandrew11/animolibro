@@ -35,34 +35,37 @@ include('head.php');
       <div class="container">
       <div class="row">
       <div class="col-lg-3 col-md-3">
-        <form action="php/verify.php" class ="form-signin" role = "form" method = "post">
+        <form action="php/verify.php" id="loginHere" class ="form-signin" method = "post">
 			<legend style="margin-left: -15px">Sign In to AnimoLibro</legend>
+			
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Email</label>
     <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="email" name="Email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
+    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
     </div>
     </div>
 			<div class="form-group">
     <label class="control-label" style="margin-left: -15px">Password</label>
     <div class="controls">
-    <input type="password" style="margin-left: -15px" class="input-xlarge form-control" id="password" name="Password" rel="popover" data-content="Enter your Password." data-original-title="Password">
+    <input type="password" style="margin-left: -15px" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter your Password." data-original-title="Password">
     </div>
     </div>
 			<div class="form-group">
     <label class="control-label"></label>
     <div class="controls">
-    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "submit" value = "Sign In">
+    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" id="btn-submit" name = "submit" value = "Sign In">
+		</div>
+		</div>
 		</form>
-	<br>
-	<br>
-	<form action="forgotpassword.php"><input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "forgotpassword" value = "Forgot Password"></form>
-      </div>
-    </div>
+	<a href="forgotpassword.php" type="submit" class="btn btn-success" style="margin-left: -15px" role="button" name = "forgotpassword" >Forgot Password</a>
+
+
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
+	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="js/login.js"></script>
   </body>
 </html>
