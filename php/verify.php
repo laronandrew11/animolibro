@@ -4,17 +4,15 @@ if(isset($_POST['submit'])){
     //Lets search the databse for the user name and password 
     //Choose some sort of password encryption, I choose sha256 
     //Password function (Not In all versions of MySQL). 
-    $email = mysql_real_escape_string($_POST['Email']); 
-    $pas = mysql_real_escape_string($_POST['Password']); 
+    $email = mysql_real_escape_string($_POST['user_email']); 
+    $pas = mysql_real_escape_string($_POST['user_password']); 
 	$pas_hash=md5($pas);
     $test = "SELECT * FROM UserAccount  
         WHERE email='$email' AND 
         passwordhash='$pas_hash' 
         LIMIT 1";
-	$sql = mysql_query("SELECT * FROM UserAccount  
-        WHERE email='$email' AND 
-        passwordhash='$pas_hash' 
-        LIMIT 1"); /*AND
+		echo $test;
+	$sql = mysql_query($test); /*AND
 		com_code IS NULL*/
 		session_start(); 
     if(mysql_num_rows($sql) == 1){ 
@@ -43,8 +41,8 @@ if(isset($_POST['submit'])){
     }else{ 
 	$_SESSION['accountactivated']=false;
 	$_SESSION['correctlogin']=false;
-	
-        header("Location: http://localhost/animolibro/login_page.php"); 
+	echo $email.','.$pas;
+        //header("Location: http://localhost/animolibro/login_page.php"); 
         exit; 
     } 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
