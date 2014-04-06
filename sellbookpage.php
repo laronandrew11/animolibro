@@ -40,14 +40,14 @@
 		<div class="form-group">
 		<label class="control-label">ISBN*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
+		<input type="text" class="input-xlarge form-control pop" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
 		</div>
 		</div>
 		
 		<div class="form-group">
 		<label class="control-label">Title*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Title">
+		<input type="text" class="input-xlarge form-control pop" id="book_title" name="book_title" rel="popover" data-content="Enter the book's full title." data-original-title="Title">
 		</div>
 		</div>
 		
@@ -56,21 +56,21 @@
 		<div class="form-group">
 		<label class="control-label">Authors*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Authors">
+		<input type="text" class="input-xlarge form-control pop" id="book_authors" name="book_authors" rel="popover" data-content="Enter the book's authors." data-original-title="Authors">
 		</div>
 		</div>
 		
 		<div class="form-group">
 		<label class="control-label">Publisher*</label> <!--honestly not essential-->
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher." data-original-title="Publisher">
+		<input type="text" class="input-xlarge form-control pop" id="book_publisher" name="book_publisher" rel="popover" data-content="Enter the book's publisher." data-original-title="Publisher">
 		</div>
 		</div>
 		
 		<!--div class="form-group">
 		<label class="control-label">Category</label>  
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_category" name="book_category" rel="popover" data-content="Select the book's category." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control pop" id="book_category" name="book_category" rel="popover" data-content="Select the book's category." data-original-title="Full Name">
 		</div>
 		</div-->
 		
@@ -105,7 +105,7 @@
 		<label class="control-label">Used in Subject: *</label> <!--change to combobox-->
 		<p>Use Ctrl+Click to select multiple subjects
 		<div class="controls">
-		<!--input type="text" class="input-xlarge form-control" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
+		<!--input type="text" class="input-xlarge form-control pop" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
 		<select multiple name="book_subject[]">
 		
 			<?php
@@ -165,7 +165,7 @@
 			<div class="form-group">
 		<label class="control-label">Description*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Description">
+		<input type="text" class="input-xlarge form-control pop" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Description">
 		</div>
 		</div>
 		
@@ -177,7 +177,7 @@
 		<div class="form-group">
 		<label class="control-label">Preferred Price*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
+		<input type="text" class="input-xlarge form-control pop" id="book_price" name="book_price" rel="popover" data-content="Set your asking price for this book." data-original-title="Book Price">
 		 <div class="checkbox">
     <label>
       <input type="checkbox" name="negotiable"> Negotiable
@@ -190,14 +190,14 @@
 			<div class="form-group">
 		<label class="control-label">Preferred Meetup Place*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="meetup_place"  name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
+		<input type="text" class="input-xlarge form-control pop" id="meetup_place"  name="meetup_place" rel="popover" data-content="Where do you want to meet your buyers?" data-original-title="Meetup Place">
 		</div>
 		</div>
 		
 			<!--div class="form-group">
 		<label class="control-label" style="margin-left: 15px">Password</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control" id="user_password" style="margin-left: 15px" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" class="input-xlarge form-control pop" id="user_password" style="margin-left: 15px" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div-->
 	
@@ -247,7 +247,12 @@
 		<script src="js/upload/jquery.ui.widget.js"></script>
 		<script src="js/upload/jquery.iframe-transport.js"></script>
 		<script src="js/upload/jquery.fileupload.js"></script>
-		
+		<script>$(function () {
+		$(".pop")
+			.popover().blur(function () {
+				$(this).popover('hide');
+			});
+		});</script>
 		<script src="js/upload/script.js"></script>
 		
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>

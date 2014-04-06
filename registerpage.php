@@ -35,14 +35,14 @@
 		<div class="form-group">
 		<label class="control-label">Name*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
+		<input type="text" class="input-xlarge form-control pop" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
 		</div>
 		</div>
 
 		<div class="form-group">
 		<label class="control-label">E-mail*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
+		<input type="text" class="input-xlarge form-control pop" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
 		</div>
 		</div>
 		
@@ -50,14 +50,14 @@
 		<div class="form-group">
 		<label class="control-label">Contact Number*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="user_contactno" name="user_contactno" rel="popover" data-content="What’s your contact number?" data-original-title="Contact Number">
+		<input type="text" class="input-xlarge form-control pop" id="user_contactno" name="user_contactno" rel="popover" data-content="What’s your contact number?" data-original-title="Contact Number">
 		</div>
 		</div>
 		
 			<!--div class="form-group">
 		<label class="control-label">Course (optional)</label> 
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control" id="user_course" name="user_course" rel="popover" data-content="What’s your course?" data-original-title="Email">
+		<input type="text" class="input-xlarge form-control pop" id="user_course" name="user_course" rel="popover" data-content="What’s your course?" data-original-title="Email">
 		</div>
 		</div-->
 		
@@ -105,14 +105,14 @@
 		<div class="form-group">
 		<label class="control-label">Password*</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" class="input-xlarge form-control pop" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 		
 		<div class="form-group">
 		<label class="control-label">Confirm Password*</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
+		<input type="password" class="input-xlarge form-control pop" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
 		</div>
 		</div>
 		
@@ -148,7 +148,12 @@
 		<script src="js/upload/jquery.ui.widget.js"></script>
 		<script src="js/upload/jquery.iframe-transport.js"></script>
 		<script src="js/upload/jquery.fileupload.js"></script>
-		
+		<script>$(function () {
+		$(".pop")
+			.popover().blur(function () {
+				$(this).popover('hide');
+			});
+		});</script>
 		<script src="js/upload/script.js"></script>
 	<!--script src="js/dropdown.js"></script-->
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
