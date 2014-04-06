@@ -202,23 +202,8 @@ echo'<div class="row">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.js"></script>
 	<script src="dist/js/bootstrap.min.js"></script>
-	  <script>
-		$(function() {
-			$("#typeahead").typeahead({
-				source:function(typeahead, query) {
-					$.ajax({
-						url: 'php/source.php',
-						type: 'POST',
-						data: 'query=' + query,
-						dataType: 'JSON',
-						async: false,
-						success: function(data) {
-							typeahead.process(data);
-						}
-					});
-				}
-			});
-		});
+	  <script src="js/autofill.js">
+		
 	</script>
   </body>
 </html>

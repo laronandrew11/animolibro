@@ -1,13 +1,7 @@
 <?php
 
 if(isset($_POST['query'])) {
-	$user = "root";
-	$pass = "";
-	$host = "localhost";
-	$db = "animolibrosimple";
-	
-	$connect = mysql_connect($host, $user, $pass);
-	$select = mysql_select_db($db, $connect);
+include('dbConnect.php');
 	
 	$query = $_POST['query'];
 	$mysql_query = mysql_query("Select * from Book  WHERE title LIKE '%$query%'

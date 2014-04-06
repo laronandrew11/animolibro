@@ -40,7 +40,7 @@
 		<div class="form-group">
 		<label class="control-label">ISBN*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control pop" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number to automatically fill out other information." data-original-title="ISBN">
+		<input type="text" class="input-xlarge form-control pop" id="book_isbn" name="book_isbn" rel="popover" data-content="Enter the book's ISBN number." data-original-title="ISBN">
 		</div>
 		</div>
 		
@@ -239,7 +239,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="dist/js/bootstrap.min.js"></script>
+    
 	
 		<script src="js/upload/jquery.knob.js"></script>
 
@@ -256,9 +256,10 @@
 		<script src="js/upload/script.js"></script>
 		
 	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="dist/js/bootstrap.js"></script>
 	<script src="js/sellbook.js"></script>
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<script src="js/sellautofill.js"></script>
+
 
   
 </body></html>
