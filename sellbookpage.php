@@ -163,9 +163,9 @@
 		</div>
 		
 			<div class="form-group">
-		<label class="control-label">Description*</label>
+		<label class="control-label">Copy Description*</label>
 		<div class="controls">
-		<input type="text" class="input-xlarge form-control pop" id="book_description" name="book_description" rel="popover" data-content="Enter a description." data-original-title="Description">
+		<input type="text" class="input-xlarge form-control pop" id="book_description" name="book_description" rel="popover" data-content="Enter a brief description of your copy of the book." data-original-title="Description">
 		</div>
 		</div>
 		
