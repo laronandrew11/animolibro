@@ -91,8 +91,8 @@
 		<div class="form-group">
 			<label class="control-label" >Profile Picture (optional)</label>
 			<div id="upload2" >
-				<div class="col-lg-6 center" id="drop">
-				Drop Cover Pic Here Or
+				<div class="col-lg-10 center" id="drop">
+				Drop Profile Pic Here Or
 				<a  class="btn btn-primary" >Browse</a>
 				<!--input type="file" name="upl" /-->
 			</div>
