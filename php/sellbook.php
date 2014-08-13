@@ -47,12 +47,13 @@ if(isset($_POST['submit'])){
 				$cover_id= mysql_real_escape_string((int)$cover_row['id']);
 	
 	/*add book to DB if necessary*/
-	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects,cover_pic_id)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects',$cover_id)"; //later on, add a way to save and reference categories and subjects
+	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category,cover_pic_id)
+        VALUES ('$title','$authors','$publisher',$isbn,'$category',$cover_id)"; //later on, add a way to save and reference categories and subjects
 	}
 	}
-	else $add_book ="INSERT INTO Book (title, authors, publisher, isbn, category, subjects)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category','$subjects')";
+	else {$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category)
+        VALUES ('$title','$authors','$publisher',$isbn,'$category')";
+		}
 		
 	//get book ID for subject table update
 	/*$check_book="SELECT id FROM Book WHERE isbn= $isbn";
