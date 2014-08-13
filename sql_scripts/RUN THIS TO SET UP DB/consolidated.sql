@@ -22,6 +22,7 @@ CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.UserAccount (
   id INT NOT NULL AUTO_INCREMENT ,
   username VARCHAR(45) NOT NULL ,
   passwordhash LONGTEXT NOT NULL ,
+  salt LONGTEXT NOT NULL,
   email VARCHAR(45) NOT NULL ,
   contactnumber BIGINT NULL ,
   stars BIGINT NOT NULL ,

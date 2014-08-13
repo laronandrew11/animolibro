@@ -1,5 +1,13 @@
 <?php 
 	 
+define("MAX_LENGTH", 6);
+ 
+function generateHashWithSalt($password) {
+    $intermediateSalt = md5(uniqid(rand(), true));
+    $salt = substr($intermediateSalt, 0, MAX_LENGTH);
+    return hash("sha256", $password . $salt);
+}
+
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
 	$name = mysql_real_escape_string($_POST['user_name']);
@@ -7,7 +15,9 @@ if(isset($_POST['submit'])){
 	$contact = mysql_real_escape_string($_POST['user_contactno']);
 	$course = mysql_real_escape_string($_POST['course']);
 	$password = mysql_real_escape_string($_POST['user_password']);
+	$salt = substr(md5(uniqid(rand(), true)), 0, 10);
 	$com_code = md5(uniqid(rand()));
+
 	$passwordhash = hash("sha256", $password);
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
 	if(!empty($_SESSION['imagename'])){
@@ -18,13 +28,43 @@ if(isset($_POST['submit'])){
 	if(mysql_num_rows($profile_query) == 1){
 				$profile_row= mysql_fetch_array($profile_query); 
 				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
-				 $query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,profile_pic_id,com_code) 
-            VALUES('$name','$email',$contact,$course,'$passwordhash', $profile_id, '$com_code')";
+				 $query = "INSERT INTO UserAccount(
+				 	username,
+				 	email,
+				 	contactnumber,
+				 	Course_id,
+				 	passwordhash,
+				 	salt,
+				 	profile_pic_id,
+				 	com_code) 
+            VALUES(
+            	'$name', 
+            	'$email', 
+            	'$contact', 
+            	'$course', 
+            	'$passwordhash',
+            	'$salt',
+            	'$profile_id', 
+            	'$com_code')";
 				}
 	}
 	else{
-		$query = "INSERT INTO UserAccount(username,email,contactnumber,Course_id,passwordhash,com_code) 
-            VALUES('$name','$email',$contact,$course,'$passwordhash','$com_code')";
+		$query = "INSERT INTO UserAccount(
+			username,
+			email,
+			contactnumber,
+			Course_id,
+			passwordhash,
+			salt,
+			com_code) 
+            VALUES(
+            	'$name',
+            	'$email',
+            	'$contact',
+            	'$course',
+            	'$passwordhash',
+            	'$salt',
+            	'$com_code')";
 	}
 				 
     if(mysql_query($query))

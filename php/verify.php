@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
 	$pas_hash = hash("sha256", $pas);
     $test = "SELECT * FROM UserAccount  
         WHERE email='$email' AND 
-        passwordhash='$pas_hash' 
+        concat(passwordhash,salt) = concat('$pas_hash', salt)
         LIMIT 1";
 		//echo $test;
 	$sql = mysql_query($test); /*AND
