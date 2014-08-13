@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
         WHERE email='$email' AND 
         passwordhash='$pas_hash' 
         LIMIT 1";
-		echo $test;
+		//echo $test;
 	$sql = mysql_query($test); /*AND
 		com_code IS NULL*/
 		session_start(); 
