@@ -71,6 +71,7 @@ CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Ad (
   buyer_id INT NULL ,
   seller_id INT NOT NULL ,
   Book_id INT NOT NULL ,
+  submitted_at date, 
   PRIMARY KEY (id) ,
   INDEX fk_Ad_User1_idx (buyer_id ASC) ,
   INDEX fk_Ad_User2_idx (seller_id ASC) ,
