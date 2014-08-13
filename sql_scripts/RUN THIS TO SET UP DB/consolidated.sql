@@ -21,9 +21,9 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.UserAccount (
   id INT NOT NULL AUTO_INCREMENT ,
   username VARCHAR(45) NOT NULL ,
-  passwordhash VARCHAR(45) NOT NULL ,
+  passwordhash LONGTEXT NOT NULL ,
   email VARCHAR(45) NOT NULL ,
-  contactnumber INT NULL ,
+  contactnumber BIGINT NULL ,
   stars BIGINT NOT NULL ,
   Course_id INT NULL ,
   Com_code VARCHAR( 255 ) default NULL,

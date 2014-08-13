@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 	$course = mysql_real_escape_string($_POST['course']);
 	$password = mysql_real_escape_string($_POST['user_password']);
 	$com_code = md5(uniqid(rand()));
-	$passwordhash=md5($password);
+	$passwordhash = hash("sha256", $password);
 	//$re_password = mysql_real_escape_string($_POST['confirm_password']);
 	if(!empty($_SESSION['imagename'])){
 		$profilepic_name = $_SESSION['imagename'];
