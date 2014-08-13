@@ -3,6 +3,7 @@
 	echo '<!DOCTYPE html>
 <html>';
 include('head.php');
+
   echo'<body>';
 include ('navbar.php');
 	
