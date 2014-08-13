@@ -93,10 +93,10 @@
 		}
 	}
 		?>
-		<!--option value="Computer">Computer</option>
+		<option value="Computer">Computer</option>
 		<option value="Law">Law</option>
 		<option value="Mathematics">Mathematics</option>
-		<option value="Science">Science</option-->
+		<option value="Science">Science</option>
 		</select>
 		</div>
 		</div>
