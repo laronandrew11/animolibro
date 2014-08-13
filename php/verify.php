@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     //Password function (Not In all versions of MySQL). 
     $email = mysql_real_escape_string($_POST['user_email']); 
     $pas = mysql_real_escape_string($_POST['user_password']); 
-	$pas_hash=md5($pas);
+	$pas_hash = hash("sha256", $pas);
     $test = "SELECT * FROM UserAccount  
         WHERE email='$email' AND 
         passwordhash='$pas_hash' 
@@ -41,6 +41,7 @@ if(isset($_POST['submit'])){
     }else{ 
 	$_SESSION['accountactivated']=false;
 	$_SESSION['correctlogin']=false;
+	echo $pas_hash."\n";
 	echo $email.','.$pas;
         //header("Location: http://localhost/animolibro/login_page.php"); 
         exit; 
