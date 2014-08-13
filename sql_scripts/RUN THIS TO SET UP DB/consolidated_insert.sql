@@ -1,1 +1,1 @@
-INSERT INTO Course (name, code) VALUES ('Software Technology', 'CS-ST'),('Computer Systems Engineering','CS-CSE'),('Network Engineering','CS-NE'),('Instructional Systems Technology','CS-IST');
+INSERT INTO animolibrosimple.Course (name, code) VALUES ('Software Technology', 'CS-ST'),('Computer Systems Engineering','CS-CSE'),('Network Engineering','CS-NE'),('Instructional Systems Technology','CS-IST');
