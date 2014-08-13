@@ -14,8 +14,8 @@ if(isset($_POST['submit'])){
 		
 		header("Location: http://localhost$url");
 	}
-	else echo "ERROR";
-        //session_start(); 
+	else 
+        header("Location: http://localhost/errorpage.php"); 
         //$_SESSION['username'] = $row['username'];
         //header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
     exit; 

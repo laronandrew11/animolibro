@@ -18,7 +18,7 @@ if(isset($_POST['submit1'])&&$_POST['myprofile']==true){
 	if(mysql_query($update_ad)){
 		header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION['animolibrousername']);
 	}
-	else echo "ERROR";
+	else header("Location: http://localhost/errorpage.php"); 
         //session_start(); 
         //$_SESSION['username'] = $row['username'];
         //header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
