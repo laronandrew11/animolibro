@@ -112,7 +112,7 @@ CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.User_wants_Book (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
---begin "image_alter.sql"
+-- begin "image_alter.sql"
 CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Image (
   id INT NOT NULL AUTO_INCREMENT ,
   type INT NOT NULL,
@@ -128,7 +128,7 @@ ALTER TABLE UserAccount
  -- allow multiple subjects per book; no need to alter Book table except for this:
 
 ALTER TABLE Book
- DELETE subjects ;
+ drop subjects ;
 
 CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.Subject (
   id INT NOT NULL AUTO_INCREMENT ,
