@@ -21,116 +21,134 @@ if(isset($_POST['submit'])){
 	session_start(); 
 	$seller =  $_SESSION['animolibrousername']; //not sure if this is right
 	
-	/*Check if book has already been added to DB*/
-	$check_book="SELECT id FROM Book WHERE isbn= $isbn";
-	$check_query=mysql_query($check_book);
 
-		
-		if(!empty($check_query)&&mysql_num_rows($check_query) == 1){
-		$check_row= mysql_fetch_array($check_query); 
-				//$title= mysql_real_escape_string((int)$row['title']);
-		$bookID=$check_row['id'];
-		$add_book="Book already added";
-		echo $add_book;
-		}
-		
+	$currDate = date('Y-m-d');
 
-	else{
-	/*get cover picture*/
-	if(!empty($_SESSION['imagename'])){
-	$coverpic_name = $_SESSION['imagename'];
-	
-	$get_coverpic = "SELECT id FROM Image WHERE href = '$coverpic_name'";
-	$cover_query=mysql_query($get_coverpic);
-	if(mysql_num_rows($cover_query) == 1){
-				$cover_row= mysql_fetch_array($cover_query); 
-				$cover_id= mysql_real_escape_string((int)$cover_row['id']);
-	
-	/*add book to DB if necessary*/
-	$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category,cover_pic_id)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category',$cover_id)"; //later on, add a way to save and reference categories and subjects
-	}
-	}
-	else {$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category)
-        VALUES ('$title','$authors','$publisher',$isbn,'$category')";
-		}
-		
-	//get book ID for subject table update
-	/*$check_book="SELECT id FROM Book WHERE isbn= $isbn";
-	$check_query=mysql_query($check_book);
-	$check_row= mysql_fetch_array($check_query); 
-	$bookID=$check_row['id'];*/
-	}
-	
-	
-	
-	
-	$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller'  LIMIT 1"));
-				$sellerid=mysql_real_escape_string((int)$seller_row['id']);
-		if($sellerid!=0)
-		{
-		if($add_book=="Book already added"||mysql_query($add_book)){
+	$sellerrow=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller'  LIMIT 1"));
+	$sellid=mysql_real_escape_string((int)$sellerrow['id']);
+
+    $result = mysql_query("SELECT COUNT(seller_id) FROM ad WHERE submitted_at = '$currDate'");
+    
+    $row = mysql_fetch_array($result);
+    //limit to 5 posts per day
+    if($row['COUNT(seller_id)'] > 5) {
+        echo "Submitted ". $row['COUNT(seller_id)'] . " times today. Try again in 24hours"; 
+    } else {
+	        	/*Check if book has alrea
+	        	dy been added to DB*/
+		$check_book="SELECT id FROM Book WHERE isbn= $isbn";
+		$check_query=mysql_query($check_book);
+
 			
-			$get_book_id=mysql_query("SELECT id FROM Book WHERE isbn='$isbn'");
-			if(mysql_num_rows($get_book_id) == 1){
-				$row= mysql_fetch_array($get_book_id); 
-				$bookid= mysql_real_escape_string((int)$row['id']);
-				
-				/*echo $bookid;
-				echo $price;
-				echo $negotiable;
-				echo $condition;*/
-				
-				//add subjects to book
-	foreach ($subjects as $subject)
-	{
-		$getSubjectID="SELECT id FROM Subject WHERE code = '$subject'";
-		$subjectIDquery=mysql_query($getSubjectID);
-		$subjectIDrow=mysql_fetch_array($subjectIDquery);
-		$subjectID=$subjectIDrow['id'];
-		$checkDuplicate="SELECT * FROM Subject_uses_Book WHERE Book_id=$bookid, Subject_id=$subjectID";
-		$dupliQuery=mysql_query($checkDuplicate);
-		
-		if(empty($dupliQuery)||mysql_num_rows($dupliQuery) == 0)
-		{
-		$addsubject="INSERT INTO Subject_uses_Book (Book_id, Subject_id) VALUES ($bookid, $subjectID)";
-		
-		if(mysql_query($addsubject))
-		{
-			
-		}
-		
-		}
-		
-	}
-				
-				
-				/*Add advertisement to DB*/
-					$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id) 
-        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid)"; 
-			echo $add_ad;
-				if(mysql_query($add_ad)){
-
-					header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION["animolibrousername"]); 
-				}else {echo "failed to add ad";}
+			if(!empty($check_query)&&mysql_num_rows($check_query) == 1){
+			$check_row= mysql_fetch_array($check_query); 
+					//$title= mysql_real_escape_string((int)$row['title']);
+			$bookID=$check_row['id'];
+			$add_book="Book already added";
+			echo $add_book;
 			}
-			else{echo "failed to query book id";}
-		}
-		else {echo "failed to add book";}
-		}
-		else echo "Invalid user or password";
-		
-					
 			
-		//TODO: add password validation
 
+		else{
+		/*get cover picture*/
+		if(!empty($_SESSION['imagename'])){
+		$coverpic_name = $_SESSION['imagename'];
 		
+		$get_coverpic = "SELECT id FROM Image WHERE href = '$coverpic_name'";
+		$cover_query=mysql_query($get_coverpic);
+		if(mysql_num_rows($cover_query) == 1){
+					$cover_row= mysql_fetch_array($cover_query); 
+					$cover_id= mysql_real_escape_string((int)$cover_row['id']);
+		
+		/*add book to DB if necessary*/
+		$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category,cover_pic_id)
+	        VALUES ('$title','$authors','$publisher',$isbn,'$category',$cover_id)"; //later on, add a way to save and reference categories and subjects
+		}
+		}
+		else {$add_book ="INSERT INTO Book (title, authors, publisher, isbn, category)
+	        VALUES ('$title','$authors','$publisher',$isbn,'$category')";
+			}
+			
+		//get book ID for subject table update
+		/*$check_book="SELECT id FROM Book WHERE isbn= $isbn";
+		$check_query=mysql_query($check_book);
+		$check_row= mysql_fetch_array($check_query); 
+		$bookID=$check_row['id'];*/
+		}
+		
+		
+		
+		
+		$seller_row=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$seller'  LIMIT 1"));
+					$sellerid=mysql_real_escape_string((int)$seller_row['id']);
 
-        //session_start(); 
-        //$_SESSION['username'] = $row['username'];
-        //header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
+			if($sellerid!=0)
+			{
+			if($add_book=="Book already added"||mysql_query($add_book)){
+				
+				$get_book_id=mysql_query("SELECT id FROM Book WHERE isbn='$isbn'");
+				if(mysql_num_rows($get_book_id) == 1){
+					$row= mysql_fetch_array($get_book_id); 
+					$bookid= mysql_real_escape_string((int)$row['id']);
+					
+					/*echo $bookid;
+					echo $price;
+					echo $negotiable;
+					echo $condition;*/
+					
+					//add subjects to book
+		foreach ($subjects as $subject)
+		{
+			$getSubjectID="SELECT id FROM Subject WHERE code = '$subject'";
+			$subjectIDquery=mysql_query($getSubjectID);
+			$subjectIDrow=mysql_fetch_array($subjectIDquery);
+			$subjectID=$subjectIDrow['id'];
+			$checkDuplicate="SELECT * FROM Subject_uses_Book WHERE Book_id=$bookid, Subject_id=$subjectID";
+			$dupliQuery=mysql_query($checkDuplicate);
+			
+			if(empty($dupliQuery)||mysql_num_rows($dupliQuery) == 0)
+			{
+			$addsubject="INSERT INTO Subject_uses_Book (Book_id, Subject_id) VALUES ($bookid, $subjectID)";
+			
+			if(mysql_query($addsubject))
+			{
+				
+			}
+			
+			}
+			
+		}
+					
+					$datetoday = date("Y-m-d");
+					/*Add advertisement to DB*/
+						$add_ad = "INSERT INTO Ad (cost, meetup, copy_condition, negotiable,  status, description, seller_id, book_id, submitted_at) 
+	        VALUES ($price,'$meetup','$condition',$negotiable,0,'$description',$sellerid,$bookid,CURDATE())"; 
+				echo $add_ad;
+					if(mysql_query($add_ad)){
 
-        exit; 
+						header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION["animolibrousername"]); 
+					}else {echo "failed to add ad";}
+				}
+				else{echo "failed to query book id";}
+			}
+			else {echo "failed to add book";}
+			}
+			else echo "Invalid user or password";
+			
+						
+				
+			//TODO: add password validation
+
+			
+
+	        //session_start(); 
+	        //$_SESSION['username'] = $row['username'];
+	        //header("Location: http://localhost/animolibro/home.html"); // Modify to go to the page you would like 
+
+	        exit; 
+    }
+
+
 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
     header("Location: index.php");     
