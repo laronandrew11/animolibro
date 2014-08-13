@@ -39,11 +39,12 @@ if(isset($_POST['submit'])){
 		}
 		
     }else{ 
-	$_SESSION['accountactivated']=false;
-	$_SESSION['correctlogin']=false;
-	echo $pas_hash."\n";
-	echo $email.','.$pas;
-        //header("Location: http://localhost/animolibro/login_page.php"); 
+		$_SESSION['accountactivated']=false;
+		$_SESSION['correctlogin']=false;
+		$message = "Invalid username or password.";
+		echo "<script type='text/javascript'>
+			window.alert('$message');
+			window.location.href='http://localhost/animolibro/login_page.php'</script>";
         exit; 
     } 
 }else{    //If the form button wasn't submitted go to the index page, or login page 
