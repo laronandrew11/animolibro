@@ -3,7 +3,7 @@
 	echo '<!DOCTYPE html>
 <html>';
 include('head.php');
-include('php/authenticator.php');
+
   echo'<body>';
 include ('navbar.php');
 	
