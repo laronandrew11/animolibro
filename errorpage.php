@@ -20,6 +20,15 @@
 <div class="container">
 	<div class="row">
 	<div class="col-sm-8 col-md-8">
+	<?php
+	if(extension_loaded('imagick')) {
+    $imagick = new Imagick();
+    print_r($imagick->queryFormats());
+}
+else {
+    echo 'ImageMagick is not available.';
+}
+	?>
 	<h1>Error Page</h1>
 	<h2>Congratulations! You broke something.</h2>
 	</div>
