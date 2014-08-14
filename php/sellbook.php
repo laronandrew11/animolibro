@@ -145,27 +145,6 @@ if(isset($_POST['submit'])){
 					echo $add_ad;
 					if(mysql_query($add_ad)){
 						header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION["animolibrousername"]); 
-
-						/* Log newly added ad into action database */
-						$last_adID = mysql_insert_id();
-						$log_insert_ad = "INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES ('$sellerid', 3)";
-
-						if (mysql_query($log_insert_ad)) {
-							/* Main log successful */
-							$last_logID = mysql_insert_id();
-							$log_insert_ad_log = "INSERT INTO `log_actions_ad` (`log_id`, `ad_id`) VALUES ('$last_logID', '$last_adID')";
-							
-							if (mysql_query($log_insert_ad_log)) {
-								/* Ad log successful */
-							}
-							else {
-								/* Ad log error TODO */
-							}
-						}
-						else {
-							/* Main log error TODO */
-						}
-						/* End of logging */
 					}
 					else {
 						echo "failed to add ad";
