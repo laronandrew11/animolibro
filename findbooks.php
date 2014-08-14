@@ -21,7 +21,7 @@ echo '<div class="container">
 	<div class="form-group">
 	<legend>Find a Book</legend>
 	<div class="controls">
-	<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, Category, or Subject:" class=" form-control form-control_inline input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
+	<input type="text" placeholder="Search by Title, ISBN, Author, Publisher, or Category:" class=" form-control form-control_inline input-xlarge" id="typeahead" name="typeahead" rel="popover" data-provide="typeahead" data-content="Enter your search keywords." data-original-title="Title">
 	<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Search">
 	</div>
 	</div>
@@ -34,7 +34,6 @@ echo '<div class="container">
 			<option value="choice2">Number of Copies</option>
 			<option value="choice3">Title</option>
 			<option value="choice4">Category</option>
-			<option value="choice5">Subject</option>
 		</select>
 		</div>
 	</div-->	
@@ -59,7 +58,7 @@ if(isset($_POST['submit'])){
 	$j=0;
 	$extraBookIDs=[];
 	foreach($keywordarray as $keyword) {
-		//multi-subject stuff
+		/*//multi-subject stuff
 		$subjectquery=mysql_query("SELECT id from Subject WHERE code LIKE '%$keyword%'");
 		while($subjectrow=mysql_fetch_array($subjectquery)) {
 			$subjectid=$subjectrow['id'];
@@ -70,12 +69,11 @@ if(isset($_POST['submit'])){
 				$extraBookIDs[$j] = $subjectbookrow['Book_id'];
 				$j ++;	
 			}
-		}
+		}*/
 	
 		$query ="SELECT * FROM Book  
 	        WHERE title LIKE '%$keyword%'
 			OR isbn LIKE '%$keyword%' OR authors LIKE '%$keyword%' 
-			OR subjects LIKE'%$keyword%' 
 			OR category LIKE '%$keyword%' 
 			OR publisher LIKE '%$keyword%' ORDER BY TITLE";
 			foreach($extraBookIDs as $extraID) {
@@ -85,7 +83,8 @@ if(isset($_POST['submit'])){
 		$sql = mysql_query($query);
 		if ($sql === FALSE) {
 			/* Query failed */
-			echo "No results found";
+			echo $query;
+			echo "<br />No results found";
 			exit;
 		}
 		else {
@@ -102,7 +101,6 @@ if(isset($_POST['submit'])){
 					$copy_row=mysql_fetch_array($copyquery);
 					$numcopies=$copy_row['numcopies'];
 					$publisher=$row['publisher'];
-					$subject=$row['subjects'];
 						
 					$coverpic_id=$row['cover_pic_id'];
 					$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
@@ -143,7 +141,7 @@ if(isset($_POST['submit'])){
 						echo'<p>Copies Available: ';
 						echo $numcopies.'</div>';
 						
-						$hrefstring= 'bookprofile.php?isbn='. $isbn .'&bookid='.$bookid.'&title=' . $title.'&category='.$category.'&subject='.$subject.'&authors='.$authors.'&publisher='.$publisher.'&numcopies='.$numcopies;
+						$hrefstring= 'bookprofile.php?isbn='. $isbn .'&bookid='.$bookid.'&title=' . $title.'&category='.$category.'&authors='.$authors.'&publisher='.$publisher.'&numcopies='.$numcopies;
 							
 						echo '<a role="button" href = "';
 						echo $hrefstring;
