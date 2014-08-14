@@ -1,6 +1,14 @@
 CREATE DATABASE AnimoLibroSimple;
 USE AnimoLibroSimple;
 
+-- Table IP login attemps
+
+CREATE  TABLE IF NOT EXISTS AnimoLibroSimple.LoginAttempts (
+  IP VARCHAR(20) not null,
+  Attempt int NOT NULL ,
+  LastLogin DATETIME NOT NULL ,
+  PRIMARY KEY (IP))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table AnimoLibro.Course
