@@ -7,6 +7,7 @@ CREATE TABLE `useraccount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `passwordhash` longtext NOT NULL,
+  `salt` longtext NOT NULL,
   `email` varchar(45) NOT NULL,
   `contactnumber` bigint(20) DEFAULT NULL,
   `stars` bigint(20) NOT NULL DEFAULT '0',
@@ -18,7 +19,7 @@ CREATE TABLE `useraccount` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `fk_User_Course1_idx` (`Course_id`),
   CONSTRAINT `fk_User_Course1` FOREIGN KEY (`Course_id`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1$$
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1$$
 
 CREATE
 DEFINER=`root`@`localhost`
