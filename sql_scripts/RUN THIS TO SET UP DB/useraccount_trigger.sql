@@ -57,6 +57,9 @@ BEGIN
 	IF NOT OLD.username <=> NEW.username THEN
 		INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.id, 20);
 	END IF;
+	IF NOT OLD.course_id <=> NEW.course_id THEN
+		INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.id, 21);
+	END IF;
 END
 $$
 
