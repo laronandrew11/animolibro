@@ -1,11 +1,16 @@
 CREATE DATABASE  IF NOT EXISTS `animolibrosimple`;
 USE `animolibrosimple`;
 
+DROP TABLE IF EXISTS `log_actions_image`;
+DROP TABLE IF EXISTS `log_actions_book`;
+DROP TABLE IF EXISTS `log_actions_ad`;
+DROP TABLE IF EXISTS `log_actions`;
+DROP TABLE IF EXISTS `log_action_type`;
+
 --
 -- Table structure for table `log_action_type`
 --
 
-DROP TABLE IF EXISTS `log_action_type`;
 CREATE TABLE `log_action_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `action` varchar(45) NOT NULL,
@@ -25,7 +30,6 @@ UNLOCK TABLES;
 -- Table structure for table `log_actions`
 --
 
-DROP TABLE IF EXISTS `log_actions`;
 CREATE TABLE `log_actions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -42,7 +46,6 @@ CREATE TABLE `log_actions` (
 
 delimiter $$
 
-DROP TABLE IF EXISTS `log_actions_ad`;
 CREATE TABLE `log_actions_ad` (
   `log_id` int(11) NOT NULL,
   `ad_id` int(11) NOT NULL,
@@ -54,7 +57,6 @@ CREATE TABLE `log_actions_ad` (
 
 delimiter $$
 
-DROP TABLE IF EXISTS `log_actions_book`;
 CREATE TABLE `log_actions_book` (
   `log_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
@@ -66,7 +68,6 @@ CREATE TABLE `log_actions_book` (
 
 delimiter $$
 
-DROP TABLE IF EXISTS `log_actions_image`;
 CREATE TABLE `log_actions_image` (
   `log_id` int(11) NOT NULL,
   `image_id` int(11) NOT NULL,
