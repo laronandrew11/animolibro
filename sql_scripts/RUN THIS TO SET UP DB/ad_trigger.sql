@@ -35,3 +35,12 @@ BEGIN
 END
 $$
 
+CREATE TRIGGER `ad_AUPD` AFTER UPDATE ON ad FOR EACH ROW
+-- Edit trigger body code below this line. Do not edit lines above this one
+BEGIN
+  IF NEW.status <=> 1 AND NOT OLD.buyer_id <=> NEW.buyer_id THEN
+    INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.buyer_id, 7);
+    INSERT INTO `log_actions_ad` (`log_id`, `ad_id`) VALUES (LAST_INSERT_ID(), OLD.id);
+  END IF;
+END;
+$$
