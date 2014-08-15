@@ -123,6 +123,18 @@ if(isset($_POST['submit'])){
 
 				header("Location: http://localhost/animolibro/home.php");
 
+				/* Log newly added book into action database */
+				$user_id = $_SESSION['animolibroid'];
+				$log_logged_in = "INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES ('$user_id', 28)";
+
+				if (mysql_query($log_logged_in)) {
+					/* Main log successful */
+				}
+				else {
+					/* Main log error TODO */
+				}
+				/* End of logging */
+
 		        exit; 
 			}
 			//if account is not validated
