@@ -16,7 +16,7 @@ CREATE TABLE `log_actions` (
   KEY `log.action_type_idx` (`action_type_id`),
   CONSTRAINT `log.action_type` FOREIGN KEY (`action_type_id`) REFERENCES `log_action_type` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `log.user` FOREIGN KEY (`user_id`) REFERENCES `useraccount` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `log_action_type`
@@ -47,8 +47,10 @@ CREATE TABLE `log_actions_ad` (
   `log_id` int(11) NOT NULL,
   `ad_id` int(11) NOT NULL,
   PRIMARY KEY (`log_id`),
-  KEY `log_ad.ad_idx` (`ad_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1$$;
+  KEY `log_ad.ad_idx` (`ad_id`),
+  CONSTRAINT `log_ad.log` FOREIGN KEY (`log_id`) REFERENCES `log_actions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `log_ad.ad` FOREIGN KEY (`ad_id`) REFERENCES `ad` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 
 delimiter $$
 
@@ -57,9 +59,20 @@ CREATE TABLE `log_actions_book` (
   `log_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   PRIMARY KEY (`log_id`),
-  KEY `log_book.book_idx` (`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1$$;
+  KEY `log_book.book_idx` (`book_id`),
+  CONSTRAINT `log_book.log` FOREIGN KEY (`log_id`) REFERENCES `log_actions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `log_book.book` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 
+delimiter $$
 
-
+DROP TABLE IF EXISTS `log_actions_image`;
+CREATE TABLE `log_actions_image` (
+  `log_id` int(11) NOT NULL,
+  `image_id` int(11) NOT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `log_image.image_idx` (`image_id`),
+  CONSTRAINT `log_image.log` FOREIGN KEY (`log_id`) REFERENCES `log_actions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `log_image.image` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 
