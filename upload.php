@@ -9,11 +9,11 @@ $userid=mysql_real_escape_string((int)$userrow['id']);
 
 // A list of permitted file extensions
 $allowed = array('png', 'jpg', 'gif','svg');
-
+$limit_size=5000;//file upload size limit
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 	
-	if (!in_array(strtolower($extension), $allowed)) {
+	if (!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
 		echo '{"status":"error"}';
 		exit;
 	}
