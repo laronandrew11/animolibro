@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 session_start();
 if(isset($_POST["submit0"])){ 
 	$passed_title = $_POST["loc"];

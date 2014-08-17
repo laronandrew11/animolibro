@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 
 include('php/SimpleImage.php');
 include('php/dbConnect.php');

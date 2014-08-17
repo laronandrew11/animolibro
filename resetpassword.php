@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-include('php/animolibroerrorhandler.php');
+include_once('php/animolibroerrorhandler.php');
 include('head.php');
 ?>
   <body>

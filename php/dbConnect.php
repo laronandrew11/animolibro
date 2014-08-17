@@ -1,5 +1,5 @@
 <?php
-include('animolibroerrorhandler.php');
+include_once('animolibroerrorhandler.php');
 //include('php/authenticator.php');
 $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 

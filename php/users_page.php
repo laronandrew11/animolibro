@@ -1,5 +1,5 @@
 <?php 
-include('animolibroerrorhandler.php');
+include_once('animolibroerrorhandler.php');
 session_start(); 
 if(!$_SESSION['logged']){ 
     header("Location: login_page.php"); 

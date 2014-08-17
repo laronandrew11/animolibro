@@ -1,4 +1,5 @@
   <?php
+include_once('php/animolibroerrorhandler.php');
   session_start(); 
 	$_SESSION['upload_type']=1; //so upload.php knows that we are uploading a user profile pic
   ?>

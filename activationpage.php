@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 include('php/dbConnect.php');
 $passkey = $_GET['passkey'];
 $sql = "UPDATE UserAccount SET com_code=NULL WHERE com_code='$passkey'";

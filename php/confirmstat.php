@@ -1,4 +1,5 @@
 <?php 
+include_once('animolibroerrorhandler.php');
 if(isset($_POST['submit1'])&&$_POST['myprofile']==true){ 
    include('dbConnect.php');
      

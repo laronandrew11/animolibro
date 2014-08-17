@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 
 	session_start();
 	echo '<!DOCTYPE html>

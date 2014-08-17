@@ -1,5 +1,5 @@
 <?php
-include('php/animolibroerrorhandler.php');
+include_once('php/animolibroerrorhandler.php');
 	session_start();
 	include('navbar.php');
 	

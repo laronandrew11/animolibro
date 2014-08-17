@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 	include('php/authenticator.php');
 		echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">

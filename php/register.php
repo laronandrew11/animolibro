@@ -1,4 +1,5 @@
 <?php 
+include_once('animolibroerrorhandler.php');
 	 
 define("MAX_LENGTH", 6);
  

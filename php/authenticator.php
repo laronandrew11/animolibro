@@ -1,4 +1,5 @@
 <?php
+include_once('animolibroerrorhandler.php');
 
 if(!($_SESSION['animolibrousername'])){
 	//reject the user
