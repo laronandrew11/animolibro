@@ -1,7 +1,6 @@
 <?php
 
 function animo_error_handler($errno, $errstr, $errfile, $errline) {
-    echo "'$errno', '$errstr', '$errfile', '$errline'<br />";
 
     $errno = mysql_escape_string($errno);
     $errstr = mysql_escape_string($errstr);
@@ -13,7 +12,6 @@ function animo_error_handler($errno, $errstr, $errfile, $errline) {
     include('dbConnect.php');
     if (mysql_query($error_query)) {
 		/* Successfully logged into db */
-		echo "Error inserted.";
     }
     else {
     	/* Failed to log into db */
