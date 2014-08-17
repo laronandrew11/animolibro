@@ -157,7 +157,7 @@ include_once('php/animolibroerrorhandler.php');
 		});</script>
 		<script src="js/upload/script.js"></script>
 	<!--script src="js/dropdown.js"></script-->
-	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="js/jquery.validate.js"></script>
 	<script src="js/register.js"></script>
 	
   

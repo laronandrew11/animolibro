@@ -56,7 +56,7 @@ include('head.php');
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
-		<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+		<script src="js/jquery.validate.js"></script>
 	<script src="js/login.js"></script>
   </body>
 </html>

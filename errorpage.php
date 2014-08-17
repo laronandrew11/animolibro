@@ -55,7 +55,7 @@ else {
 		});</script>
 		<script src="js/upload/script.js"></script>
 		
-	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="js/jquery.validate.js"></script>
 	<script src="dist/js/bootstrap.js"></script>
 	<script src="js/sellbook.js"></script>
 	<script src="js/sellautofill.js"></script>
