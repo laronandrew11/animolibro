@@ -1,4 +1,5 @@
 <?php
+
 include('php/SimpleImage.php');
 include('php/dbConnect.php');
 session_start(); 

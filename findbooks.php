@@ -81,9 +81,8 @@ if(isset($_POST['submit'])){
 			}
 			//echo $query;
 		$sql = mysql_query($query);
+		/* Query failed */
 		if ($sql === FALSE) {
-			/* Query failed */
-			echo $query;
 			echo "<br />No results found";
 			exit;
 		}

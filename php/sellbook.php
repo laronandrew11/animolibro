@@ -1,4 +1,5 @@
 <?php 
+
 if(isset($_POST['submit'])){  
     include('dbConnect.php');
     $isbn = mysql_real_escape_string($_POST['book_isbn']);  //change to number instead of string?

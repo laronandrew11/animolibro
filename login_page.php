@@ -2,6 +2,7 @@
 <html>
 <?php
 include('head.php');
+include('php/animolibroerrorhandler.php');
 ?>
   <body>
 

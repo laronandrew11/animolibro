@@ -1,5 +1,6 @@
 <?php 
 
+
 function confirmIPAddress($value) { 
 
   $q = "SELECT attempt, 
@@ -161,4 +162,5 @@ else
     header("Location: index.php");     
     exit; 
 } 
+
 ?>
