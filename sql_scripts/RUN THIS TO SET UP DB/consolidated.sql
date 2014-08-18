@@ -82,7 +82,7 @@ UNLOCK TABLES;
 CREATE TABLE `loginattempts` (
   `IP` varchar(20) NOT NULL,
   `Attempt` int(11) NOT NULL,
-  `LastLogin` datetime NOT NULL,
+  `LastLogin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`IP`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
