@@ -4,7 +4,7 @@ include_once('animolibroerrorhandler.php');
 
 function confirmIPAddress($value) {
 	$q = "SELECT attempt, (CASE when lastlogin is not NULL and DATE_ADD(LastLogin, INTERVAL 5 MINUTE)>NOW() then 1 else 0 end) as Denied 
-		FROM LoginAttempt
+		FROM loginattempts
 		WHERE ip = '$value'"; 
 
 	$result = mysql_query($q); 
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])) {
 	// IF BLOCKED IP, BLOCK
 	if($isBlocked == 1) {
 		session_start();
-		$_SESSION['bad_login_message'] = "Incorrect username or password; your IP address has been blocked, please try again after 5 minutes";
+		$_SESSION['bad_login_message'] = "Incorrect username or password. <b>Your IP address has been blocked, please try again after 5 minutes</b>";
 		header("Location: ../login_page.php");
 		exit;
 	}
