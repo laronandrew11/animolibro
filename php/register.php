@@ -1,6 +1,6 @@
 <?php 
 include_once('animolibroerrorhandler.php');
-	 
+require_once("db_config.php");
 define("MAX_LENGTH", 6);
  
 function generateHashWithSalt($password) {
@@ -11,6 +11,8 @@ function generateHashWithSalt($password) {
 
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
+   $db = database::getInstance(); 
+
 	$name = mysql_real_escape_string($_POST['user_name']);
 	$email = mysql_real_escape_string($_POST['user_email']);
 	$contact = mysql_real_escape_string($_POST['user_contactno']);
@@ -24,58 +26,80 @@ if(isset($_POST['submit'])){
 	if(!empty($_SESSION['imagename'])){
 		$profilepic_name = $_SESSION['imagename'];
 	
-	$get_profilepic = "SELECT id FROM Image WHERE href = '$profilepic_name'";
-	$profile_query=mysql_query($get_profilepic);
-	if(mysql_num_rows($profile_query) == 1){
+	//$get_profilepic = "SELECT id FROM Image WHERE href = '$profilepic_name'";
+
+	$get_profilepic=$db->dbh->prepare("SELECT id FROM Image WHERE href = :profpicname");
+	$get_profilepic->execute(array(':profpicname' => $profilepic_name));
+
+	$profile_query=$get_profilepic->fetchAll();
+	if(count($profile_query) == 1){
 				$profile_row= mysql_fetch_array($profile_query); 
 				$profile_id= mysql_real_escape_string((int)$profile_row['id']);
-				 $query = "INSERT INTO UserAccount(
-				 	username,
-				 	email,
-				 	contactnumber,
-				 	Course_id,
-				 	passwordhash,
-				 	salt,
-				 	profile_pic_id,
-				 	com_code) 
-            VALUES(
-            	'$name', 
-            	'$email', 
-            	'$contact', 
-            	'$course', 
-            	'$passwordhash',
-            	'$salt',
-            	'$profile_id', 
-            	'$com_code')";
-				}
+
+		$stmt = $db->dbh->prepare("INSERT INTO UserAccount (
+								 	username,
+								 	email,
+								 	contactnumber,
+								 	Course_id,
+								 	passwordhash,
+								 	salt,
+								 	profile_pic_id,
+								 	com_code) 
+								VALUES (
+					            	:name, 
+					            	:email, 
+					            	:contact, 
+					            	:course, 
+					            	:passwordhash,
+					            	:salt,
+					            	:profile_id, 
+					            	:com_code)");
+	    $stmt->bindParam(':name', $_POST['user_name']);
+	    $stmt->bindParam(':email', $_POST['user_email']);
+	    $stmt->bindParam(':contact', $_POST['user_contactno']);
+	    $stmt->bindParam(':course', $_POST['course']);
+	    $stmt->bindParam(':passwordhash', $passwordhash);
+	    $stmt->bindParam(':salt', $salt);
+	    $stmt->bindParam(':profile_id', $profile_id);
+	    $stmt->bindParam(':com_code', $com_code);
+	}
 	}
 	else{
-		$query = "INSERT INTO UserAccount(
-			username,
-			email,
-			contactnumber,
-			Course_id,
-			passwordhash,
-			salt,
-			com_code) 
-            VALUES(
-            	'$name',
-            	'$email',
-            	'$contact',
-            	'$course',
-            	'$passwordhash',
-            	'$salt',
-            	'$com_code')";
+		$stmt = $db->dbh->prepare("INSERT INTO UserAccount (
+								 	username,
+								 	email,
+								 	contactnumber,
+								 	Course_id,
+								 	passwordhash,
+								 	salt,
+								 	com_code) 
+								VALUES (
+					            	:name, 
+					            	:email, 
+					            	:contact, 
+					            	:course, 
+					            	:passwordhash,
+					            	:salt,
+					            	:com_code)");
+	    $stmt->bindParam(':name', $_POST['user_name']);
+	    $stmt->bindParam(':email', $_POST['user_email']);
+	    $stmt->bindParam(':contact', $_POST['user_contactno']);
+	    $stmt->bindParam(':course', $_POST['course']);
+	    $stmt->bindParam(':passwordhash', $passwordhash);
+	    $stmt->bindParam(':salt', $salt);
+	    $stmt->bindParam(':com_code', $com_code);
+
 	}
 				 
-    if(mysql_query($query))
+    if(($stmt->execute()))
 	{
-
-			
         //$_SESSION['animolibrousername'] = $name;
 		//$_SESSION["external_profile"]=false;
-		$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
-		$row = mysql_fetch_array(mysql_query($id_query));
+		//$id_query = "SELECT id FROM UserAccount WHERE username= '$name'";
+
+		$stmt = $db->dbh->prepare("SELECT id FROM UserAccount WHERE username=:username");
+		$stmt->execute(array(':username' => $_POST['user_name']));
+		$row = $stmt->fetchAll();
 		$id= $row['id'];
 		//$_SESSION['animolibroid'] = $row['id'];
 		//$_SESSION['logged'] = true;

@@ -1,14 +1,20 @@
 <?php 
 include_once('animolibroerrorhandler.php');
-	 
+require_once("db_config.php");	 
+
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
+   $db = database::getInstance(); 
+
    $email = mysql_real_escape_string($_POST['user_email']);
    
    $query = "SELECT * FROM UserAccount WHERE email='$email' LIMIT 1";
    
+   $stmt = $db->dbh->prepare("SELECT * FROM UserAccount WHERE email=:email LIMIT 1");
+   $stmt->execute(array(':email' => $_POST['user_email'])
+
    if($hashquery = mysql_query($query)) {
-		$hashrow = mysql_fetch_array($hashquery);
+		$hashrow = $stmt->fetchAll();
 		$hash = $hashrow['passwordhash'];
 		$to = $email;
 		echo $to;

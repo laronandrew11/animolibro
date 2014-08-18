@@ -1,7 +1,10 @@
 <?php
 include_once('animolibroerrorhandler.php');
+require_once("db_config.php");
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
+   $db = database::getInstance(); 
+
    $currpass = mysql_real_escape_string($_POST['currpass']);
    $newpass = mysql_real_escape_string($_POST['newpass']);
    $newpassagain = mysql_real_escape_string($_POST['newpassagain']);
@@ -9,10 +12,10 @@ if(isset($_POST['submit'])){
    $username=$_SESSION['animolibrousername'];
    if($newpass == $newpassagain){
 		$pwhash = md5($newpass);
-	   
-	    $query = "UPDATE UserAccount SET passwordhash='$pwhash' WHERE username='$username'";
-	   
-	    if(mysql_query($query)) {
+	   	
+	   	$stmt = $db->dbh->prepare("UPDATE UserAccount SET passwordhash = :passwordhash WHERE username = :username");
+	   	
+	    if($stmt->execute(array(':passwordhash' => $pwhash, ':username' => $username))) {
 			$_SESSION['pwchange']=true;
 			header("Location: http://localhost/animolibro/home.php");
 		}else { 

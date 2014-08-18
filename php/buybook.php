@@ -1,18 +1,23 @@
 <?php 
 include_once('animolibroerrorhandler.php');
+require_once("db_config.php");
 
 if(isset($_POST['submit'])){ 
    include('dbConnect.php');
-     
+    $db = database::getInstance(); 
+
     $adid = mysql_real_escape_string($_POST['adid']);  //change to number instead of string?
 	$url = mysql_real_escape_string($_POST['url']);
-	
+
 	session_start(); 
 	$buyerid =  $_SESSION['animolibroid']; //not sure if this is right
 	
 	$update_ad ="UPDATE Ad SET status = 1, buyer_id = $buyerid WHERE id = $adid"; //later on, add a way to save and reference categories and subjects
 	
-	if(mysql_query($update_ad)){
+	$stmt = $db->dbh->prepare("UPDATE Ad SET status = :status, buyer_id = :buyerid WHERE id = :adid");
+
+	//if(mysql_query($update_ad)) {
+	if($stmt->execute(array(':status' => 1, ':buyerid' => $buyerid, ':id' => $_POST['adid']))){
 		
 		header("Location: http://localhost$url");
 	}

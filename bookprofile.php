@@ -4,10 +4,13 @@
 <?php
 include_once('php/animolibroerrorhandler.php');
 include('head.php');
+require_once("php/db_config.php");
 session_start();
 echo'<body>';
 include('navbar.php');
 include('php/dbConnect.php');
+
+$db = database::getInstance(); 
 
 //TODO: display relevant book info
 $bookid=$_GET['bookid'];
@@ -18,18 +21,31 @@ $category = $_GET['category'];
 $publisher = $_GET['publisher']; 
 $numcopies = $_GET['numcopies'];
 $sellerid = $_SESSION['animolibroid'];
-$query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
-$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
+//$query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
+//$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
+
+
+$query1 = $db->dbh->prepare("SELECT * FROM Ad WHERE Book_id= :bookid AND seller_id != :sellerid ORDER BY status=2,status=1");
+$query1->execute(array(':bookid' => $bookid, ':sellerid' => $sellerid));
+
+$query2 = $db->dbh->prepare("SELECT cover_pic_id FROM Book WHERE id=:bookid");
+$query2->execute(array(':bookid' => $bookid));
+
 
 //section for getting ads
 $sql1 = mysql_query($query1);
 $sql2=mysql_query($query2);
-$row2=mysql_fetch_array($sql2);
+
+$row2=$query2->fetch(PDO::FETCH_BOTH);
 $coverpic_id=$row2['cover_pic_id'];
-$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-if(!empty($coverquery)) {
-	if(mysql_num_rows($coverquery)==1) {
-		$cover_row=mysql_fetch_array($coverquery);
+
+//$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+$coverquery=$db->dbh->prepare("SELECT href FROM Image WHERE id = :coverpic_id");
+$coverquery->execute(array(':coverpic_id' => $coverpic_id));
+
+if(count($coverquery->fetchAll()) != 0) {
+	if(count($coverquery->fetchAll())==1) {
+		$cover_row=$coverquery->fetch(PDO::FETCH_BOTH);
 		$cover_filename=$cover_row['href'];
 	}
 	else {
@@ -71,12 +87,17 @@ echo'<br />
 echo $authors;
 echo'<br />';
 
-$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
-$subjectbooks= mysql_query($subjectbookquery);
-while($subjectbookrow=mysql_fetch_array($subjectbooks)) {
+//$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
+$subjectbookquery=$db->dbh->prepare("SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = :bookid");
+$subjectbookquery->execute(array(':bookid' => $bookid));
+
+//$subjectbooks= mysql_query($subjectbookquery);
+while($subjectbookrow=$subjectbookquery->fetch(PDO::FETCH_BOTH)) {
 	$subjectID= $subjectbookrow['Subject_id'];
-	$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
-	while($subjectrow=mysql_fetch_array($subjectquery)) {
+//	$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
+	$subjectquery=$db->dbh->prepare("SELECT code from Subject WHERE id = :subjectID");
+	$subjectquery->execute(array(':subjectid'=>$subjectID));
+	while($subjectrow=$subjectquery->fetch(PDO::FETCH_BOTH)) {
 		echo '<i class="glyphicon glyphicon-book"></i>&nbsp;' .$subjectrow['code'].'<br>';
 	}	
 }
@@ -104,15 +125,25 @@ if(!empty($sql1)&&mysql_num_rows($sql1) >= 1) {
 		$status=$ad_row['status'];
 		$condition=$ad_row['copy_condition'];
 		$sellerid=$ad_row['seller_id'];
-		$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
-		$seller_row=mysql_fetch_array($sellerquery);
+	//	$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
+	//	$seller_row=mysql_fetch_array($sellerquery);
+
+		$sellerquery=$db->dbh->prepare("SELECT * from UserAccount WHERE id = :sellerid");
+		$sellerquery->execute(array(':sellerid'=>$sellerid));
+
+		$seller_row=$sellerquery->fetch(PDO::FETCH_BOTH);
 		$sellername=$seller_row['username'];
 		
 		$profilepic_id=$seller_row['profile_pic_id'];
+
 		$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-		if(!empty($profilequery)) {
-			if(mysql_num_rows($profilequery)==1) {
-				$profile_row=mysql_fetch_array($profilequery);
+		
+		$profilequery=$db->dbh->prepare("SELECT href FROM Image WHERE id = :profilepic_id");
+		$profilequery->execute(array(':profilepic_id'=>$profilepic_id));
+
+		if(count($profilequery->fetchAll()) != 0) {
+			if(count($profilequery->fetchAll()) == 1) {
+				$profile_row=$profilequery->fetch(PDO::FETCH_BOTH);
 				$profile_filename=$profile_row['href'];
 			}
 			else {

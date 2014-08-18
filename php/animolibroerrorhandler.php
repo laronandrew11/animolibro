@@ -1,16 +1,17 @@
 <?php
+require_once("db_config.php");
 
 function animo_error_handler($errno, $errstr, $errfile, $errline) {
 
-    $errno = mysql_escape_string($errno);
-    $errstr = mysql_escape_string($errstr);
-    $errfile = mysql_escape_string($errfile);
-    $errline = mysql_escape_string($errline);
+    $db = database::getInstance();
 
-    $error_query = "INSERT INTO `log_errors` (`errno`, `errstr`, `errfile`, `errline`) VALUES ('$errno', '$errstr', '$errfile', '$errline')";
+    $stmt = $db->dbh->prepare("INSERT INTO log_errors (errno, errstr, errfile, errline) VALUES (:errno, :errstr, :errfile, :errline)");
+    $stmt->bindParam(':errno', $errno);
+    $stmt->bindParam(':errstr', $errstr);
+    $stmt->bindParam(':errfile', $errfile);
+    $stmt->bindParam(':errline', $errline);
 
-    include('dbConnect.php');
-    if (mysql_query($error_query)) {
+    if ($stmt->execute()) {
 		/* Successfully logged into db */
     }
     else {
