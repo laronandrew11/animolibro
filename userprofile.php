@@ -1,64 +1,61 @@
 <?php
 include_once('php/animolibroerrorhandler.php');
-
-	session_start();
-	echo '<!DOCTYPE html>
+session_start();
+echo '<!DOCTYPE html>
 <html>';
 include ('head.php');
-  echo'<body>';
-	include('navbar.php');
-			  if(/*$_SESSION["external_profile"]==*/ $_GET['user']!=$_SESSION['animolibrousername']){
-		$username=$_GET['user'];
-		$myprofile=false;
-		//echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-		}
-	else {$username= $_SESSION['animolibrousername'];
-		//echo '<li  class="active"><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-		$myprofile=true;
-	}
-	
-	include('php/dbConnect.php');
-	
-	//query to get current user's info
-	$query ="SELECT * FROM UserAccount  
-        WHERE username = '$username'";
-	$sql = mysql_query($query);
-	 if(mysql_num_rows($sql) == 1){ 
-		$row = mysql_fetch_array($sql);
-		$userid=$row['id'];
-		$coursequery = mysql_query("SELECT code from Course WHERE id='$row[Course_id]'");
-		$courserow=mysql_fetch_array($coursequery);
-		$course=$courserow['code'];
+echo'<body>';
+include('navbar.php');
+if(/*$_SESSION["external_profile"]==*/ $_GET['user']!=$_SESSION['animolibrousername']) {
+	$username=$_GET['user'];
+	$myprofile=false;
+	//echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+}
+else {
+	$username= $_SESSION['animolibrousername'];
+	//echo '<li  class="active"><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+	$myprofile=true;
+}
 
-		}
-	$profileIDquery="SELECT profile_pic_id FROM USERACCOUNT WHERE id=$userid";	
-	//section for getting ads
-	$profileIDsql=mysql_query($profileIDquery);
-	$row2=mysql_fetch_array($profileIDsql);
-	$profilepic_id=$row2['profile_pic_id'];
-	$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-	if(!empty($profilequery)){
-	if(mysql_num_rows($profilequery)==1)
-	{
-	$profile_row=mysql_fetch_array($profilequery);
+include('php/dbConnect.php');
+
+//query to get current user's info
+$query ="SELECT * FROM UserAccount WHERE username = '$username'";
+$sql = mysql_query($query);
+if(mysql_num_rows($sql) == 1) {
+	$row = mysql_fetch_array($sql);
+	$userid=$row['id'];
+	$coursequery = mysql_query("SELECT code from Course WHERE id='$row[Course_id]'");
+	$courserow=mysql_fetch_array($coursequery);
+	$course=$courserow['code'];
+}
+
+//section for getting profile picture
+$profileIDquery="SELECT profile_pic_id FROM USERACCOUNT WHERE id=$userid";	
+$profileIDsql=mysql_query($profileIDquery);
+$row2=mysql_fetch_array($profileIDsql);
+$profilepic_id=$row2['profile_pic_id'];
+$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+if(!empty($profilequery)){
+	if(mysql_num_rows($profilequery)==1) {
+		$profile_row=mysql_fetch_array($profilequery);
+		$profile_filename=$profile_row['href'];
+	}
+	else {
+		$profile_filename="placeholder.gif";
+	}
+}
+else {
+	$profile_filename="placeholder.gif";
+}
 	
-	$profile_filename=$profile_row['href'];
-	}
-	else{
-			$profile_filename="placeholder.gif";
-	}
-	}
-	else{
-			$profile_filename="placeholder.gif";
-	}
-	
-	//query to get current user's ads
-	$adquery="SELECT * FROM Ad WHERE seller_id = $userid ORDER BY status=2,status=1";
-	$sql2=mysql_query($adquery);
-	 
-	//display user profile box: username, location, course, email, contactno
-	echo 	'<div class="container">
-    <div class="row">
+//query to get current user's ads
+$adquery="SELECT * FROM Ad WHERE seller_id = $userid ORDER BY status=2,status=1";
+$sql2=mysql_query($adquery);
+ 
+//display user profile box: username, location, course, email, contactno
+echo '<div class="container">
+	<div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 center">
             <div class="well well-sm">
                 <div class="row">
@@ -94,59 +91,54 @@ echo'<div class="row">
         <div class="col-lg-6">
 			<h4>Selling</h4>';
 //display ads
-if(mysql_num_rows($sql2) >= 1){ 
+if(mysql_num_rows($sql2) >= 1) {
+	while($ad_row = mysql_fetch_array($sql2)) {
+		//echo $row['title'] . " " . $row['LastName'];
+		// "<br>";
+		$adid=$ad_row['id'];
+		$bookid=$ad_row['Book_id'];
+		$bookstat=$ad_row['status'];
+		$description=$ad_row['description'];
+		$buyerid=$ad_row['buyer_id'];
+		$buyerquery=mysql_query("SELECT * from UserAccount WHERE id = '$buyerid'");
+		$buyerrow=mysql_fetch_array($buyerquery);
+		$buyername=$buyerrow['username'];
+		$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
+		$bookrow=mysql_fetch_array($bookquery);
+		
+		$booktitle=$bookrow['title'];
+		$bookauthors=$bookrow['authors'];
+		$coverpic_id=$bookrow['cover_pic_id'];
+		$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+		if(!empty($coverquery)) {
+			if(mysql_num_rows($coverquery)==1) {
+				$cover_row=mysql_fetch_array($coverquery);
 
-		while($ad_row = mysql_fetch_array($sql2))
-		{
-			//echo $row['title'] . " " . $row['LastName'];
-			// "<br>";
-			$adid=$ad_row['id'];
-			$bookid=$ad_row['Book_id'];
-			$bookstat=$ad_row['status'];
-			$description=$ad_row['description'];
-			$buyerid=$ad_row['buyer_id'];
-			$buyerquery=mysql_query("SELECT * from UserAccount WHERE id = '$buyerid'");
-			$buyerrow=mysql_fetch_array($buyerquery);
-			$buyername=$buyerrow['username'];
-			$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
-			$bookrow=mysql_fetch_array($bookquery);
-			
-			$booktitle=$bookrow['title'];
-			$bookauthors=$bookrow['authors'];
-			$coverpic_id=$bookrow['cover_pic_id'];
-	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-	if(!empty($coverquery)){
-	if(mysql_num_rows($coverquery)==1)
-	{
-	$cover_row=mysql_fetch_array($coverquery);
-	
-	$cover_filename=$cover_row['href'];
-	}
-	else{
+				$cover_filename=$cover_row['href'];
+			}
+			else {
+				$cover_filename="placeholder.gif";
+			}
+		}
+		else {
 			$cover_filename="placeholder.gif";
-	}
-	}
-	else{
-			$cover_filename="placeholder.gif";
-	}
-			echo'<div class="panel panel-default">
+		}
+		echo '<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
 					echo $booktitle;
 					echo'</h3>
 				</div>';
 				
-				if($myprofile==true)
-				{
-					echo'<form action = "php/';
-					echo 'confirmstat';
-				}
-				else
-				{
-					echo'<form onsubmit="return confirm(\'Request to buy this book?\');" action = "php/';
-					echo 'buybook';
-				}
-				echo '.php" method = "POST">
+		if($myprofile==true) {
+			echo'<form action = "php/';
+			echo 'confirmstat';
+		}
+		else {
+			echo'<form onsubmit="return confirm(\'Request to buy this book?\');" action = "php/';
+			echo 'buybook';
+		}
+		echo '.php" method = "POST">
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
                         <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
@@ -157,29 +149,25 @@ if(mysql_num_rows($sql2) >= 1){
 					echo $ad_row['copy_condition'];
 					echo '<p>Price: Php ';
 					echo $ad_row['cost']; 
-					if( $ad_row['negotiable'] ==1)
-					{
+		if( $ad_row['negotiable'] ==1) {
 					echo " (negotiable)";
-					}
-					else{
-					echo " (non-negotiable)";
-					}
-					echo'<p>Meetup: ';
-					echo $ad_row['meetup'];
-					echo '<p>Copy Description: '.$description;
-					echo'<input type="hidden" name="adid" value="'.$adid.'">';
-					echo'<input type="hidden" name="myprofile" value="'.$myprofile.'">';
-					if($myprofile==true)
-					{
-						if($bookstat == 0)
-						{
-						echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
-						}
-						else if($bookstat == 1)
-						{
-						echo '<p>Buyer: ';
-						echo $buyername;
-						echo'
+		}
+		else {
+			echo " (non-negotiable)";
+		}
+		echo'<p>Meetup: ';
+		echo $ad_row['meetup'];
+		echo '<p>Copy Description: '.$description;
+		echo'<input type="hidden" name="adid" value="'.$adid.'">';
+		echo'<input type="hidden" name="myprofile" value="'.$myprofile.'">';
+		if($myprofile==true) {
+			if($bookstat == 0) {
+				echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
+			}
+			else if($bookstat == 1) {
+				echo '<p>Buyer: ';
+				echo $buyername;
+				echo '
 								<div class="btn-group pull-right">
 								<button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Request Pending';
 								echo'<span class="caret"></span></button>
@@ -189,34 +177,31 @@ if(mysql_num_rows($sql2) >= 1){
 									<li><input class="btn btn-danger" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
 								</ul>
 							  </div>';
-						}
-						else if($bookstat == 2)
-						{
-							echo '<p>Buyer: ';
-							echo $buyername;
-							echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
-						}
-						else if($bookstat == 3)
-						{
-							echo '<p>Buyer: ';
-							echo $buyername;
-							echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
-						}
-					}
-					else{
-					echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
-						if($bookstat == 0 || $bookstat == 3)
-					echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
-					else if($bookstat == 1)
-					{
-						echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
-					}
-					}
-				echo '</div>
+			}
+			else if($bookstat == 2) {
+				echo '<p>Buyer: ';
+				echo $buyername;
+				echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+			}
+			else if($bookstat == 3) {
+				echo '<p>Buyer: ';
+				echo $buyername;
+				echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+			}
+		}
+		else {
+			echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
+			if($bookstat == 0 || $bookstat == 3)
+				echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
+			else if($bookstat == 1) {
+				echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
+			}
+		}
+		echo '</div>
 				</form>
 			</div>';
-		}
 	}
+}
 echo '</div>	
       <div class="col-lg-6">
 			<h4>Looking for</h4>';
@@ -224,75 +209,68 @@ $lookquery="SELECT * FROM Ad WHERE buyer_id = $userid";
 $sql3=mysql_query($lookquery);
 if(mysql_num_rows($sql3) >= 1) {
 	while($ad_row = mysql_fetch_array($sql3)) {
-	$adid=$ad_row['id'];
-	$bookid=$ad_row['Book_id'];
-	$bookstat=$ad_row['status'];
-	$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
-	$bookrow=mysql_fetch_array($bookquery);
-	$booktitle=$bookrow['title'];
-	$bookauthors=$bookrow['authors'];
-	$description=$ad_row['description'];
-	$coverpic_id=$bookrow['cover_pic_id'];
-	$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-	if(!empty($coverquery)){
-	if(mysql_num_rows($coverquery)==1)
-	{
-	$cover_row=mysql_fetch_array($coverquery);
+		$adid=$ad_row['id'];
+		$bookid=$ad_row['Book_id'];
+		$bookstat=$ad_row['status'];
+		$bookquery=mysql_query("SELECT * from Book WHERE id = '$bookid'");
+		$bookrow=mysql_fetch_array($bookquery);
+		$booktitle=$bookrow['title'];
+		$bookauthors=$bookrow['authors'];
+		$description=$ad_row['description'];
+		$coverpic_id=$bookrow['cover_pic_id'];
+		$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
+		if(!empty($coverquery)) {
+			if(mysql_num_rows($coverquery)==1) {
+				$cover_row=mysql_fetch_array($coverquery);
 	
-	$cover_filename=$cover_row['href'];
-	}
-	else{
+				$cover_filename=$cover_row['href'];
+			}
+			else {
+				$cover_filename="placeholder.gif";
+			}
+		}
+		else {
 			$cover_filename="placeholder.gif";
-	}
-	}
-	else{
-			$cover_filename="placeholder.gif";
-	}
-	echo'<div class="panel panel-default">
+		}
+		echo '<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
-	echo $booktitle;
-	echo '</h3>
+		echo $booktitle;
+		echo '</h3>
 				</div>
 				<div class="panel-body">
 					<div class="col-sm-6 col-md-4">
                         <img src="uploads/'.$cover_filename.'" alt="" class="img-rounded img-responsive" />
                     </div>
 					<p>Author: ';
-	echo $bookauthors;
-	echo '<p>Condition: ';
-	echo $ad_row['copy_condition'];
-	echo '<p>Price: ';
-	echo $ad_row['cost']; 
-	if( $ad_row['negotiable'] ==1)
-	{
-		echo " (negotiable)";
-	}
-	else
-	{
-		echo " (non-negotiable)";
-	}
-	echo '<p>Meetup: ';
-	echo $ad_row['meetup'];
-	echo '<p>Copy Description: '.$description;
-	if($bookstat == 1)
-	{
-	echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
-	}
-	else if($bookstat == 2)
-	{
-	echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
-	}
-	else if($bookstat == 3)
-	{
-	echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
-	}
+		echo $bookauthors;
+		echo '<p>Condition: ';
+		echo $ad_row['copy_condition'];
+		echo '<p>Price: ';
+		echo $ad_row['cost']; 
+		if( $ad_row['negotiable'] ==1) {
+			echo " (negotiable)";
+		}
+		else {
+			echo " (non-negotiable)";
+		}
+		echo '<p>Meetup: ';
+		echo $ad_row['meetup'];
+		echo '<p>Copy Description: '.$description;
+		if($bookstat == 1) {
+			echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
+		}
+		else if($bookstat == 2) {
+			echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+		}
+		else if($bookstat == 3) {
+			echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+		}
 	
-	echo'			</div>
-			</div>
-        ';
+		echo '</div>
+			</div>';
 	}
-	}
+}
 echo '
 
 </div>
