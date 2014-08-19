@@ -113,8 +113,8 @@ if(isset($_POST['submit'])) {
 					
 				//$_SESSION["external_profile"]=false;
 				//header("Location: http://localhost/animolibro/php/users_page.php"); 
-				//header("Location: ../home.php");
-					exit; 
+				header("Location: ../home.php");
+				exit; 
 			}
 			// IF ACCOUNT IS NOT VALIDATED
 			else {
