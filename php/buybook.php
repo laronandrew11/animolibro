@@ -7,7 +7,8 @@ if(isset($_POST['submit'])) {
 	$db = database::getInstance(); 
 
 	$adid = $_POST['adid'];
-	$url = urlencode($_POST['url']);
+	$server = $_SERVER['SERVER_ADDR'];
+	$path = $_POST['url'];
 
 	session_start();
 	$buyerid =  $_SESSION['animolibroid']; //not sure if this is right
@@ -21,7 +22,8 @@ if(isset($_POST['submit'])) {
 
 	//if(mysql_query($update_ad)) {
 	if($stmt->execute()) {
-		header("Location: http://localhost$url");
+		header("Location: http://localhost$path"); 
+		exit;
 	}
 	else 
 		header("Location: ../errorpage.php"); 
