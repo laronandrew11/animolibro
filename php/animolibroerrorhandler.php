@@ -21,4 +21,14 @@ function animo_error_handler($errno, $errstr, $errfile, $errline) {
     return true;
 }
 
+function check_for_fatal() {
+    $err = error_get_last();
+    if ($err['type'] == E_ERROR) {
+        animo_error_handler($err['type'], $err['message'], $err['file'], $err['line']);
+    }
+}
+
 set_error_handler('animo_error_handler');
+register_shutdown_function('check_for_fatal');
+ini_set('display_errors', 'off');
+error_reporting(E_ALL);
