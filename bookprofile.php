@@ -24,6 +24,7 @@ $sellerid = $_SESSION['animolibroid'];
 //$query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
 //$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
 
+$found = 0;
 
 $query1 = $db->dbh->prepare("SELECT * FROM Ad WHERE Book_id= :bookid AND seller_id != :sellerid ORDER BY status=2,status=1");
 $query1->bindParam(':bookid', $bookid);
@@ -118,6 +119,7 @@ echo '<div class="row">
 			<h4>Sellers</h4>';
 if ($query1->execute()) { 
 	while ($ad_row = $query1->fetch(PDO::FETCH_ASSOC)) {
+		$found++;
 		//echo $row['title'] . " " . $row['LastName'];
 		// "<br>";
 		$description=$ad_row['description'];
@@ -207,7 +209,7 @@ if ($query1->execute()) {
 			
 	}
 }
-else
+if ($found <= 0)
 	echo "No sellers found. Perhaps you are the only seller.";
 ?>
 
