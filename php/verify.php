@@ -94,7 +94,7 @@ if(isset($_POST['submit'])) {
 		if(mysql_num_rows($sql) == 1) { 
 		 	
 		 	$row = mysql_fetch_array($sql);
-			clearLoginAttempts($value);
+			clearLoginAttempts($ip);
 
 			// IF EMAIL IS VALIDATED
 			if($row['Com_code']==null) {
