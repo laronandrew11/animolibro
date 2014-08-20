@@ -9,14 +9,14 @@ $type = $_SESSION['upload_type'];
 // A list of permitted file extensions
 $allowed = array('png', 'jpg', 'gif','svg');
 //file upload size limit
-$limit_size = 5000;
+$limit_size = 500000;
 
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	echo 'hello';
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 	$db = database::getInstance();
 	
-	if (exif_imagetype()==FALSE ||!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
+	if (!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
 		echo '{"status":"error"}';
 		exit;
 	}
