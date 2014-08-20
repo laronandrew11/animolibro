@@ -247,7 +247,7 @@ if ($looking_for_query->execute()) {
 
 		// GET AD DATA
 		$lf_ad_id = $lf_ad_row['id'];
-		$lf_book_id = $lf_ad_row['book_id'];
+		$lf_book_id = $lf_ad_row['Book_id'];
 		$lf_book_status = $lf_ad_row['status'];
 
 		// GET BOOK DATA
