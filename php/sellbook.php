@@ -214,7 +214,8 @@ if(isset($_POST['submit'])){
 										':description' => $description,
 										':seller_id' => $sellerid,
 										':book_id' => $bookid))){
-						header("Location: http://localhost/animolibro/userprofile.php?user=".$_SESSION["animolibrousername"]); 
+						header("Location: http://localhost/animolibro/userprofile.php");
+							
 					}
 					else {
 						echo "failed to add ad";

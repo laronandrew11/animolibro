@@ -10,11 +10,13 @@ include ('head.php');
 echo'<body>';
 include('navbar.php');
 
-if ($_POST['user'] != $_SESSION['animolibrousername']) {
+if ($_POST['user'] == $_SESSION['animolibrousername']) {
 	$username = $_POST['user'];
 	$myprofile = false;
 }
 else {
+
+
 	$username = $_SESSION['animolibrousername'];
 	$myprofile = true;
 }
