@@ -9,13 +9,13 @@ include('navbar.php');
 include('php/dbConnect.php');
 
 //TODO: display relevant book info
-$bookid=$_GET['bookid'];
-$title = $_GET['title']; 
-$isbn = $_GET['isbn']; 
-$authors = $_GET['authors']; 
-$category = $_GET['category']; 
-$publisher = $_GET['publisher']; 
-$numcopies = $_GET['numcopies'];
+$bookid=$_POST['bookid'];
+$title = $_POST['title']; 
+$isbn = $_POST['isbn']; 
+$authors = $_POST['authors']; 
+$category = $_POST['category']; 
+$publisher = $_POST['publisher']; 
+$numcopies = $_POST['numcopies'];
 $sellerid = $_SESSION['animolibroid'];
 $query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
 $query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
