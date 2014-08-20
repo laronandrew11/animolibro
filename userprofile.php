@@ -153,7 +153,8 @@ if ($has_ads) {
 				$cover_pic_filepath = "placeholder.gif";
 			}
 		}
-		
+		if($myprofile==true ||$book_status==0||book_status==3||$buyer_name==$_SESSION['animolibrousername'])
+		{
 		// START DISPLAY AD
 		echo '<div class="panel panel-default">
 				<div class="panel-heading">
@@ -234,6 +235,7 @@ if ($has_ads) {
 				</form>
 			</div>';
 		// END DISPLAY AD
+		}
 	}
 }
 if (!$has_ads) {
@@ -288,44 +290,49 @@ if ($has_looking_for_ads) {
 		}
 
 		// START DISPLAY 'LOOKING FOR' ADS
-		echo '<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">';
-		echo $lf_book_title;
-		echo '</h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/'.$lf_cover_pic_filepath.'" alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Author: ';
-		echo $lf_book_authors;
-		echo '<p>Condition: ';
-		echo $lf_ad_row['copy_condition'];
-		echo '<p>Price: ';
-		echo $lf_ad_row['cost']; 
-		if ( $lf_ad_row['negotiable'] ==1) {
-			echo " (negotiable)";
+		if($lf_book_status==0||$lf_book_status==3||$myprofile==true)
+			echo '<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">';
+			echo $lf_book_title;
+			echo '</h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-6 col-md-4">
+							<img src="uploads/'.$lf_cover_pic_filepath.'" alt="" class="img-rounded img-responsive" />
+						</div>
+						<p>Author: ';
+			echo $lf_book_authors;
+			echo '<p>Condition: ';
+			echo $lf_ad_row['copy_condition'];
+			echo '<p>Price: ';
+			echo $lf_ad_row['cost']; 
+			if ( $lf_ad_row['negotiable'] ==1) {
+				echo " (negotiable)";
+			}
+			else {
+				echo " (non-negotiable)";
+			}
+			echo '<p>Meetup: ';
+			echo $lf_ad_row['meetup'];
+			echo '<p>Copy Description: '.$lf_description;
+			if($myprofile==true)
+			{
+				if ($lf_book_status == 1) {
+					//echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
+				}
+				else if ($lf_book_status == 2) {
+					//echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+				}
+				else if ($lf_book_status == 3) {
+					//echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+				}
+			}
+		
+			echo '</div>
+				</div>';
+			// END DISPLAY 'LOOKING FOR' ADS
 		}
-		else {
-			echo " (non-negotiable)";
-		}
-		echo '<p>Meetup: ';
-		echo $lf_ad_row['meetup'];
-		echo '<p>Copy Description: '.$lf_description;
-		if ($lf_book_status == 1) {
-			echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
-		}
-		else if ($lf_book_status == 2) {
-			echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
-		}
-		else if ($lf_book_status == 3) {
-			echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
-		}
-	
-		echo '</div>
-			</div>';
-		// END DISPLAY 'LOOKING FOR' ADS
 	}
 }
 if (!$has_looking_for_ads) {
