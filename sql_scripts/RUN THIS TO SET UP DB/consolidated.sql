@@ -1,3 +1,4 @@
+UNLOCK TABLES;
 CREATE DATABASE IF NOT EXISTS `animolibrosimple`;
 USE `animolibrosimple`;
 
@@ -44,14 +45,14 @@ CREATE TABLE `log_action_type` (
   `action` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `action_UNIQUE` (`action`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log_action_type`
 --
 
 LOCK TABLES `log_action_type` WRITE;
-INSERT INTO `log_action_type` VALUES (1,'created an account'),(2,'posted a new book'),(3,'created an advertisement'),(4,'added a new course'),(5,'uploaded a new image'),(6,'added a new subject'),(7,'requested to buy '),(8,'removed an account'),(9,'removed a book'),(10,'removed an advertisement'),(11,'removed a course'),(12,'removed an image'),(13,'removed a subject'),(14,'removed the request to buy'),(15,'changed email address'),(16,'changed contact number'),(17,'changed password'),(18,'validated the account'),(19,'changed profile picture'),(20,'changed username'),(21,'changed course'),(22,'changed the isbn'),(23,'changed the title'),(24,'changed the author'),(25,'changed the publisher'),(26,'changed the category'),(27,'changed the cover picture'),(28,'logged in');
+INSERT INTO `log_action_type` VALUES (1,'created an account'),(2,'posted a new book'),(3,'created an advertisement'),(4,'added a new course'),(5,'uploaded a new image'),(6,'added a new subject'),(7,'requested to buy '),(8,'removed an account'),(9,'removed a book'),(10,'removed an advertisement'),(11,'removed a course'),(12,'removed an image'),(13,'removed a subject'),(14,'removed the request to buy'),(15,'changed email address'),(16,'changed contact number'),(17,'changed password'),(18,'validated the account'),(19,'changed profile picture'),(20,'changed username'),(21,'changed course'),(22,'changed the isbn'),(23,'changed the title'),(24,'changed the author'),(25,'changed the publisher'),(26,'changed the category'),(27,'changed the cover picture'),(28,'logged in'),(29,'accepted the request to buy'),(30,'rejected the request to buy');
 UNLOCK TABLES;
 
 --
@@ -234,9 +235,23 @@ DELIMITER ||
 CREATE TRIGGER `ad_AUPD` AFTER UPDATE ON `ad`
 FOR EACH ROW
 BEGIN
-  IF NEW.status <=> 1 AND NOT OLD.buyer_id <=> NEW.buyer_id THEN
+  IF NEW.status <=> 1 THEN
+    IF NEW.buyer_id <=> NULL THEN
+      INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.buyer_id, 14);
+    ELSE
     INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (NEW.buyer_id, 7);
+    END IF;
     INSERT INTO `log_actions_ad` (`log_id`, `ad_id`) VALUES (LAST_INSERT_ID(), OLD.id);
+  ELSE
+    IF NEW.status <=> 2 THEN
+      INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.seller_id, 29);
+      INSERT INTO `log_actions_ad` (`log_id`, `ad_id`) VALUES (LAST_INSERT_ID(), OLD.id);
+    ELSE
+      IF NEW.status <=> 3 THEN
+      INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (OLD.seller_id, 30);
+      INSERT INTO `log_actions_ad` (`log_id`, `ad_id`) VALUES (LAST_INSERT_ID(), OLD.id);
+      END IF;
+    END IF;
   END IF;
 END ||
 
