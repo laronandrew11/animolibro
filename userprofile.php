@@ -291,6 +291,7 @@ if ($has_looking_for_ads) {
 
 		// START DISPLAY 'LOOKING FOR' ADS
 		if($lf_book_status==0||$lf_book_status==3||$myprofile==true)
+		{
 			echo '<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">';
@@ -333,8 +334,9 @@ if ($has_looking_for_ads) {
 				</div>';
 			// END DISPLAY 'LOOKING FOR' ADS
 		}
+		
 	}
-
+}
 if (!$has_looking_for_ads) {
 	echo '<p>Not requesting for any books.</p>';
 }
