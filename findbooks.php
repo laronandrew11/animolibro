@@ -140,13 +140,17 @@ if(isset($_POST['submit'])){
 							
 						echo'<p>Copies Available: ';
 						echo $numcopies.'</div>';
-						
-						$hrefstring= 'bookprofile.php?isbn='. $isbn .'&bookid='.$bookid.'&title=' . $title.'&category='.$category.'&authors='.$authors.'&publisher='.$publisher.'&numcopies='.$numcopies;
-							
-						echo '<a role="button" href = "';
-						echo $hrefstring;
-						echo'" class="btn btn-primary pull-right" role=>View Sellers</a>
-							</div>
+						echo'<form action="bookprofile.php"  id="viewBook" method="post">
+						<input type="text" class="hidden" id="isbn" name="isbn" value="'.$isbn.'"/>
+						<input type="text" class="hidden" id="bookid" name="bookid" value="'.$bookid.'"/>
+						<input type="text" class="hidden" id="title" name="title" value="'.$title.'"/>
+						<input type="text" class="hidden" id="category" name="category" value="'.$category.'"/>
+						<input type="text" class="hidden" id="authors" name="authors" value="'.$authors.'"/>
+						<input type="text" class="hidden" id="publisher" name="publisher" value="'.$publisher.'"/>
+						<input type="text" class="hidden" id="numcopies" name="numcopies" value="'.$numcopies.'"/>
+						<button type="submit" class="btn btn-primary pull-right" name="submit">View Sellers</button>
+						</form>
+						</div>
 							</div></div>';
 					}
 				}
