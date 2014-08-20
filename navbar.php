@@ -23,10 +23,14 @@ include_once('php/animolibroerrorhandler.php');
           </ul>
          <ul class="nav navbar-nav navbar-right">';
 
-			 
-	echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
-	echo $_SESSION['animolibrousername'];
-	echo '</a></li>';
+	echo'<li><form action="userprofile.php"  id="viewSeller" method="post">
+						<input type="text" class="hidden" id="user" name="user" value="'.$_SESSION["animolibrousername"].'"/>
+						
+						<button type="submit" class="btn-navbar" name="viewsellerbutton"><span class="glyphicon glyphicon-user"></span>'.$_SESSION["animolibrousername"].'</button>
+						</form>';
+	//echo '<li><a href="userprofile.php?user='.$_SESSION["animolibrousername"].'"><span class="glyphicon glyphicon-user"></span> ';
+	//echo $_SESSION['animolibrousername'];
+	//echo '</a></li>';
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">

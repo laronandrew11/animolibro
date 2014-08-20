@@ -44,7 +44,11 @@ height: 100%;
   color: #CCCCCC;
   font-size: 20px;
 }
-
+.btn-navbar{
+background-color: #122A12;
+color: #CCCCCC;
+border:none;
+}
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #ffffff;
