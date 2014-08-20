@@ -9,7 +9,7 @@ $type = $_SESSION['upload_type'];
 // A list of permitted file extensions
 $allowed = array('png', 'jpg', 'gif','svg');
 //file upload size limit
-$limit_size = 5000;
+$limit_size = 500000;
 
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	echo 'hello';
