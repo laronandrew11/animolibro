@@ -10,7 +10,7 @@ include ('head.php');
 echo'<body>';
 include('navbar.php');
 
-if ($_POST['user'] == $_SESSION['animolibrousername']) {
+if ($_POST['user']&&$_POST['user'] != $_SESSION['animolibrousername']) {
 	$username = $_POST['user'];
 	$myprofile = false;
 }
@@ -20,6 +20,7 @@ else {
 	$username = $_SESSION['animolibrousername'];
 	$myprofile = true;
 }
+
 
 $db = database::getInstance(); 
 
@@ -322,13 +323,13 @@ if ($has_looking_for_ads) {
 			if($myprofile==true)
 			{
 				if ($lf_book_status == 1) {
-					//echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
+					echo '<button type="button" class="btn btn-primary disabled pull-right">Request Pending</button>';
 				}
 				else if ($lf_book_status == 2) {
-					//echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
+					echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
 				}
 				else if ($lf_book_status == 3) {
-					//echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
+					echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
 				}
 			}
 		

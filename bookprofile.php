@@ -127,9 +127,21 @@ if ($query1->execute()) {
 		$status=$ad_row['status'];
 		$condition=$ad_row['copy_condition'];
 		$sellerid=$ad_row['seller_id'];
+		$buyerid=$ad_row['buyer_id'];
+		
+		//get buyer info
+		$buyer_query = $db->dbh->prepare("SELECT * from UserAccount WHERE id = :buyerid");
+		$buyer_query->bindParam(':buyerid', $buyer_id);
+		if ($buyer_query->execute()) {
+			$buyer_row = $buyer_query->fetch(PDO::FETCH_ASSOC);
+			$buyer_name = $buyer_row['username'];
+		}
+		
+		
 	//	$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
 	//	$seller_row=mysql_fetch_array($sellerquery);
-
+		if($status==0||$status==3||$buyer_name==$_SESSION['animolibrousername'])
+		{
 		$sellerquery=$db->dbh->prepare("SELECT * from UserAccount WHERE id = :sellerid");
 		$sellerquery->execute(array(':sellerid'=>$sellerid));
 
@@ -215,7 +227,7 @@ if ($query1->execute()) {
 				</div>
 				</div></div>';
 		}
-			
+		}	
 	}
 }
 if ($found <= 0)
