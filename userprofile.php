@@ -10,8 +10,8 @@ include ('head.php');
 echo'<body>';
 include('navbar.php');
 
-if ($_GET['user'] != $_SESSION['animolibrousername']) {
-	$username = $_GET['user'];
+if ($_POST['user'] != $_SESSION['animolibrousername']) {
+	$username = $_POST['user'];
 	$myprofile = false;
 }
 else {

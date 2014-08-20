@@ -193,9 +193,13 @@ if ($query1->execute()) {
 			echo $adid;
 			echo'">';
 			echo '<p>Copy Description: '.$description;
+		
+						
 			echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
-			$sellername = str_replace(' ', '%20', $sellername);
-			echo'<p><a href=userprofile.php?user='.$sellername.'>View seller profile</a>';
+			
+			
+			
+			
 			if($status == 0 || $status == 3)
 				echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
 			else
@@ -203,6 +207,11 @@ if ($query1->execute()) {
 					echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
 				}
 			echo '</form>
+				<form action="userprofile.php"  id="viewSeller" method="post">
+						<input type="text" class="hidden" id="user" name="user" value="'.$sellername.'"/>
+						
+						<button type="submit" class="btn" color="#00f" name="viewsellerbutton">View Seller Profile</button>
+						</form>
 				</div>
 				</div></div>';
 		}
