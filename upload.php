@@ -16,7 +16,7 @@ if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 	$db = database::getInstance();
 	
-	if (!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
+	if (exif_imagetype()==FALSE ||!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
 		echo '{"status":"error"}';
 		exit;
 	}
