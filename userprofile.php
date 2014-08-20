@@ -334,7 +334,7 @@ if ($has_looking_for_ads) {
 			// END DISPLAY 'LOOKING FOR' ADS
 		}
 	}
-}
+
 if (!$has_looking_for_ads) {
 	echo '<p>Not requesting for any books.</p>';
 }
