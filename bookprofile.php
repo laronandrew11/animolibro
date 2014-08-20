@@ -2,11 +2,15 @@
 <html>
 
 <?php
+include_once('php/animolibroerrorhandler.php');
 include('head.php');
+require_once("php/db_config.php");
 session_start();
 echo'<body>';
 include('navbar.php');
-include('php/dbConnect.php');
+//include('php/dbConnect.php');
+
+$db = database::getInstance(); 
 
 //TODO: display relevant book info
 $bookid=$_POST['bookid'];
@@ -17,18 +21,30 @@ $category = $_POST['category'];
 $publisher = $_POST['publisher']; 
 $numcopies = $_POST['numcopies'];
 $sellerid = $_SESSION['animolibroid'];
-$query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
-$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
+//$query1 ="SELECT * FROM Ad WHERE Book_id= $bookid AND seller_id != $sellerid ORDER BY status=2,status=1";
+//$query2="SELECT cover_pic_id FROM Book WHERE id=$bookid";	
+
+$found = 0;
+
+$query1 = $db->dbh->prepare("SELECT * FROM Ad WHERE Book_id= :bookid AND seller_id != :sellerid ORDER BY status=2,status=1");
+$query1->bindParam(':bookid', $bookid);
+$query1->bindParam(':sellerid', $sellerid);
+
+$query2 = $db->dbh->prepare("SELECT cover_pic_id FROM Book WHERE id=:bookid");
+$query2->bindParam(':bookid', $bookid);
 
 //section for getting ads
-$sql1 = mysql_query($query1);
-$sql2=mysql_query($query2);
-$row2=mysql_fetch_array($sql2);
-$coverpic_id=$row2['cover_pic_id'];
-$coverquery=mysql_query("SELECT href FROM Image WHERE id = $coverpic_id");
-if(!empty($coverquery)) {
-	if(mysql_num_rows($coverquery)==1) {
-		$cover_row=mysql_fetch_array($coverquery);
+$query2->execute();
+$row2 = $query2->fetch(PDO::FETCH_ASSOC);
+$coverpic_id = $row2['cover_pic_id'];
+
+$coverquery = $db->dbh->prepare("SELECT href FROM Image WHERE id = :coverpic_id");
+$coverquery->bindParam(':coverpic_id', $coverpic_id);
+$coverquery->execute();
+
+if(count($coverquery->fetchAll()) != 0) {
+	if(count($coverquery->fetchAll())==1) {
+		$cover_row=$coverquery->fetch(PDO::FETCH_ASSOC);
 		$cover_filename=$cover_row['href'];
 	}
 	else {
@@ -70,12 +86,19 @@ echo'<br />
 echo $authors;
 echo'<br />';
 
-$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
-$subjectbooks= mysql_query($subjectbookquery);
-while($subjectbookrow=mysql_fetch_array($subjectbooks)) {
-	$subjectID= $subjectbookrow['Subject_id'];
-	$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
-	while($subjectrow=mysql_fetch_array($subjectquery)) {
+//$subjectbookquery="SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = $bookid";
+$subjectbookquery = $db->dbh->prepare("SELECT DISTINCT Subject_id FROM Subject_uses_Book WHERE Book_id = :bookid");
+$subjectbookquery->bindParam(':bookid', $bookid);
+$subjectbookquery->execute();
+
+//$subjectbooks= mysql_query($subjectbookquery);
+while($subjectbookrow = $subjectbookquery->fetch(PDO::FETCH_ASSOC)) {
+	$subjectID = $subjectbookrow['Subject_id'];
+//	$subjectquery=mysql_query("SELECT code from Subject WHERE id = $subjectID");
+	$subjectquery = $db->dbh->prepare("SELECT code from Subject WHERE id = :subjectID");
+	$subjectquery->bindParam(':subjectID', $subjectID);
+	$subjectquery->execute();
+	while($subjectrow=$subjectquery->fetch(PDO::FETCH_ASSOC)) {
 		echo '<i class="glyphicon glyphicon-book"></i>&nbsp;' .$subjectrow['code'].'<br>';
 	}	
 }
@@ -94,8 +117,9 @@ echo'</div>
 echo '<div class="row">
 		<div class="col-lg-8 center">
 			<h4>Sellers</h4>';
-if(!empty($sql1)&&mysql_num_rows($sql1) >= 1) { 
-	while($ad_row = mysql_fetch_array($sql1)) {
+if ($query1->execute()) { 
+	while ($ad_row = $query1->fetch(PDO::FETCH_ASSOC)) {
+		$found++;
 		//echo $row['title'] . " " . $row['LastName'];
 		// "<br>";
 		$description=$ad_row['description'];
@@ -103,15 +127,26 @@ if(!empty($sql1)&&mysql_num_rows($sql1) >= 1) {
 		$status=$ad_row['status'];
 		$condition=$ad_row['copy_condition'];
 		$sellerid=$ad_row['seller_id'];
-		$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
-		$seller_row=mysql_fetch_array($sellerquery);
+	//	$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
+	//	$seller_row=mysql_fetch_array($sellerquery);
+
+		$sellerquery=$db->dbh->prepare("SELECT * from UserAccount WHERE id = :sellerid");
+		$sellerquery->execute(array(':sellerid'=>$sellerid));
+
+		$seller_row=$sellerquery->fetch(PDO::FETCH_ASSOC);
 		$sellername=$seller_row['username'];
 		
 		$profilepic_id=$seller_row['profile_pic_id'];
-		$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-		if(!empty($profilequery)) {
-			if(mysql_num_rows($profilequery)==1) {
-				$profile_row=mysql_fetch_array($profilequery);
+
+		//$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+		
+		$profilequery=$db->dbh->prepare("SELECT href FROM Image WHERE id = :profilepic_id");
+		$profilequery->bindParam(':profilepic_id', $profilepic_id);
+		$profilequery->execute();
+
+		if(count($profilequery->fetchAll()) != 0) {
+			if(count($profilequery->fetchAll()) == 1) {
+				$profile_row=$profilequery->fetch(PDO::FETCH_ASSOC);
 				$profile_filename=$profile_row['href'];
 			}
 			else {
@@ -174,7 +209,7 @@ if(!empty($sql1)&&mysql_num_rows($sql1) >= 1) {
 			
 	}
 }
-else
+if ($found <= 0)
 	echo "No sellers found. Perhaps you are the only seller.";
 ?>
 

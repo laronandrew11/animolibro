@@ -1,17 +1,20 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
+require_once('php/db_config.php');
 include('php/SimpleImage.php');
-include('php/dbConnect.php');
+
 session_start(); 
-$user = $_SESSION['animolibrousername']; //not sure if this is right
 $type = $_SESSION['upload_type'];
-$userrow=mysql_fetch_array(mysql_query("SELECT * FROM UserAccount WHERE username = '$user'  LIMIT 1"));
-$userid=mysql_real_escape_string((int)$userrow['id']);
 
 // A list of permitted file extensions
 $allowed = array('png', 'jpg', 'gif','svg');
-$limit_size=5000;//file upload size limit
+//file upload size limit
+$limit_size = 5000;
+
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
+	echo 'hello';
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+	$db = database::getInstance();
 	
 	if (!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
 		echo '{"status":"error"}';
@@ -26,38 +29,17 @@ if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	$image->save('uploads/'.$name);
 		
 	//if (move_uploaded_file($name, 'uploads/'.$name)) {
-		$queryString ="INSERT INTO Image (type, href) VALUES ($type,'$name')";
-		if (mysql_query($queryString)) {
-			$_SESSION["imagename"]=$name;
-			echo '{"status":"success"}';
+	$image_query = $db->dbh->prepare("INSERT INTO Image (type, href) VALUES (:type, :name)");
+	$image_query->bindParam(':type', $type);
+	$image_query->bindParam(':name', $name);
 
-			/* Log newly added image into action database */
-			$last_imageID = mysql_insert_id();
-			$log_insert_image = "INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES ('$userid', 5)";
+	// INSERT IMAGE LOCATION INTO DATABASE
+	if ($image_query->execute()) {
 
-			if (mysql_query($log_insert_image)) {
-				/* Main log successful */
-				$last_logID = mysql_insert_id();
-				$log_insert_image_log = "INSERT INTO `log_actions_image` (`log_id`, `image_id`) VALUES ('$last_logID', '$last_imageID')";
-				
-				if (mysql_query($log_insert_image_log)) {
-					/* Image log successful */
-				}
-				else {
-					/* Image log error TODO */
-				}
-			}
-			else {
-				/* Main log error TODO */
-			}
-			/* End of logging */
-		}
-		else {
-			/* Log error inserting image location in DB TODO */
-
-		}
-			
-		exit;
+		$_SESSION["imagename"] = $name;
+		echo '{"status":"success"}';
+	}
+	exit;
 	//}
 }
 

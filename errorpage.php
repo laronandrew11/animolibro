@@ -2,6 +2,7 @@
 	<!DOCTYPE html>
 <html>
 <?php
+include_once('php/animolibroerrorhandler.php');
 	include('head.php');
 	session_start();
 	//$_SESSION['upload_type']=0; //so upload.php knows that we are uploading a cover image for the book
@@ -54,7 +55,7 @@ else {
 		});</script>
 		<script src="js/upload/script.js"></script>
 		
-	<script src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	<script src="js/jquery.validate.js"></script>
 	<script src="dist/js/bootstrap.js"></script>
 	<script src="js/sellbook.js"></script>
 	<script src="js/sellautofill.js"></script>

@@ -1,4 +1,5 @@
 <?php
+include_once('php/animolibroerrorhandler.php');
 session_start();
 if(isset($_POST["submit0"])){ 
 	$passed_title = $_POST["loc"];
@@ -81,9 +82,8 @@ if(isset($_POST['submit'])){
 			}
 			//echo $query;
 		$sql = mysql_query($query);
+		/* Query failed */
 		if ($sql === FALSE) {
-			/* Query failed */
-			echo $query;
 			echo "<br />No results found";
 			exit;
 		}

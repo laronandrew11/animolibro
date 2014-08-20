@@ -1,5 +1,7 @@
 <?php
+include_once('animolibroerrorhandler.php');
 //include('php/authenticator.php');
+
 $dbHost = "localhost";        //Location Of Database usually its localhost 
     $dbUser = "root";            //Database User Name 
     $dbPass = "";            //Database Password 
@@ -9,4 +11,5 @@ $dbHost = "localhost";        //Location Of Database usually its localhost
     //Connect to the databasse 
     mysql_select_db($dbDatabase, $db)or die("Couldn't select the database."); 
     //Selects the database 
+
 	?>

@@ -1,22 +1,19 @@
 <?php
+include_once('animolibroerrorhandler.php');
+require_once("db_config.php");
+
 if(isset($_POST['submit'])){ 
 include('dbConnect.php');
-	
+	$db = database::getInstance(); 
 	$search = mysql_real_escape_string($_POST['Search']); 
 	
-	$find = "SELECT * FROM Book  
-        WHERE title like '%{$search}%' OR 
-        authors like '%{$search}%' OR
-		isbn = '$search'";
-		
-	$sql = mysql_query("SELECT * FROM Book  
-        WHERE title like '%{$search}%' OR 
-        authors like '%{$search}%' OR
-		isbn = '$search'");
-	if(mysql_num_rows($sql) > 0) {
+	$stmt = $db->dbh->prepare("SELECT * FROM Book WHERE title like ? OR authors like ? OR isbn = ?");
+	$stmt->execute(array("%$search%", "%$search%", "%$search%"))
+
+	if(count($stmt->fetchAll()) > 0) {
 		$results = array(); // the result array
          $i = 1;
-         while ($row = mysql_fetch_assoc($sql)) {
+         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $results[] = "{$i}: {$row['title']}<br />{$row['authors']}<br />{$row['isbn']}<br /><br />";
             $i++;
 		}
