@@ -1,17 +1,18 @@
-  <?php
+<?php
 include_once('php/animolibroerrorhandler.php');
-  session_start(); 
-	$_SESSION['upload_type']=1; //so upload.php knows that we are uploading a user profile pic
-  ?>
+require_once('php/db_config.php');
+session_start(); 
+$_SESSION['upload_type'] = 1; //so upload.php knows that we are uploading a user profile pic
+?>
 <!doctype html>
 <html>
 <?php
-	include('head.php');
+include('head.php');
 ?>
   <body>
 <link href="css/upload.css" rel="stylesheet" />
 <?php
-	include('navbar_out.php');
+include('navbar_out.php');
 ?>
 	<div class="container">
 	
@@ -66,25 +67,18 @@ include_once('php/animolibroerrorhandler.php');
 		<label class="control-label">Course*</label> 
 		<div class="controls">
 		<select name="course">
-		<?php
-	include('php/dbConnect.php');
-     
-	 $queryString="SELECT * FROM Course";
-	 $query=mysql_query($queryString);
-	 if(mysql_num_rows($query) >= 1){ 
-		
-		while($row = mysql_fetch_array($query))
-		{
-			$id=$row['id'];
-			$code=$row['code'];
-			echo '<option value='.$id.'>'.$code.'</option>';
-		}
+<?php
+$db = database::getInstance();
+$course_query = $db->dbh->prepare("SELECT * FROM course");
+
+if($course_query->execute()) { 
+	while($course_row = $course_query->fetch(PDO::FETCH_ASSOC)) {
+		$course_id = $course_row['id'];
+		$course_code = $course_row['code'];
+		echo '<option value='.$course_id.'>'.$course_code.'</option>';
 	}
-		?>
-		<!--option value=1>CS-ST</option>
-		<option value=2>CS-CSE</option>
-		<option value=3>CS-NE</option>
-		<option value=4>CS-IST</option-->
+}
+?>
 		</select>
 		</div>
 		</div>
@@ -132,7 +126,7 @@ include_once('php/animolibroerrorhandler.php');
 		</form>
 		<!--/form-->
 		
-			<form class="hidden" id="upload" method="post" action="upload.php" enctype="multipart/form-data">	
+			<form class="hidden" id="upload" method="post" action="upload.php" enctype="multipart/form-data">
 				<input type="file" id="upl" name="upl" />
 		</form>
 	</div>
