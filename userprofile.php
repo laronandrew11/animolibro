@@ -104,10 +104,12 @@ echo'<div class="row">
 //query to get current user's ads
 $ad_query = $db->dbh->prepare("SELECT * FROM Ad WHERE seller_id = :userid ORDER BY status=2,status=1");
 $ad_query->bindParam(':userid', $user_id);
-if ($ad_query->execute()) {
-	
+$has_ads = $ad_query->execute();
+if ($has_ads) {
+	$has_ads = false;
 	// SHOW USER'S ADS
 	while ($ad_row = $ad_query->fetch(PDO::FETCH_ASSOC)) {
+		$has_ads = true;
 		
 		// GET ADVERTISEMENT DATA
 		$ad_id = $ad_row['id'];
@@ -234,6 +236,9 @@ if ($ad_query->execute()) {
 		// END DISPLAY AD
 	}
 }
+if (!$has_ads) {
+	echo '<p>Not selling any books.</p>';
+}
 echo '</div>	
       <div class="col-lg-6">
 			<h4>Looking for</h4>';
@@ -241,9 +246,12 @@ echo '</div>
 // SHOW LOOKING FOR
 $looking_for_query = $db->dbh->prepare("SELECT * FROM Ad WHERE buyer_id = :user_id");
 $looking_for_query->bindParam(':user_id', $user_id);
+$has_looking_for_ads = $looking_for_query->execute();
 
-if ($looking_for_query->execute()) {
+if ($has_looking_for_ads) {
+	$has_looking_for_ads = false;
 	while ($lf_ad_row = $looking_for_query->fetch(PDO::FETCH_ASSOC)) {
+		$has_looking_for_ads = true;
 
 		// GET AD DATA
 		$lf_ad_id = $lf_ad_row['id'];
@@ -278,6 +286,8 @@ if ($looking_for_query->execute()) {
 				$lf_cover_pic_filepath = "placeholder.gif";
 			}
 		}
+
+		// START DISPLAY 'LOOKING FOR' ADS
 		echo '<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">';
@@ -315,7 +325,11 @@ if ($looking_for_query->execute()) {
 	
 		echo '</div>
 			</div>';
+		// END DISPLAY 'LOOKING FOR' ADS
 	}
+}
+if (!$has_looking_for_ads) {
+	echo '<p>Not requesting for any books.</p>';
 }
 echo '
 
