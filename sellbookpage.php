@@ -3,10 +3,10 @@
 <html>
 <?php
 include_once('php/animolibroerrorhandler.php');
-
-	include('head.php');
-	session_start();
-	$_SESSION['upload_type']=0; //so upload.php knows that we are uploading a cover image for the book
+include('head.php');
+$db = database::getInstance();
+session_start();
+$_SESSION['upload_type'] = 0; //so upload.php knows that we are uploading a cover image for the book
 ?>
 
   <body>
@@ -30,12 +30,6 @@ include_once('php/animolibroerrorhandler.php');
 
 		<p style="margin-left: -15px"> <font size="2" color="red">Fields marked with * are required</font></p>
 		
-					
-
-			
-
-
-		
 		<form action="php/sellbook.php" class="form-horizontal" role="form" id="sellForm" method="post" >
 		<fieldset>		
 	
@@ -53,7 +47,6 @@ include_once('php/animolibroerrorhandler.php');
 		</div>
 		</div>
 		
-
 
 		<div class="form-group">
 		<label class="control-label">Authors*</label>
@@ -80,20 +73,16 @@ include_once('php/animolibroerrorhandler.php');
 		<label class="control-label">Category*</label> 
 		<div class="controls">
 		<select name="category">
-			<?php
-			include('php/dbConnect.php');
+<?php
      
-	 $queryString="SELECT DISTINCT category FROM Book";
-	 $query=mysql_query($queryString);
-	 if(mysql_num_rows($query) >= 1){ 
-		
-		while($row = mysql_fetch_array($query))
-		{
-			$category=$row['category'];
-		
-			echo '<option value='.$category.'>'.$category.'</option>';
-		}
+$category_query = $db->dbh->prepare("SELECT DISTINCT category FROM Book");
+$category_query->execute();
+if ($category_query->rowcount() >= 1){ 
+	while ($category_row = $category_query->fetch(PDO::FETCH_ASSOC)) {
+		$category = $category_row['category'];
+		echo '<option value='.$category.'>'.$category.'</option>';
 	}
+}
 		?>
 		<option value="Computer">Computer</option>
 		<option value="Law">Law</option>
@@ -110,21 +99,17 @@ include_once('php/animolibroerrorhandler.php');
 		<!--input type="text" class="input-xlarge form-control pop" id="book_subject" name="book_subject" rel="popover" data-content="Enter the subjects where this book is used." data-original-title="Subjects"-->
 		<select multiple name="book_subject[]">
 		
-			<?php
-			
-     
-	 $queryString=/*"SELECT DISTINCT subjects FROM Book"; */"SELECT code FROM Subject";
-	 $query=mysql_query($queryString);
-	 if(mysql_num_rows($query) >= 1){ 
-		
-		while($row = mysql_fetch_array($query))
-		{
-			$subject=$row['code'];
-		
-			echo '<option value='.$subject.'>'.$subject.'</option>';
-		}
+<?php
+
+$subject_query = $db->dbh->prepare("SELECT code FROM Subject");
+$subject_query->execute();
+if($subject_query->rowcount() >= 1){ 
+	while($subject_row = $subject_query->fetch(PDO::FETCH_ASSOC)) {
+		$subject = $subject_row['code'];
+		echo '<option value='.$subject.'>'.$subject.'</option>';
 	}
-		?>
+}
+?>
 			<!--option value="ALGOCOM">ALGOCOM</option>
 			<option value="HCIFACE">HCIFACE</option>
 			<option value="PROFSWD">PROFSWD</option>
