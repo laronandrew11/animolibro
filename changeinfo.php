@@ -56,6 +56,12 @@ else {
 <!-- START ALERTS -->
 <?php
 /* ALERTS HERE */
+if (isset($_SESSION["bad_message"])) {
+	echo "<div type='danger-alert' class='alert alert-danger' data-dismiss='alert' aria-hidden='true'>";
+	echo $_SESSION['bad_message'];
+	echo "</div>";
+	unset($_SESSION["bad_message"]);
+}
 ?>
 <!-- END ALERTS -->
 
