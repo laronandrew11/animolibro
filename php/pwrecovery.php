@@ -2,25 +2,22 @@
 include_once('animolibroerrorhandler.php');
 require_once("db_config.php");	 
 
-if(isset($_POST['submit'])){ 
-   include('dbConnect.php');
+if(isset($_POST['submit'])) {
    $db = database::getInstance(); 
 
-   $email = mysql_real_escape_string($_POST['user_email']);
+   $email = $_POST['user_email'];
    
-   $query = "SELECT * FROM UserAccount WHERE email='$email' LIMIT 1";
+   $user_query = $db->dbh->prepare("SELECT * FROM UserAccount WHERE email = :email LIMIT 1");
+   $user_query->bindParam(':email', $email);
    
-   $stmt = $db->dbh->prepare("SELECT * FROM UserAccount WHERE email=:email LIMIT 1");
-   $stmt->execute(array(':email' => $_POST['user_email'])
-
-   if($hashquery = mysql_query($query)) {
-		$hashrow = $stmt->fetchAll();
-		$hash = $hashrow['passwordhash'];
+   if($user_query->execute()) {
+		$user_row = $user_query->fetch(PDO::FETCH_ASSOC);
+		$password_hash = $user_row['passwordhash'];
 		$to = $email;
 		echo $to;
 		$subject = "AnimoLibro Password Recovery";
 		$message = "You're receiving this e-mail because you or someone else has requested a password for your user account.\nIt can be safely ignored if you did not request a password reset. Click the link below to reset your password.\n";
-		$message .= "http://localhost/animolibro/resetpassword.php?email='.$email.'&hash='.$hash.'";
+		$password_message .= "http://localhost/animolibro/resetpassword.php?email='.$email.'&hash='.$hash.'";
 		
 		$sentmail = mail($to,$subject,$message);
 		
@@ -34,7 +31,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['confirmationsent']=false;
 			//echo "Cannot send Confirmation link to your E-mail Address";
 		};
-		header("Location: http://localhost/animolibro/portal.php");
+		header("Location: ../portal.php");
 	}else{ echo "Password Recovery failed";}
     exit; 
 }   
