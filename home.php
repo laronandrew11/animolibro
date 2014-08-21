@@ -11,15 +11,11 @@ include ('navbar.php');
 ?>
 <?php
 	//session_start();
-	if(!empty($_SESSION['pwchange']))
-	{
-		if($_SESSION['pwchange']==true)
-		{
+	if(isset($_SESSION['pwchange'])) {
+		if($_SESSION['pwchange'] == true) {
 			echo '<div class="alert alert-success" id="success-alert">Your password has been changed.</div>';
 		}
-		else{
-			echo '<div class="alert alert-danger" id="failure-alert">Cannot change password.</div>';
-		}
+		unset($_SESSION['pwchange']);
 	}
 ?>
 	<!--script src ="home.php"></script-->

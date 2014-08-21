@@ -2,19 +2,14 @@
 include_once('animolibroerrorhandler.php');
 require_once("db_config.php");
 define("MAX_LENGTH", 6);
- 
-function generateHashWithSalt($password) {
-	$intermediateSalt = md5(uniqid(rand(), true));
-	$salt = substr($intermediateSalt, 0, MAX_LENGTH);
-	return hash("sha256", $password . $salt);
-}
 
 if (isset($_POST['submit'])) {
 	$db = database::getInstance();
+	session_start();
 
 	$salt = substr(md5(uniqid(rand(), true)), 0, 10);
 	$com_code = md5(uniqid(rand()));
-	$passwordhash = hash("sha256", $_POST['user_password']);
+	$passwordhash = hash("sha256", $_POST['user_password'].$salt);
 
 	if (isset($_SESSION['imagename'])) {
 		$profile_pic_name = $_SESSION['imagename'];
@@ -94,7 +89,7 @@ if (isset($_POST['submit'])) {
 			$subject = "AnimoLibro Registration Confirmation";
 			$header = "AnimoLibro: Confirmation from AnimoLibro";
 			$message = "Please click the link to verify and activate your account: \n";
-			$message = "http://localhost/animolibro/activationpage.php?passkey = $com_code";
+			$message = "http://localhost/animolibro/activationpage.php?passkey=$com_code";
 
 			$sentmail = mail($user_email, $subject, $message);
 			
@@ -106,13 +101,13 @@ if (isset($_POST['submit'])) {
 				$_SESSION['confirmationsent'] = false;
 				//echo "Cannot send Confirmation link to your E-mail Address";
 			}
+			$_SESSION['activation_code'] = $com_code;
 		}
-		header("Location: http://localhost/animolibro/portal.php");
+		header("Location: ../portal.php");
+		exit;
 	}
-	else{
-		echo "Registration failed";
-	}
-	exit; 
+	header("Location: ../registerpage.php");
+	exit;
 } 	
 else {
 	echo "Not submitted!";

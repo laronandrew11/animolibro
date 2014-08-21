@@ -10,29 +10,26 @@ include_once('php/animolibroerrorhandler.php');
 ?>
 	<div class="container">
 	
-	<?php
+<?php
 	session_start();
-	if(!empty($_SESSION['confirmationsent']))
-	{
-		if($_SESSION['confirmationsent']==true)
-		{
+
+	if (isset($_SESSION['activation_code'])) {
+		echo "<div class='alert alert-success'><a href='http://localhost/animolibro/activationpage.php?passkey=";
+		echo $_SESSION['activation_code'];
+		echo "'>Activate your account.</a></div>";
+		unset($_SESSION['activation_code']);
+	}
+
+	if(isset($_SESSION['confirmationsent'])) {
+		if($_SESSION['confirmationsent']==true) {
 			echo '<div class="alert alert-success" id="success-alert">Your confirmation link has been sent to your e-mail address.</div>';
 		}
-		else{
+		else {
 			echo '<div class="alert alert-danger" id="failure-alert">Cannot send confirmation link to your e-mail address.</div>';
 		}
+		unset($_SESSION['confirmationsent']);
 	}
-	if(!empty($_SESSION['pwchange']))
-	{
-		if($_SESSION['pwchange']==true)
-		{
-			echo '<div class="alert alert-success" id="success-alert">Your password has been changed.</div>';
-		}
-		else{
-			echo '<div class="alert alert-danger" id="failure-alert">Cannot change password.</div>';
-		}
-	}
-	?>
+?>
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Buy and sell used textbooks in a few clicks.</h1>

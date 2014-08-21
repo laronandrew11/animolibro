@@ -6,6 +6,20 @@ include_once('php/animolibroerrorhandler.php');
 include('head.php');
   echo'<body>';
 include ('navbar.php');
+
+if(isset($_SESSION['pwchange'])) {
+	echo '<div class="alert alert-danger" id="failure-alert">';
+	if ($_SESSION['pwchange'] == false) {
+		if (isset($_SESSION['pw_db_failed']) || isset($_SESSION['pw_wrong'])) {
+			echo 'Password change failed';
+		}
+		else if ($_SESSION['pw_not_equal']) {
+			echo 'Passwords entered are not the same';
+		}
+	}
+	echo '</div>';
+	unset($_SESSION['pwchange']);
+}
 ?>
 <!-- Main component for a primary marketing message or call to action -->
       <div class="container">

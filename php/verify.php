@@ -3,7 +3,6 @@ include_once('animolibroerrorhandler.php');
 require_once('db_config.php');
 
 function confirmIPAddress($value) {
-	echo 'confirmIPAddress($value)<br />';
 	$db = database::getInstance();
 
 	$attempt_query = $db->dbh->prepare("SELECT attempt, (CASE when lastlogin is not NULL and DATE_ADD(LastLogin, INTERVAL 5 MINUTE)>NOW() then 1 else 0 end) as Denied FROM loginattempts WHERE ip = :value");
@@ -24,7 +23,6 @@ function confirmIPAddress($value) {
 } 
 
 function addLoginAttempt($value) {
-	echo 'addLoginAttempt($value)<br />';
 	$db = database::getInstance();
 
 	//Increase number of attempts. Set last login attempt if required.
@@ -50,12 +48,10 @@ function addLoginAttempt($value) {
 }
 
 function clearLoginAttempts($value) {
-	echo 'clearLoginAttempts($value)<br />';
 	$db = database::getInstance();
 	$attempt_update_query = $db->dbh->prepare("UPDATE `loginattempts` SET Attempt = 0, lastlogin = NOW() WHERE ip = :value");
-		$attempt_update_query->bindParam(':attempt', $attempt);
-		$attempt_update_query->bindParam(':value', $value);
-		$attempt_update_query->execute();
+	$attempt_update_query->bindParam(':value', $value);
+	$attempt_update_query->execute();
 }
 
 // PAGE IS ACCESSED VIA POST
@@ -82,51 +78,55 @@ if(isset($_POST['submit'])) {
 		session_start();
 		$email = $_POST['user_email'];
 		$password = $_POST['user_password'];
-		$password_hash = hash("sha256", $password);
 
-		$user_query = $db->dbh->prepare("SELECT * FROM UserAccount WHERE email = :email AND concat(passwordhash, salt) = concat(:password_hash, salt) LIMIT 1");
+		$user_query = $db->dbh->prepare("SELECT * FROM UserAccount WHERE email = :email LIMIT 1");
 		$user_query->bindParam(':email', $email);
-		$user_query->bindParam(':password_hash', $password_hash);
 
 		if ($user_query->execute()) {
-			// IF EMAIL AND PASSWORD ARE CORRECT
+			// IF EMAIL HAS ACCOUNT
 			if ($user_query->rowcount() == 1) {
-			 	$user_row = $user_query->fetch(PDO::FETCH_ASSOC);
-				clearLoginAttempts($ip);
+				$user_row = $user_query->fetch(PDO::FETCH_ASSOC);
+				$stored_password_hash = $user_row['passwordhash'];
+				$stored_salt = $user_row['salt'];
+				$password_hash = hash("sha256", $password.$stored_salt);
 
-				// IF EMAIL IS VALIDATED
-				if($user_row['Com_code']==null) {
-					$_SESSION['animolibrousername'] = $user_row['username'];
-					$_SESSION['animolibroid'] = $user_row['id'];
-					$_SESSION['logged'] = true;
+				// IF PASSWORD FOR EMAIL IS CORRECT
+				if ($password_hash == $stored_password_hash) {
+					clearLoginAttempts($ip);
 
-					/* Log login into action database */
-					$user_id = $_SESSION['animolibroid'];
-					$log_insert_query = $db->dbh->prepare("INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (:user_id, 28)");
-					$log_insert_query->bindParam(':user_id', $user_id);
+					// IF EMAIL IS VALIDATED
+					if($user_row['Com_code']==null) {echo 'validated<br />';
+						$_SESSION['animolibrousername'] = $user_row['username'];
+						$_SESSION['animolibroid'] = $user_row['id'];
+						$_SESSION['logged'] = true;
 
-					if ($log_insert_query->execute()) {
-						/* Main log successful */
+						/* Log login into action database */
+						$user_id = $_SESSION['animolibroid'];
+						$log_insert_query = $db->dbh->prepare("INSERT INTO `log_actions` (`user_id`, `action_type_id`) VALUES (:user_id, 28)");
+						$log_insert_query->bindParam(':user_id', $user_id);
+
+						if ($log_insert_query->execute()) {
+							/* Main log successful */
+						}
+						/* End of logging */
+
+						header("Location: ../home.php");
+						exit;
 					}
-					/* End of logging */
-
-					header("Location: ../home.php");
-					exit; 
+					// IF ACCOUNT IS NOT VALIDATED
+					else {echo 'not validated<br />';
+						$_SESSION['bad_login_message'] = "Please activate your account via e-mail";
+						header("Location: ../login_page.php"); 
+						exit;
+					}
 				}
-				// IF ACCOUNT IS NOT VALIDATED
-				else {
-					$_SESSION['bad_login_message'] = "Please activate your account via e-mail";
+				// IF EMAIL OR PASSWORD IS INCORRECT
+				else {echo 'returned rows != 1<br />';
+					$_SESSION['bad_login_message'] = "Incorrect username or password";
+				 	addLoginAttempt($ip);
 					header("Location: ../login_page.php"); 
 					exit;
 				}
-
-			}
-			// IF EMAIL OR PASSWORD IS INCORRECT
-			else {
-				$_SESSION['bad_login_message'] = "Incorrect username or password";
-			 	addLoginAttempt($ip);
-				header("Location: ../login_page.php"); 
-				exit;
 			}
 		}
 	}

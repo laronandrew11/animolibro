@@ -4,60 +4,60 @@
 include_once('php/animolibroerrorhandler.php');
 include('head.php');
 ?>
-  <body>
+	<body>
 
 <?php
 include('navbar_out.php');
 session_start();
 
-if(isset($_SESSION["bad_login_message"])) {
-	echo "<div type='danger-alert' class='alert alert-danger' data-dismiss='alert' aria-hidden='true'>";
-	echo $_SESSION['bad_login_message'];
-	echo "</div>";
-	unset($_SESSION["bad_login_message"]);
+if (isset($_SESSION["bad_login_message"])) {
+  echo "<div type='danger-alert' class='alert alert-danger' data-dismiss='alert' aria-hidden='true'>";
+  echo $_SESSION['bad_login_message'];
+  echo "</div>";
+  unset($_SESSION["bad_login_message"]);
 }
-/*else if($_SESSION['accountactivated']==true) {
-	echo'<div type="danger-alert" class="alert alert-success" data-dismiss="alert" aria-hidden="true">
-		Account activated. You may now log in.
-		</div>';
-}*/
+
+if (isset($_SESSION['accountactivated']) && $_SESSION['accountactivated'] == true) {
+	echo'<div type="danger-alert" class="alert alert-success" data-dismiss="alert" aria-hidden="true">Account activated. You may now log in.</div>';
+  unset($_SESSION['accountactivated']);
+}
 ?>
 	
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="container">
-      <div class="row">
-      <div class="col-lg-3 col-md-3">
-        <form action="php/verify.php" id="loginHere" class ="form-signin" method = "post">
+			<!-- Main component for a primary marketing message or call to action -->
+			<div class="container">
+			<div class="row">
+			<div class="col-lg-3 col-md-3">
+				<form action="php/verify.php" id="loginHere" class ="form-signin" method = "post">
 			<legend style="margin-left: -15px">Sign In to AnimoLibro</legend>
 			
 			<div class="form-group">
-    <label class="control-label" style="margin-left: -15px">Email</label>
-    <div class="controls">
-    <input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
-    </div>
-    </div>
+		<label class="control-label" style="margin-left: -15px">Email</label>
+		<div class="controls">
+		<input type="text" style="margin-left: -15px" class="input-xlarge form-control" id="user_email" name="user_email" rel="popover" data-content="Enter your Email Address." data-original-title="Email">
+		</div>
+		</div>
 			<div class="form-group">
-    <label class="control-label" style="margin-left: -15px">Password</label>
-    <div class="controls">
-    <input type="password" style="margin-left: -15px" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter your Password." data-original-title="Password">
-    </div>
-    </div>
+		<label class="control-label" style="margin-left: -15px">Password</label>
+		<div class="controls">
+		<input type="password" style="margin-left: -15px" class="input-xlarge form-control" id="user_password" name="user_password" rel="popover" data-content="Enter your Password." data-original-title="Password">
+		</div>
+		</div>
 			<div class="form-group">
-    <label class="control-label"></label>
-    <div class="controls">
-    <input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" id="btn-submit" name = "submit" value = "Sign In">
+		<label class="control-label"></label>
+		<div class="controls">
+		<input type="submit" class="btn btn-success" style="margin-left: -15px" role="button" id="btn-submit" name = "submit" value = "Sign In">
 		</div>
 		</div>
 		</form>
-	<a href="forgotpassword.php"  class="btn btn-success" style="margin-left: -15px"  name = "forgotpassword" >Forgot Password</a>
+	<a href="forgotpassword.php"	class="btn btn-success" style="margin-left: -15px"	name = "forgotpassword" >Forgot Password</a>
 
 
-  </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="dist/js/bootstrap.min.js"></script>
+	</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="dist/js/bootstrap.min.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script src="js/login.js"></script>
-  </body>
+	</body>
 </html>
