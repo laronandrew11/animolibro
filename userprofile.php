@@ -154,7 +154,7 @@ if ($has_ads) {
 				$cover_pic_filepath = "placeholder.gif";
 			}
 		}
-		if($myprofile==true ||$book_status==0||book_status==3||$buyer_name==$_SESSION['animolibrousername'])
+		if($myprofile==true ||$book_status==0||$book_status==3||$buyer_name==$_SESSION['animolibrousername'])
 		{
 		// START DISPLAY AD
 		echo '<div class="panel panel-default">
