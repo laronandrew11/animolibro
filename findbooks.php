@@ -99,7 +99,6 @@ if(isset($_POST['submit'])){
 		}
 		else {
 		  if($book_query->rowcount() >= 1){ 
-				echo 'hello';
 				while($book_row = $book_query->fetch(PDO::FETCH_ASSOC)) {
 					$book_id = $book_row['id'];
 					$isbn = $book_row['isbn'];
