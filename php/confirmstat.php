@@ -22,7 +22,7 @@ if (isset($_POST['submit1']) && $_POST['myprofile'] == true) {
 	$stmt->bindParam(':status', $status_id);
 
 	if ($stmt->execute()) {
-		header("Location: ../userprofile.php?user=".$_SESSION['animolibrousername']);
+		header("Location: ../userprofile.php");
 	}
 	else {
 		header("Location: ../errorpage.php");
