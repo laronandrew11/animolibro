@@ -1,6 +1,7 @@
 <?php
 include_once('php/animolibroerrorhandler.php');
 require_once('php/db_config.php');
+include_once('php/inflate_ad.php');
 session_start();
 
 echo '<!DOCTYPE html>
@@ -17,6 +18,13 @@ if (isset($_POST['user']) && $_POST['user'] != $_SESSION['animolibrousername']) 
 else {
 	$username = $_SESSION['animolibrousername'];
 	$myprofile = true;
+}
+
+if (isset($_SESSION["bad_message"])) {
+	echo "<div type='danger-alert' class='alert alert-danger' data-dismiss='alert' aria-hidden='true'>";
+	echo $_SESSION['bad_message'];
+	echo "</div>";
+	unset($_SESSION["bad_message"]);
 }
 
 
@@ -126,12 +134,16 @@ if ($has_ads) {
 			$buyer_row = $buyer_query->fetch(PDO::FETCH_ASSOC);
 			$buyer_name = $buyer_row['username'];
 		}
+
+		$ad = $ad_row;
+		$ad['buyer_name'] = $buyer_name;
 		
 		// GET BOOK DATA
 		$book_query = $db->dbh->prepare("SELECT * from Book WHERE id = :bookid");
 		$book_query->bindParam(':bookid', $book_id);
 		if ($book_query->execute()) {
 			$book_row = $book_query->fetch(PDO::FETCH_ASSOC);
+			$ad['book'] = $book_row;
 
 			$book_title = $book_row['title'];
 			$book_authors = $book_row['authors'];
@@ -153,89 +165,12 @@ if ($has_ads) {
 			if (!$has_cover_pic) {
 				$cover_pic_filepath = "placeholder.gif";
 			}
+			
+			$ad['book']['cover_pic_filepath'] = $cover_pic_filepath;
 		}
-		if($myprofile==true ||$book_status==0||$book_status==3||$buyer_name==$_SESSION['animolibrousername'])
-		{
+		if($myprofile==true ||$book_status==0||$book_status==3||$buyer_name==$_SESSION['animolibrousername']) {
 		// START DISPLAY AD
-		echo '<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">';
-					echo $book_title;
-					echo'</h3>
-				</div>';
-				
-		if ($myprofile==true) {
-			echo'<form action = "php/';
-			echo 'confirmstat';
-		}
-		else {
-			echo'<form onsubmit="return confirm(\'Request to buy this book?\');" action = "php/';
-			echo 'buybook';
-		}
-		echo '.php" method = "POST">
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/'.$cover_pic_filepath.'" alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Author: ';
-					echo $book_authors;
-					echo'<p>Condition: ';
-					echo $ad_row['copy_condition'];
-					echo '<p>Price: Php ';
-					echo $ad_row['cost'];
-
-		if ($ad_row['negotiable'] == 1) {
-			echo " (negotiable)";
-		}
-		else {
-			echo " (non-negotiable)";
-		}
-		echo'<p>Meetup: ';
-		echo $ad_row['meetup'];
-		echo '<p>Copy Description: '.$description;
-		echo'<input type="hidden" name="adid" value="'.$ad_id.'">';
-		echo'<input type="hidden" name="myprofile" value="'.$myprofile.'">';
-		if ($myprofile==true) {
-			if ($book_status == 0) {
-				echo '<button type="button" class="btn btn-primary disabled pull-right">No Buyer Yet</button>';
-			}
-			else if ($book_status == 1) {
-				echo '<p>Buyer: ';
-				echo $buyer_name;
-				echo '
-								<div class="btn-group pull-right">
-								<button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Request Pending';
-								echo'<span class="caret"></span></button>
-								<ul class="dropdown-menu" role="menu">
-									<li><input class="btn btn-success" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Accept"></input></li>
-									<li class="divider"></li>
-									<li><input class="btn btn-danger" name="submit1" style="width: 100%; height: 100%;" type="submit" value="Reject"></input></li>
-								</ul>
-							  </div>';
-			}
-			else if ($book_status == 2) {
-				echo '<p>Buyer: ';
-				echo $buyer_name;
-				echo '<button type="button" class="btn btn-success disabled pull-right">Request Accepted</button>';
-			}
-			else if ($book_status == 3) {
-				echo '<p>Buyer: ';
-				echo $buyer_name;
-				echo '<button type="button" class="btn btn-danger disabled pull-right">Request Rejected</button>';
-			}
-		}
-		else {
-			echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
-			if ($book_status == 0 || $book_status == 3)
-				echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
-			else if ($book_status == 1) {
-				echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
-			}
-		}
-		echo '</div>
-				</form>
-			</div>';
-		// END DISPLAY AD
+			inflate_sell_ad($myprofile, $ad);
 		}
 	}
 }
