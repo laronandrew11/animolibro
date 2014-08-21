@@ -54,6 +54,7 @@ if(isset($_POST['submit'])) {
 		}
 
 		else{
+			$book_exists = false;
 			/*get cover picture*/
 			if(isset($_SESSION['imagename'])) {
 				$coverpic_name = $_SESSION['imagename'];
@@ -70,6 +71,9 @@ if(isset($_POST['submit'])) {
 					$insert_book_query = $db->dbh->prepare("INSERT INTO Book (title, authors, publisher, isbn, category,cover_pic_id) VALUES ('$title','$authors','$publisher','$isbn','$category',$coverpic_id)");
 					//later on, add a way to save and reference categories and subjects
 				}
+				else {
+					$insert_book_query = $db->dbh->prepare("INSERT INTO Book (title, authors, publisher, isbn, category) VALUES ('$title','$authors','$publisher','$isbn','$category')");
+				}
 			}
 			else {
 				$insert_book_query = $db->dbh->prepare("INSERT INTO Book (title, authors, publisher, isbn, category) VALUES ('$title','$authors','$publisher','$isbn','$category')");
@@ -83,9 +87,16 @@ if(isset($_POST['submit'])) {
 		}
 
 		if(isset($_SESSION['animolibroid'])) {
-			if ($book_exists == false && $insert_book_query->execute()) {
-				$log_book_insertion = true;
+			if ($book_exists == false) {
+				if ($insert_book_query->execute()) {
+					$log_book_insertion = true;
+				}
+				else {
+					echo "failed to add book";
+					/* Error TODO */
+				}
 			}
+
 			if($book_exists == true) {
 				$log_book_insertion = false;
 
@@ -132,10 +143,6 @@ if(isset($_POST['submit'])) {
 					echo "failed to query book id";
 					/* Error TODO */
 				}
-			}
-			else {
-				echo "failed to add book";
-				/* Error TODO */
 			}
 
 			if ($log_book_insertion == true) {
