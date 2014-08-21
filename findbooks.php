@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
 			}
 		}*/
 	
-		$book_query_statement = "SELECT * FROM Book WHERE title LIKE '%:keyword1%' OR isbn LIKE '%:keyword2%' OR authors LIKE '%:keyword3%' OR category LIKE '%:keyword4%' OR publisher LIKE '%$keyword5%'";
+		$book_query_statement = "SELECT * FROM Book WHERE title LIKE '%:keyword1%' OR isbn LIKE '%:keyword2%' OR authors LIKE '%:keyword3%' OR category LIKE '%:keyword4%' OR publisher LIKE '%:keyword5%'";
 		$extraCounter = 0;
 		while ($extraCounter < count($extraBookIDs)) {
 			$book_query_statement .= " OR id = :extraID".$extraCounter;
