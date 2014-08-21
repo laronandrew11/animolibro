@@ -242,7 +242,11 @@ if ($has_ads) {
 	}
 }
 if (!$has_ads) {
-	echo '<p>Not selling any books.</p>';
+	echo '<p>Not selling any books.';
+	if ($myprofile == true) {
+		echo ' <a href="sellbookpage.php">Sell a book?</a>';
+	}
+	echo '</p>';
 }
 echo '</div>	
       <div class="col-lg-6">
@@ -341,7 +345,11 @@ if ($has_looking_for_ads) {
 	}
 }
 if (!$has_looking_for_ads) {
-	echo '<p>Not requesting for any books.</p>';
+	echo '<p>Not requesting for any books.';
+	if ($myprofile == true) {
+		echo ' <a href="findbooks.php">Look for a book?</a>';
+	}
+	echo '</p>';
 }
 echo '
 
