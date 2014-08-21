@@ -2,10 +2,10 @@
 include_once('animolibroerrorhandler.php');
 require_once("db_config.php");
 
-if(isset($_POST['submit'])){ 
-include('dbConnect.php');
+if(isset($_POST['submit'])){
 	$db = database::getInstance(); 
-	$search = mysql_real_escape_string($_POST['Search']); 
+	
+	$search = $_POST['Search']; 
 	
 	$stmt = $db->dbh->prepare("SELECT * FROM Book WHERE title like ? OR authors like ? OR isbn = ?");
 	$stmt->execute(array("%$search%", "%$search%", "%$search%"))

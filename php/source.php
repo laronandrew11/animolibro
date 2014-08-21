@@ -3,7 +3,6 @@ include_once('animolibroerrorhandler.php');
 require_once("db_config.php");
 
 if(isset($_POST['query'])) {
-include('dbConnect.php');
 	$db = database::getInstance(); 
 	$query = $_POST['query'];
 	//$mysql_query = mysql_query("Select * from Book  WHERE title LIKE '%$query%'

@@ -3,12 +3,9 @@ include_once('animolibroerrorhandler.php');
 require_once("db_config.php");
 
 if(isset($_POST['isbn'])) {
-include('dbConnect.php');
 	$db = database::getInstance(); 
 
 	$isbn = $_POST['isbn'];
-	$isbn_query = mysql_query("Select * from Book  WHERE isbn LIKE '%$isbn%'");
-
 	$stmt = $db->dbh->prepare("SELECT * FROM Book WHERE isbn LIKE ?");
 	$stmt->execute(array("%$isbn%"))
 

@@ -3,7 +3,6 @@ include_once('animolibroerrorhandler.php');
 require_once("db_config.php");
 
 if(isset($_POST['submit'])) { 
-	//include('dbConnect.php');
 	$db = database::getInstance(); 
 
 	$adid = $_POST['adid'];

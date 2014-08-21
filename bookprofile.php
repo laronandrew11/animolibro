@@ -8,7 +8,6 @@ require_once("php/db_config.php");
 session_start();
 echo'<body>';
 include('navbar.php');
-//include('php/dbConnect.php');
 
 $db = database::getInstance(); 
 
