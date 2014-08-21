@@ -72,7 +72,6 @@ if (isset($_SESSION["bad_message"])) {
 		<div class="col-lg-4 col-md-4">
 			<form action="php/infochange.php" role="form" method="POST">
 				<legend>Change Email Address</legend>
-				<input type="hidden" name="formType" value="changeEmail" required />
 				<div class="form-group">
 					<label for="email" class="control-label">Email address</label>
 					<input type="email" name="email" class="form-control" placeholder="<?php echo $user['email']; ?>" autofocus required />
@@ -81,13 +80,12 @@ if (isset($_SESSION["bad_message"])) {
 					<label for="password" class="control-label">Password</label>
 					<input type="password" name="password" class="form-control" placeholder="******" required />
 				</div>
-				<input type="submit" class="btn btn-success" value="Change email" />
+				<input type="submit" class="btn btn-success" name="formType" value="Change email" />
 			</form>
 		</div>
 		<div class="col-lg-4 col-md-4">
 			<form action="php/infochange.php" role="form" method="POST">
 				<legend>Change Contact Number</legend>
-				<input type="hidden" name="formType" value="changeNumber" required />
 				<div class="form-group">
 					<label for="contactnumber" class="control-label">Contact number</label>
 					<input type="number" name="contactnumber" class="form-control" placeholder="<?php echo $user['contact_number']; ?>" required />
@@ -96,13 +94,12 @@ if (isset($_SESSION["bad_message"])) {
 					<label for="password" class="control-label">Password</label>
 					<input type="password" name="password" class="form-control" placeholder="******" required />
 				</div>
-				<input type="submit" class="btn btn-success" value="Change contact number" />
+				<input type="submit" class="btn btn-success" name="formType" value="Change contact number" />
 			</form>
 		</div>
 		<div class="col-lg-4 col-md-4">
 			<form action="php/infochange.php" role="form" method="POST">
 				<legend>Change Course</legend>
-				<input type="hidden" name="formType" value="changeCourse" required />
 				<div class="form-group">
 					<label for="course_id" class="control-label">Course</label>
 					<select name="course_id" class="form-control">
@@ -113,7 +110,7 @@ if (isset($_SESSION["bad_message"])) {
 						<?php endforeach; ?>
 					</select>
 				</div>
-				<input type="submit" class="btn btn-success" value="Change course" />
+				<input type="submit" class="btn btn-success" name="formType" value="Change course" />
 			</form>
 		</div>
 	</div>
