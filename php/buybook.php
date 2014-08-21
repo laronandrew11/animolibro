@@ -22,7 +22,7 @@ if(isset($_POST['submit'])) {
 
 	//if(mysql_query($update_ad)) {
 	if($stmt->execute()) {
-		header("Location: http://localhost$path"); 
+		header("Location: ../userprofile.php"); 
 		exit;
 	}
 	else 
