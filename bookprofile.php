@@ -128,6 +128,13 @@ if ($query1->execute()) {
 		$sellerid=$ad_row['seller_id'];
 		$buyerid=$ad_row['buyer_id'];
 		
+		if ($ad_row['negotiable'] ==1) {
+			$negotiable = " (negotiable)";
+		}
+		else{
+			$negotiable = " (non-negotiable)";
+		}
+		
 		//get buyer info
 		$buyer_query = $db->dbh->prepare("SELECT * from UserAccount WHERE id = :buyerid");
 		$buyer_query->bindParam(':buyerid', $buyer_id);
@@ -139,93 +146,114 @@ if ($query1->execute()) {
 		
 	//	$sellerquery=mysql_query("SELECT * from UserAccount WHERE id = '$sellerid'");
 	//	$seller_row=mysql_fetch_array($sellerquery);
-		if($status==0||$status==3||$buyer_name==$_SESSION['animolibrousername'])
-		{
-		$sellerquery=$db->dbh->prepare("SELECT * from UserAccount WHERE id = :sellerid");
-		$sellerquery->execute(array(':sellerid'=>$sellerid));
+		if($status==0||$status==3||$buyer_name==$_SESSION['animolibrousername']) {
+			$sellerquery=$db->dbh->prepare("SELECT * from UserAccount WHERE id = :sellerid");
+			$sellerquery->execute(array(':sellerid'=>$sellerid));
 
-		$seller_row=$sellerquery->fetch(PDO::FETCH_ASSOC);
-		$sellername=$seller_row['username'];
-		
-		$profilepic_id=$seller_row['profile_pic_id'];
-
-		//$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
-		
-		$profilequery=$db->dbh->prepare("SELECT href FROM Image WHERE id = :profilepic_id");
-		$profilequery->bindParam(':profilepic_id', $profilepic_id);
-		$profilequery->execute();
-
-		if(count($profilequery->fetchAll()) != 0) {
-			if(count($profilequery->fetchAll()) == 1) {
-				$profile_row=$profilequery->fetch(PDO::FETCH_ASSOC);
-				$profile_filename=$profile_row['href'];
-			}
-			else {
-				$profile_filename="placeholder.gif";
-			}
-		}
-		else{
-			$profile_filename="placeholder.gif";
-		}
+			$seller_row=$sellerquery->fetch(PDO::FETCH_ASSOC);
+			$sellername=$seller_row['username'];
 			
-		//$bookauthors=$bookrow['authors'];
-		if($status != 2) {
-			echo'<form id="buyform" onsubmit="return confirm(\'Request to buy this book?\');" action = "php/buybook.php" method = "POST">
-				<div class="col-lg-6 col-md-6"><div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">';
-			echo $sellername; 
-			$split=explode(" ", $sellername);
-			echo'<iframe src="http://www.setrating.com/widget.php?ref=http%3A%2F%2Flocalhost%2Fanimolibro%2Fuserprofile.php%3Fuser%3D';
-			foreach($split as $value){
-				echo $value;
-				if(end($split)!=$value)
-					echo '%2520';
-			}
-			echo '&amp;type=star" allowtransparency="true" frameborder="0" border="0" framebackground="none" scrolling="no" style="width:89px; padding:0; height:16px; margin:0px; background:none; align:right;"></iframe></i></h3>
-				</div>
-				<div class="panel-body">
-					<div class="col-sm-6 col-md-4">
-                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
-                    </div>
-					<p>Condition: ';
-			echo $condition;					
-			echo '<p>Price: Php ';
-			echo $ad_row['cost']; 
-			if ($ad_row['negotiable'] ==1) {
-				echo " (negotiable)";
+			$profilepic_id=$seller_row['profile_pic_id'];
+
+			//$profilequery=mysql_query("SELECT href FROM Image WHERE id = $profilepic_id");
+			
+			$profilequery=$db->dbh->prepare("SELECT href FROM Image WHERE id = :profilepic_id");
+			$profilequery->bindParam(':profilepic_id', $profilepic_id);
+			$profilequery->execute();
+
+			if(count($profilequery->fetchAll()) != 0) {
+				if(count($profilequery->fetchAll()) == 1) {
+					$profile_row=$profilequery->fetch(PDO::FETCH_ASSOC);
+					$profile_filename=$profile_row['href'];
+				}
+				else {
+					$profile_filename="placeholder.gif";
+				}
 			}
 			else{
-				echo " (non-negotiable)";
+				$profile_filename="placeholder.gif";
 			}
-			echo'<p>Meetup: ';
-			echo $ad_row['meetup'];
-			echo'<input type="hidden" name="adid" value="';
-			echo $adid;
-			echo'">';
-			echo '<p>Copy Description: '.$description;
-		
-						
-			echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
-			
-			
-			
-			
-			if($status == 0 || $status == 3)
-				echo'<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">';
-			else
-				if($status == 1) {
-					echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
+				
+			//$bookauthors=$bookrow['authors'];
+			if($status != 2) {
+				echo'
+					<div class="col-lg-6 col-md-6"><div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">';
+				echo $sellername; 
+				$split=explode(" ", $sellername);
+				echo'<iframe src="http://www.setrating.com/widget.php?ref=http%3A%2F%2Flocalhost%2Fanimolibro%2Fuserprofile.php%3Fuser%3D';
+				foreach($split as $value){
+					echo $value;
+					if(end($split)!=$value)
+						echo '%2520';
 				}
-			echo '</form>
-				<form action="userprofile.php"  id="viewSeller" method="post">
-						<input type="text" class="hidden" id="user" name="user" value="'.$sellername.'"/>
-						
-						<button type="submit" class="btn" color="#00f" name="viewsellerbutton">View Seller Profile</button>
-						</form>
+				echo '&amp;type=star" allowtransparency="true" frameborder="0" border="0" framebackground="none" scrolling="no" style="width:89px; padding:0; height:16px; margin:0px; background:none; align:right;"></iframe></i></h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-6 col-md-4">
+	                        <img src="uploads/'.$profile_filename.'" alt="" class="img-rounded img-responsive" />
+	                    </div>
+						<p>Condition: ' . $condition;
+				echo '<p>Price: Php ' . $ad_row['cost']; 
+				echo $negotiable;
+				echo'<p>Meetup: ' . $ad_row['meetup'];
+				echo'<input type="hidden" name="adid" value="';
+				echo $adid;
+				echo'">';
+				echo '<p>Copy Description: '.$description;
+			
+							
+				echo'<input type="hidden" name="url" value="'.$_SERVER['REQUEST_URI'].'">';
+				
+				
+				if($status == 0 || $status == 3)
+					echo'
+				<div class="btn-group pull-right">
+					<button class="btn btn-primary pull-right buy-btn" data-toggle="modal" data-target="#buyad'.$adid.'">
+						Buy
+					</button>
 				</div>
-				</div></div>';
-		}
+
+				<!-- MODAL -->
+				<div class="modal fade" id="buyad'.$adid.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">'. $sellername .'</h4>
+							</div>
+							<div class="modal-body">
+								<div class="col-md-3">
+									<img src="uploads/' . $cover_filename . '" alt="" class="img-rounded img-responsive" />
+								</div>
+								<p>Condition: ' . $condition . '</p>
+								<p>Price: Php ' . $ad_row['cost'] . $negotiable . '</p>
+								<p>Meetup: ' . $ad_row['meetup'] . '</p>
+								<p>Copy Description: '.$description . '</p>
+							</div>
+							<div class="modal-footer">
+								<form class="form-inline" action="php/buybook.php" method="POST">
+									<input type="hidden" name="adid" value="' . $adid . '">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<input type="submit" name="submit" class="btn btn-primary pull-right buy-btn" value="Buy">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>';
+				else
+					if($status == 1) {
+						echo'<input type="submit" name="submit" class="btn btn-primary disabled pull-right buy-btn" value="Bought">';
+					}
+				echo '<form action="userprofile.php"  id="viewSeller" method="post">
+						<input type="text" class="hidden" id="user" name="user" value="'.$sellername.'"/>
+						<button type="submit" class="btn" color="#00f" name="viewsellerbutton">View Seller Profile</button>
+					</form>
+				</div>
+			</div>
+		</div>';
+			}
 		}	
 	}
 }
