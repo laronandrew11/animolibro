@@ -1,7 +1,7 @@
 <?php
 include_once('php/animolibroerrorhandler.php');
-	include('php/authenticator.php');
-		echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+include('php/authenticator.php');
+echo '<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,6 +30,7 @@ include_once('php/animolibroerrorhandler.php');
 	echo '<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Settings <b class="caret"></b></a>
 				<ul class="dropdown-menu">
+				  <li><a name="changeinformation" href=changeinfo.php>Change Account Information</a></li>
 				  <li><a name="changepassword" href=changepw.php>Change Password</a></li>
 				  <li><a href="php/logout.php">Log out</a></li>
 				  <!--li class="divider"></li>
