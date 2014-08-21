@@ -122,6 +122,10 @@ if (isset($_SESSION["bad_message"])) {
 
 
 <!-- START FOOTER LAYOUT STUFF -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="dist/js/bootstrap.min.js"></script>
 	</body>
 </html>
 <!-- END FOOTER LAYOUT STUFF -->
