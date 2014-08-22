@@ -12,12 +12,12 @@ $allowed = array('png', 'jpg', 'gif','svg');
 $limit_size = 500000;
 
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
-	echo 'hello';
+	//echo 'hello';
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 	$db = database::getInstance();
 	
 	if (!in_array(strtolower($extension), $allowed) || S_FILES['upl']['size']>$limit_size) {
-		echo '{"status":"error"}';
+		//echo '{"status":"error"}';
 		exit;
 	}
 	
@@ -37,12 +37,12 @@ if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 	if ($image_query->execute()) {
 
 		$_SESSION["imagename"] = $name;
-		echo '{"status":"success"}';
+		//echo '{"status":"success"}';
 	}
 	exit;
 	//}
 }
 
-echo '{"status":"error"}';
+//echo '{"status":"error"}';
 /* Log error uploading image TODO */
 exit;
