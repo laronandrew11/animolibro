@@ -20,7 +20,7 @@
               <input type="text"  name="user_email" placeholder="Email" class="form-control nav_input">
             </div>
             <div class="form-group">
-              <input type="password" name="user_password" placeholder="Password" class="form-control nav_input">
+              <input type="password" name="user_password" placeholder="Password" autocomplete="off" class="form-control nav_input">
             </div>
             <!--button type="submit" class="btn btn-success">Sign in</button-->
 			<input type="submit" class="btn btn-success" role="button" name = "submit" value = "Sign in">
