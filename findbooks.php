@@ -72,13 +72,20 @@ if(isset($_POST['submit'])){
 			}
 		}*/
 	
-		$book_query_statement = "SELECT * FROM Book WHERE title LIKE '%:keyword1%' OR isbn LIKE '%:keyword2%' OR authors LIKE '%:keyword3%' OR category LIKE '%:keyword4%' OR publisher LIKE '%:keyword5%'";
+		$book_query_statement = "SELECT * FROM book ".
+								"WHERE (title LIKE :keyword1 ".
+								"OR isbn LIKE :keyword2 ".
+								"OR authors LIKE :keyword3 ".
+								"OR category LIKE :keyword4 ".
+								"OR publisher LIKE :keyword5";
 		$extraCounter = 0;
 		while ($extraCounter < count($extraBookIDs)) {
 			$book_query_statement .= " OR id = :extraID".$extraCounter;
 			$extraCounter++;
 		}
-		$book_query_statement .= " ORDER BY TITLE";
+		$book_query_statement .= ") ORDER BY TITLE;";
+		
+		$keyword = '%' . $keyword . '%';
 
 		$book_query = $db->dbh->prepare($book_query_statement);
 		$book_query->bindParam(':keyword1', $keyword);
@@ -98,7 +105,7 @@ if(isset($_POST['submit'])){
 			exit;
 		}
 		else {
-		  if($book_query->rowcount() >= 1){ 
+			if($book_query->rowcount() >= 1){ 
 				while($book_row = $book_query->fetch(PDO::FETCH_ASSOC)) {
 					$book_id = $book_row['id'];
 					$isbn = $book_row['isbn'];
