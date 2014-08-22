@@ -106,14 +106,14 @@ if($course_query->execute()) {
 		<div class="form-group">
 		<label class="control-label">Password*</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control pop" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
+		<input type="password" autocomplete="off" class="input-xlarge form-control pop" id="user_password" name="user_password" rel="popover" data-content="Enter a password." data-original-title="Password">
 		</div>
 		</div>
 		
 		<div class="form-group">
 		<label class="control-label">Confirm Password*</label>
 		<div class="controls">
-		<input type="password" class="input-xlarge form-control pop" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
+		<input type="password" autocomplete="off" class="input-xlarge form-control pop" id="confirm_password" name="confirm_password" rel="popover" data-content="Re-enter your password." data-original-title="Confirm Password">
 		</div>
 		</div>
 		
