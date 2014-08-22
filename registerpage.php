@@ -13,6 +13,12 @@ include('head.php');
 <link href="css/upload.css" rel="stylesheet" />
 <?php
 include('navbar_out.php');
+if (isset($_SESSION["bad_message"])) {
+	echo "<div type='danger-alert' class='alert alert-danger' data-dismiss='alert' aria-hidden='true'>";
+	echo $_SESSION['bad_message'];
+	echo "</div>";
+	unset($_SESSION["bad_message"]);
+}
 ?>
 	<div class="container">
 	
